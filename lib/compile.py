@@ -6,6 +6,6 @@ from Cython.Build import cythonize
 import numpy as np
 
 setup(
-        ext_modules = cythonize('vec3.pyx'),
+        ext_modules=cythonize(['vec3.pyx', 'ray.pyx', 'shapes.pyx']),
         include_dirs=[np.get_include()]
 )

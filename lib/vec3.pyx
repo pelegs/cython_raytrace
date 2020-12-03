@@ -1,7 +1,5 @@
 from __future__ import print_function
 import numpy as np
-from numpy import exp as npexp
-from numpy import sqrt as npsqrt
 cimport numpy as np
 from libc.math cimport sqrt, abs, exp
 #cython: boundscheck=False, wraparound=False, nonecheck=False, language_level=3
@@ -14,10 +12,6 @@ cdef class vec3:
     """
     A 3-vector with real x, y, z components.
     """
-    cdef public double  x
-    cdef public double  y
-    cdef public double  z
-
     def __init__(self, x, y, z):
         self.x = x
         self.y = y
@@ -149,12 +143,3 @@ cdef class vec3:
     cpdef vec3 normalize(self):
         # If self.norm == 0 returns original vec3
         return self / self.norm()
-
-
-# Standard basis vectors
-cdef vec3 e1 = vec3(1,0,0)
-cdef vec3 e2 = vec3(0,1,0)
-cdef vec3 e3 = vec3(0,0,1)
-cdef vec3 i_hat = e1
-cdef vec3 j_hat = e2
-cdef vec3 k_hat = e3
