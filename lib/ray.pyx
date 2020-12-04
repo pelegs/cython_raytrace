@@ -1,4 +1,4 @@
-from vec3 cimport vec3
+from .vec3 cimport vec3
 import numpy as np
 cimport numpy as np
 #cython: boundscheck=False, wraparound=False, nonecheck=False, language_level=3

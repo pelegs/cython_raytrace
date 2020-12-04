@@ -1,16 +1,17 @@
-from __future__ import print_function
 import numpy as np
 cimport numpy as np
 from libc.math cimport sqrt, abs, exp
 #cython: boundscheck=False, wraparound=False, nonecheck=False, language_level=3
 
 """
-Defines 3-vectors and their operations.
+Defines 3-vectors and their operations
 """
+
+cdef NUMBERS = [int, float]
 
 cdef class vec3:
     """
-    A 3-vector with real x, y, z components.
+    A 3-vector with real x, y, z components
     """
     def __init__(self, x, y, z):
         self.x = x
@@ -143,3 +144,26 @@ cdef class vec3:
     cpdef vec3 normalize(self):
         # If self.norm == 0 returns original vec3
         return self / self.norm()
+
+
+#####################
+# IMPORTANT VECTORS #
+#####################
+
+# Zero vector
+cdef vec3 origVec = vec3(0,0,0)
+orig = origVec
+
+# Unit vectors
+cdef vec3 xhat = vec3(1,0,0)
+cdef vec3 yhat = vec3(0,1,0)
+cdef vec3 zhat = vec3(0,0,1)
+cdef vec3 ihat = xhat
+cdef vec3 jhat = yhat
+cdef vec3 khat = zhat
+x_ = xhat
+y_ = yhat
+z_ = zhat
+i_ = ihat
+j_ = jhat
+k_ = khat

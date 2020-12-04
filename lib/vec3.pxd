@@ -1,3 +1,5 @@
+cdef NUMBERS
+
 cdef class vec3:
     cdef readonly double x
     cdef readonly double y
@@ -14,3 +16,12 @@ cdef class vec3:
     cpdef double norm(self)
     cpdef double sqr_norm(self)
     cpdef vec3 normalize(self)
+
+
+cdef vec3 origVec
+cdef vec3 xhat
+cdef vec3 yhat
+cdef vec3 zhat
+cdef vec3 ihat
+cdef vec3 jhat
+cdef vec3 khat

@@ -5,13 +5,17 @@
 Testing the libraries, nothing fancy.
 """
 
-from lib.vec3 import vec3
+from lib.vec3 import *
+from lib.matrix33 import *
 from lib.ray import Ray
 from lib.image import mat_to_img
+from lib.camera import Camera
 import numpy as np
 
-w, h = 500, 500
-mat = (np.array([[[float(i)/w, float(j)/h, 0.25]
-                  for i in range(1, w+1)]
-                  for j in range(h+1, 1, -1)]) * 255).astype(int)
-mat_to_img(mat, 'test.png')
+mat1 = Matrix33(2*x_, 0.5*y_, -3*z_)
+mat2 = Matrix33(2*x_, 2*y_, 2*z_)
+v1 = vec3(1,3,7)
+print(mat1*2)
+print(2*mat1)
+
+print(rotate_mat(x=0, y=np.pi/2, z=0))
