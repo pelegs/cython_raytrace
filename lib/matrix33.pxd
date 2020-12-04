@@ -5,9 +5,9 @@ cimport cython
 from libc.math cimport sin, cos
 
 ctypedef fused Scalar:
-    cython.int
-    cython.float
-    cython.double
+    int
+    float
+    double
 
 cdef class Matrix33:
     cdef public vec3 c1
@@ -41,3 +41,4 @@ cdef Matrix33 identity = Matrix33(xhat, yhat, zhat)
 cdef Matrix33 rotate_x(double ang)
 cdef Matrix33 rotate_y(double ang)
 cdef Matrix33 rotate_z(double ang)
+cdef Matrix33 c_rotate(double x, double y, double z)

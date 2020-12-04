@@ -101,7 +101,7 @@ cdef class Matrix33:
         return Matrix33(self.c1*a, self.c2*a, self.c3*a)
 
     cpdef vec3 dot_vec(self, vec3 v):
-        return vec3(self.r1.dot(v), self.r2.dot(v), self.r3.dot(v))
+        return vec3(self.c1.dot(v), self.c2.dot(v), self.c3.dot(v))
 
     cpdef Matrix33 dot_mat(self, Matrix33 m):
         return Matrix33(self.dot_vec(m.c1), self.dot_vec(m.c2), self.dot_vec(m.c3))
@@ -137,10 +137,18 @@ cdef Matrix33 rotate_z(double ang):
     cdef vec3 c3 = vec3(0,0,1)
     return Matrix33(c1, c2, c3)
 
+cdef Matrix33 c_rotate(double x, double y, double z):
+    return rotate_z(z) * rotate_y(y) * rotate_x(x)
+
 # Python rappers
 
 def from_np(arr):
-    return c_mat_from_np(arr)
+    if arr.shape == (3,):
+        return c_vec_from_np(arr)
+    elif arr.shape == (3,3):
+        return c_mat_from_np(arr)
+    else:
+        return None
 
 def rotate_mat(x=0, y=0, z=0):
-    return rotate_x(x) * rotate_y(y) * rotate_z(z)
+    return c_rotate(x, y, z)

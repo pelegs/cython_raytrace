@@ -1,15 +1,41 @@
-Compiling matrix33.pyx because it changed.
-[1/1] Cythonizing matrix33.pyx
-running build_ext
-building 'matrix33' extension
-x86_64-linux-gnu-gcc -pthread -Wno-unused-result -Wsign-compare -DNDEBUG -g -fwrapv -O2 -Wall -g -fstack-protector-strong -Wformat -Werror=format-security -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -fPIC -I/home/exocad-psa/.local/lib/python3.8/site-packages/numpy/core/include -I/usr/include/python3.8 -c matrix33.c -o build/temp.linux-x86_64-3.8/matrix33.o
-In file included from /home/exocad-psa/.local/lib/python3.8/site-packages/numpy/core/include/numpy/ndarraytypes.h:1822,
-                 from /home/exocad-psa/.local/lib/python3.8/site-packages/numpy/core/include/numpy/ndarrayobject.h:12,
-                 from /home/exocad-psa/.local/lib/python3.8/site-packages/numpy/core/include/numpy/arrayobject.h:4,
-                 from matrix33.c:623:
-/home/exocad-psa/.local/lib/python3.8/site-packages/numpy/core/include/numpy/npy_1_7_deprecated_api.h:17:2: warning: #warning "Using deprecated NumPy API, disable it with " "#define NPY_NO_DEPRECATED_API NPY_1_7_API_VERSION" [-Wcpp]
-   17 | #warning "Using deprecated NumPy API, disable it with " \
-      |  ^~~~~~~
-x86_64-linux-gnu-gcc -pthread -shared -Wl,-O1 -Wl,-Bsymbolic-functions -Wl,-Bsymbolic-functions -Wl,-z,relro -g -fwrapv -O2 -Wl,-Bsymbolic-functions -Wl,-z,relro -g -fwrapv -O2 -g -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 build/temp.linux-x86_64-3.8/matrix33.o -o /mnt/c/src/python/rtiow/lib/matrix33.cpython-38-x86_64-linux-gnu.so
 /usr/local/lib/python3.8/dist-packages/Cython/Compiler/Main.py:369: FutureWarning: Cython directive 'language_level' not set, using 2 for now (Py2). This will change in a later release! File: /mnt/c/src/python/rtiow/lib/matrix33.pxd
   tree = Parsing.p_module(s, pxd, full_module_name)
+warning: matrix33.pyx:140:6: Function 'c_rotate' previously declared as 'cpdef'
+
+Error compiling Cython file:
+------------------------------------------------------------
+...
+        return c_mat_from_np(arr)
+    else:
+        return None
+
+def rotate_mat(x=0, y=0, z=0):
+    return c_rotate(x, y, z)
+                  ^
+------------------------------------------------------------
+
+matrix33.pyx:154:19: no suitable method found
+
+Error compiling Cython file:
+------------------------------------------------------------
+...
+        return c_mat_from_np(arr)
+    else:
+        return None
+
+def rotate_mat(x=0, y=0, z=0):
+    return c_rotate(x, y, z)
+          ^
+------------------------------------------------------------
+
+matrix33.pyx:154:11: Invalid use of fused types, type cannot be specialized
+Compiling matrix33.pyx because it changed.
+[1/1] Cythonizing matrix33.pyx
+Traceback (most recent call last):
+  File "./compile.py", line 9, in <module>
+    ext_modules=cythonize(['vec3.pyx', 'matrix33.pyx',
+  File "/usr/local/lib/python3.8/dist-packages/Cython/Build/Dependencies.py", line 1102, in cythonize
+    cythonize_one(*args)
+  File "/usr/local/lib/python3.8/dist-packages/Cython/Build/Dependencies.py", line 1225, in cythonize_one
+    raise CompileError(None, pyx_file)
+Cython.Compiler.Errors.CompileError: matrix33.pyx
