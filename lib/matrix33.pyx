@@ -21,9 +21,9 @@ cdef class Matrix33:
         self.r3 = vec3(c1[2], c2[2], c3[2])
 
         # Specific elements (not sure it's useful)
-        self.a11 = self.r1[0]
-        self.a12 = self.r2[0]
-        self.a13 = self.r3[0]
+        self.a11 = self[0][0]
+        self.a12 = self[0][1]
+        self.a13 = self[0][2]
         
         self.a21 = self.r1[1]
         self.a22 = self.r2[1]
@@ -50,6 +50,9 @@ cdef class Matrix33:
 
     cpdef Matrix33 neg(self):
         return -1*self
+    
+    def __getitem__(self, key):
+        return [self.c1, self.c2, self.c3][key]
 
     cpdef Matrix33 transpose(self):
         return Matrix33(self.r1, self.r2, self.r3)
@@ -104,7 +107,7 @@ cdef class Matrix33:
         return vec3(self.c1.dot(v), self.c2.dot(v), self.c3.dot(v))
 
     cpdef Matrix33 dot_mat(self, Matrix33 m):
-        return Matrix33(self.dot_vec(m.c1), self.dot_vec(m.c2), self.dot_vec(m.c3))
+        return Matrix33(self.dot_vec(m.r1), self.dot_vec(m.r2), self.dot_vec(m.r3)).transpose()
 
 
 cdef Matrix33 c_mat_from_np(np.ndarray[double, ndim=2] arr):

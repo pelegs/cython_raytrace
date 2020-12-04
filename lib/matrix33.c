@@ -1153,7 +1153,7 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
 
-/* "vec3.pxd":7
+/* "vec3.pxd":8
  * cdef NUMBERS
  * 
  * cdef class vec3:             # <<<<<<<<<<<<<<
@@ -1198,7 +1198,7 @@ struct __pyx_obj_8matrix33_Matrix33 {
 
 
 
-/* "vec3.pxd":7
+/* "vec3.pxd":8
  * cdef NUMBERS
  * 
  * cdef class vec3:             # <<<<<<<<<<<<<<
@@ -1434,6 +1434,13 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
 /* PyObjectCallOneArg.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg);
 
+/* ObjectGetItem.proto */
+#if CYTHON_USE_TYPE_SLOTS
+static CYTHON_INLINE PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject* key);
+#else
+#define __Pyx_PyObject_GetItem(obj, key)  PyObject_GetItem(obj, key)
+#endif
+
 /* PyThreadStateGet.proto */
 #if CYTHON_FAST_THREAD_STATE
 #define __Pyx_PyThreadState_declare  PyThreadState *__pyx_tstate;
@@ -1634,13 +1641,6 @@ static void __Pyx_ZeroBuffer(Py_buffer* buf);
 static CYTHON_INLINE void __Pyx_SafeReleaseBuffer(Py_buffer* info);
 static Py_ssize_t __Pyx_minusones[] = { -1, -1, -1, -1, -1, -1, -1, -1 };
 static Py_ssize_t __Pyx_zeros[] = { 0, 0, 0, 0, 0, 0, 0, 0 };
-
-/* ObjectGetItem.proto */
-#if CYTHON_USE_TYPE_SLOTS
-static CYTHON_INLINE PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject* key);
-#else
-#define __Pyx_PyObject_GetItem(obj, key)  PyObject_GetItem(obj, key)
-#endif
 
 /* Import.proto */
 static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level);
@@ -2241,21 +2241,22 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_2__str__(struct __pyx_obj_8matrix3
 static PyObject *__pyx_pf_8matrix33_8Matrix33_4__pos__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_8matrix33_8Matrix33_6__neg__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_8matrix33_8Matrix33_8neg(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_8matrix33_8Matrix33_10transpose(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_8matrix33_8Matrix33_12det(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_8matrix33_8Matrix33_14__eq__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, PyObject *__pyx_v_m); /* proto */
-static PyObject *__pyx_pf_8matrix33_8Matrix33_16eq(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_m); /* proto */
-static PyObject *__pyx_pf_8matrix33_8Matrix33_18__add__(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /* proto */
-static PyObject *__pyx_pf_8matrix33_8Matrix33_20add(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_m); /* proto */
-static PyObject *__pyx_pf_8matrix33_8Matrix33_22__sub__(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /* proto */
-static PyObject *__pyx_pf_8matrix33_8Matrix33_24sub(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_m); /* proto */
-static PyObject *__pyx_pf_8matrix33_8Matrix33_26__mul__(PyObject *__pyx_v_self, PyObject *__pyx_v_a); /* proto */
-static PyObject *__pyx_pf_8matrix33_8Matrix33_28mul_scalar(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_signatures, PyObject *__pyx_v_args, PyObject *__pyx_v_kwargs, CYTHON_UNUSED PyObject *__pyx_v_defaults); /* proto */
-static PyObject *__pyx_pf_8matrix33_8Matrix33_34__pyx_fuse_0mul_scalar(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, int __pyx_v_a); /* proto */
-static PyObject *__pyx_pf_8matrix33_8Matrix33_36__pyx_fuse_1mul_scalar(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, float __pyx_v_a); /* proto */
-static PyObject *__pyx_pf_8matrix33_8Matrix33_38__pyx_fuse_2mul_scalar(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, double __pyx_v_a); /* proto */
-static PyObject *__pyx_pf_8matrix33_8Matrix33_30dot_vec(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_4vec3_vec3 *__pyx_v_v); /* proto */
-static PyObject *__pyx_pf_8matrix33_8Matrix33_32dot_mat(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_m); /* proto */
+static PyObject *__pyx_pf_8matrix33_8Matrix33_10__getitem__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, PyObject *__pyx_v_key); /* proto */
+static PyObject *__pyx_pf_8matrix33_8Matrix33_12transpose(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_8matrix33_8Matrix33_14det(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_8matrix33_8Matrix33_16__eq__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, PyObject *__pyx_v_m); /* proto */
+static PyObject *__pyx_pf_8matrix33_8Matrix33_18eq(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_m); /* proto */
+static PyObject *__pyx_pf_8matrix33_8Matrix33_20__add__(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /* proto */
+static PyObject *__pyx_pf_8matrix33_8Matrix33_22add(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_m); /* proto */
+static PyObject *__pyx_pf_8matrix33_8Matrix33_24__sub__(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /* proto */
+static PyObject *__pyx_pf_8matrix33_8Matrix33_26sub(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_m); /* proto */
+static PyObject *__pyx_pf_8matrix33_8Matrix33_28__mul__(PyObject *__pyx_v_self, PyObject *__pyx_v_a); /* proto */
+static PyObject *__pyx_pf_8matrix33_8Matrix33_30mul_scalar(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_signatures, PyObject *__pyx_v_args, PyObject *__pyx_v_kwargs, CYTHON_UNUSED PyObject *__pyx_v_defaults); /* proto */
+static PyObject *__pyx_pf_8matrix33_8Matrix33_36__pyx_fuse_0mul_scalar(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, int __pyx_v_a); /* proto */
+static PyObject *__pyx_pf_8matrix33_8Matrix33_38__pyx_fuse_1mul_scalar(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, float __pyx_v_a); /* proto */
+static PyObject *__pyx_pf_8matrix33_8Matrix33_40__pyx_fuse_2mul_scalar(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, double __pyx_v_a); /* proto */
+static PyObject *__pyx_pf_8matrix33_8Matrix33_32dot_vec(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_4vec3_vec3 *__pyx_v_v); /* proto */
+static PyObject *__pyx_pf_8matrix33_8Matrix33_34dot_mat(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_m); /* proto */
 static PyObject *__pyx_pf_8matrix33_8Matrix33_2c1___get__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self); /* proto */
 static int __pyx_pf_8matrix33_8Matrix33_2c1_2__set__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
 static int __pyx_pf_8matrix33_8Matrix33_2c1_4__del__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self); /* proto */
@@ -2292,8 +2293,8 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_3a32___get__(struct __pyx_obj_8mat
 static int __pyx_pf_8matrix33_8Matrix33_3a32_2__set__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
 static PyObject *__pyx_pf_8matrix33_8Matrix33_3a33___get__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self); /* proto */
 static int __pyx_pf_8matrix33_8Matrix33_3a33_2__set__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_8matrix33_8Matrix33_42__reduce_cython__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_8matrix33_8Matrix33_44__setstate_cython__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_8matrix33_8Matrix33_44__reduce_cython__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_8matrix33_8Matrix33_46__setstate_cython__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_8matrix33_from_np(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_arr); /* proto */
 static PyObject *__pyx_pf_8matrix33_2rotate_mat(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_x, PyObject *__pyx_v_y, PyObject *__pyx_v_z); /* proto */
 static PyObject *__pyx_pf_8matrix33_4__pyx_unpickle_Matrix33(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
@@ -2573,53 +2574,62 @@ static int __pyx_pf_8matrix33_8Matrix33___init__(struct __pyx_obj_8matrix33_Matr
   /* "matrix33.pyx":24
  * 
  *         # Specific elements (not sure it's useful)
- *         self.a11 = self.r1[0]             # <<<<<<<<<<<<<<
- *         self.a12 = self.r2[0]
- *         self.a13 = self.r3[0]
+ *         self.a11 = self[0][0]             # <<<<<<<<<<<<<<
+ *         self.a12 = self[0][1]
+ *         self.a13 = self[0][2]
  */
-  __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_self->r1), 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_self), 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 24, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_self->a11 = __pyx_t_5;
 
   /* "matrix33.pyx":25
  *         # Specific elements (not sure it's useful)
- *         self.a11 = self.r1[0]
- *         self.a12 = self.r2[0]             # <<<<<<<<<<<<<<
- *         self.a13 = self.r3[0]
+ *         self.a11 = self[0][0]
+ *         self.a12 = self[0][1]             # <<<<<<<<<<<<<<
+ *         self.a13 = self[0][2]
  * 
  */
-  __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_self->r2), 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 25, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetItemInt(((PyObject *)__pyx_v_self), 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 25, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = __Pyx_GetItemInt(__pyx_t_3, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 25, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 25, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_v_self->a12 = __pyx_t_5;
 
   /* "matrix33.pyx":26
- *         self.a11 = self.r1[0]
- *         self.a12 = self.r2[0]
- *         self.a13 = self.r3[0]             # <<<<<<<<<<<<<<
+ *         self.a11 = self[0][0]
+ *         self.a12 = self[0][1]
+ *         self.a13 = self[0][2]             # <<<<<<<<<<<<<<
  * 
  *         self.a21 = self.r1[1]
  */
-  __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_self->r3), 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_self), 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 26, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 26, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_4, 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 26, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 26, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_self->a13 = __pyx_t_5;
 
   /* "matrix33.pyx":28
- *         self.a13 = self.r3[0]
+ *         self.a13 = self[0][2]
  * 
  *         self.a21 = self.r1[1]             # <<<<<<<<<<<<<<
  *         self.a22 = self.r2[1]
  *         self.a23 = self.r3[1]
  */
-  __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_self->r1), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 28, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 28, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_3 = __Pyx_GetItemInt(((PyObject *)__pyx_v_self->r1), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 28, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_self->a21 = __pyx_t_5;
 
   /* "matrix33.pyx":29
@@ -2629,10 +2639,10 @@ static int __pyx_pf_8matrix33_8Matrix33___init__(struct __pyx_obj_8matrix33_Matr
  *         self.a23 = self.r3[1]
  * 
  */
-  __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_self->r2), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 29, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 29, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_3 = __Pyx_GetItemInt(((PyObject *)__pyx_v_self->r2), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 29, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 29, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_self->a22 = __pyx_t_5;
 
   /* "matrix33.pyx":30
@@ -2642,10 +2652,10 @@ static int __pyx_pf_8matrix33_8Matrix33___init__(struct __pyx_obj_8matrix33_Matr
  * 
  *         self.a31 = self.r1[2]
  */
-  __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_self->r3), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 30, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 30, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_3 = __Pyx_GetItemInt(((PyObject *)__pyx_v_self->r3), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 30, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_self->a23 = __pyx_t_5;
 
   /* "matrix33.pyx":32
@@ -2655,10 +2665,10 @@ static int __pyx_pf_8matrix33_8Matrix33___init__(struct __pyx_obj_8matrix33_Matr
  *         self.a32 = self.r2[2]
  *         self.a33 = self.r3[2]
  */
-  __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_self->r1), 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 32, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 32, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_3 = __Pyx_GetItemInt(((PyObject *)__pyx_v_self->r1), 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 32, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_self->a31 = __pyx_t_5;
 
   /* "matrix33.pyx":33
@@ -2668,10 +2678,10 @@ static int __pyx_pf_8matrix33_8Matrix33___init__(struct __pyx_obj_8matrix33_Matr
  *         self.a33 = self.r3[2]
  * 
  */
-  __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_self->r2), 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 33, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 33, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_3 = __Pyx_GetItemInt(((PyObject *)__pyx_v_self->r2), 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 33, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_self->a32 = __pyx_t_5;
 
   /* "matrix33.pyx":34
@@ -2681,10 +2691,10 @@ static int __pyx_pf_8matrix33_8Matrix33___init__(struct __pyx_obj_8matrix33_Matr
  * 
  *     def __str__(self):
  */
-  __pyx_t_4 = __Pyx_GetItemInt(((PyObject *)__pyx_v_self->r3), 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 34, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_4); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 34, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_3 = __Pyx_GetItemInt(((PyObject *)__pyx_v_self->r3), 2, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 34, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_self->a33 = __pyx_t_5;
 
   /* "matrix33.pyx":13
@@ -3025,7 +3035,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_neg(stru
  *     cpdef Matrix33 neg(self):
  *         return -1*self             # <<<<<<<<<<<<<<
  * 
- *     cpdef Matrix33 transpose(self):
+ *     def __getitem__(self, key):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
   __pyx_t_1 = PyNumber_Multiply(__pyx_int_neg_1, ((PyObject *)__pyx_v_self)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 52, __pyx_L1_error)
@@ -3099,12 +3109,89 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_8neg(struct __pyx_obj_8matrix33_Ma
 /* "matrix33.pyx":54
  *         return -1*self
  * 
+ *     def __getitem__(self, key):             # <<<<<<<<<<<<<<
+ *         return [self.c1, self.c2, self.c3][key]
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_8matrix33_8Matrix33_11__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_key); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_11__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_key) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__getitem__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_8matrix33_8Matrix33_10__getitem__(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((PyObject *)__pyx_v_key));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_8matrix33_8Matrix33_10__getitem__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, PyObject *__pyx_v_key) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__getitem__", 0);
+
+  /* "matrix33.pyx":55
+ * 
+ *     def __getitem__(self, key):
+ *         return [self.c1, self.c2, self.c3][key]             # <<<<<<<<<<<<<<
+ * 
+ *     cpdef Matrix33 transpose(self):
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = PyList_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_INCREF(((PyObject *)__pyx_v_self->c1));
+  __Pyx_GIVEREF(((PyObject *)__pyx_v_self->c1));
+  PyList_SET_ITEM(__pyx_t_1, 0, ((PyObject *)__pyx_v_self->c1));
+  __Pyx_INCREF(((PyObject *)__pyx_v_self->c2));
+  __Pyx_GIVEREF(((PyObject *)__pyx_v_self->c2));
+  PyList_SET_ITEM(__pyx_t_1, 1, ((PyObject *)__pyx_v_self->c2));
+  __Pyx_INCREF(((PyObject *)__pyx_v_self->c3));
+  __Pyx_GIVEREF(((PyObject *)__pyx_v_self->c3));
+  PyList_SET_ITEM(__pyx_t_1, 2, ((PyObject *)__pyx_v_self->c3));
+  __pyx_t_2 = __Pyx_PyObject_GetItem(__pyx_t_1, __pyx_v_key); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_r = __pyx_t_2;
+  __pyx_t_2 = 0;
+  goto __pyx_L0;
+
+  /* "matrix33.pyx":54
+ *         return -1*self
+ * 
+ *     def __getitem__(self, key):             # <<<<<<<<<<<<<<
+ *         return [self.c1, self.c2, self.c3][key]
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_AddTraceback("matrix33.Matrix33.__getitem__", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "matrix33.pyx":57
+ *         return [self.c1, self.c2, self.c3][key]
+ * 
  *     cpdef Matrix33 transpose(self):             # <<<<<<<<<<<<<<
  *         return Matrix33(self.r1, self.r2, self.r3)
  * 
  */
 
-static PyObject *__pyx_pw_8matrix33_8Matrix33_11transpose(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_13transpose(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
 static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_transpose(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, int __pyx_skip_dispatch) {
   struct __pyx_obj_8matrix33_Matrix33 *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -3125,9 +3212,9 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_transpos
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_transpose); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_transpose); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 57, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_11transpose)) {
+      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_13transpose)) {
         __Pyx_XDECREF(((PyObject *)__pyx_r));
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
@@ -3142,10 +3229,10 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_transpos
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 54, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 57, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 54, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 57, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -3164,7 +3251,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_transpos
     #endif
   }
 
-  /* "matrix33.pyx":55
+  /* "matrix33.pyx":58
  * 
  *     cpdef Matrix33 transpose(self):
  *         return Matrix33(self.r1, self.r2, self.r3)             # <<<<<<<<<<<<<<
@@ -3172,7 +3259,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_transpos
  *     cpdef double det(self):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(((PyObject *)__pyx_v_self->r1));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_self->r1));
@@ -3183,15 +3270,15 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_transpos
   __Pyx_INCREF(((PyObject *)__pyx_v_self->r3));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_self->r3));
   PyTuple_SET_ITEM(__pyx_t_1, 2, ((PyObject *)__pyx_v_self->r3));
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 55, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 58, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_2);
   __pyx_t_2 = 0;
   goto __pyx_L0;
 
-  /* "matrix33.pyx":54
- *         return -1*self
+  /* "matrix33.pyx":57
+ *         return [self.c1, self.c2, self.c3][key]
  * 
  *     cpdef Matrix33 transpose(self):             # <<<<<<<<<<<<<<
  *         return Matrix33(self.r1, self.r2, self.r3)
@@ -3213,19 +3300,19 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_transpos
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8matrix33_8Matrix33_11transpose(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_8matrix33_8Matrix33_11transpose(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_8matrix33_8Matrix33_13transpose(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_13transpose(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("transpose (wrapper)", 0);
-  __pyx_r = __pyx_pf_8matrix33_8Matrix33_10transpose(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self));
+  __pyx_r = __pyx_pf_8matrix33_8Matrix33_12transpose(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8matrix33_8Matrix33_10transpose(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self) {
+static PyObject *__pyx_pf_8matrix33_8Matrix33_12transpose(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3234,7 +3321,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_10transpose(struct __pyx_obj_8matr
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("transpose", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_8matrix33_8Matrix33_transpose(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 54, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_8matrix33_8Matrix33_transpose(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 57, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3251,7 +3338,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_10transpose(struct __pyx_obj_8matr
   return __pyx_r;
 }
 
-/* "matrix33.pyx":57
+/* "matrix33.pyx":60
  *         return Matrix33(self.r1, self.r2, self.r3)
  * 
  *     cpdef double det(self):             # <<<<<<<<<<<<<<
@@ -3259,7 +3346,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_10transpose(struct __pyx_obj_8matr
  *         cdef double B = self.a12 * (self.a21*self.a33 - self.a23*self.a31)
  */
 
-static PyObject *__pyx_pw_8matrix33_8Matrix33_13det(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_15det(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
 static double __pyx_f_8matrix33_8Matrix33_det(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, int __pyx_skip_dispatch) {
   double __pyx_v_A;
   double __pyx_v_B;
@@ -3284,9 +3371,9 @@ static double __pyx_f_8matrix33_8Matrix33_det(struct __pyx_obj_8matrix33_Matrix3
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_det); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 57, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_det); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 60, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_13det)) {
+      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_15det)) {
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
         if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -3300,10 +3387,10 @@ static double __pyx_f_8matrix33_8Matrix33_det(struct __pyx_obj_8matrix33_Matrix3
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 57, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 60, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 57, __pyx_L1_error)
+        __pyx_t_5 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_5 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 60, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_5;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -3322,7 +3409,7 @@ static double __pyx_f_8matrix33_8Matrix33_det(struct __pyx_obj_8matrix33_Matrix3
     #endif
   }
 
-  /* "matrix33.pyx":58
+  /* "matrix33.pyx":61
  * 
  *     cpdef double det(self):
  *         cdef double A = self.a11 * (self.a22*self.a33 - self.a23*self.a32)             # <<<<<<<<<<<<<<
@@ -3331,7 +3418,7 @@ static double __pyx_f_8matrix33_8Matrix33_det(struct __pyx_obj_8matrix33_Matrix3
  */
   __pyx_v_A = (__pyx_v_self->a11 * ((__pyx_v_self->a22 * __pyx_v_self->a33) - (__pyx_v_self->a23 * __pyx_v_self->a32)));
 
-  /* "matrix33.pyx":59
+  /* "matrix33.pyx":62
  *     cpdef double det(self):
  *         cdef double A = self.a11 * (self.a22*self.a33 - self.a23*self.a32)
  *         cdef double B = self.a12 * (self.a21*self.a33 - self.a23*self.a31)             # <<<<<<<<<<<<<<
@@ -3340,7 +3427,7 @@ static double __pyx_f_8matrix33_8Matrix33_det(struct __pyx_obj_8matrix33_Matrix3
  */
   __pyx_v_B = (__pyx_v_self->a12 * ((__pyx_v_self->a21 * __pyx_v_self->a33) - (__pyx_v_self->a23 * __pyx_v_self->a31)));
 
-  /* "matrix33.pyx":60
+  /* "matrix33.pyx":63
  *         cdef double A = self.a11 * (self.a22*self.a33 - self.a23*self.a32)
  *         cdef double B = self.a12 * (self.a21*self.a33 - self.a23*self.a31)
  *         cdef double C = self.a13 * (self.a21*self.a32 - self.a22*self.a31)             # <<<<<<<<<<<<<<
@@ -3349,7 +3436,7 @@ static double __pyx_f_8matrix33_8Matrix33_det(struct __pyx_obj_8matrix33_Matrix3
  */
   __pyx_v_C = (__pyx_v_self->a13 * ((__pyx_v_self->a21 * __pyx_v_self->a32) - (__pyx_v_self->a22 * __pyx_v_self->a31)));
 
-  /* "matrix33.pyx":61
+  /* "matrix33.pyx":64
  *         cdef double B = self.a12 * (self.a21*self.a33 - self.a23*self.a31)
  *         cdef double C = self.a13 * (self.a21*self.a32 - self.a22*self.a31)
  *         return A-B+C             # <<<<<<<<<<<<<<
@@ -3359,7 +3446,7 @@ static double __pyx_f_8matrix33_8Matrix33_det(struct __pyx_obj_8matrix33_Matrix3
   __pyx_r = ((__pyx_v_A - __pyx_v_B) + __pyx_v_C);
   goto __pyx_L0;
 
-  /* "matrix33.pyx":57
+  /* "matrix33.pyx":60
  *         return Matrix33(self.r1, self.r2, self.r3)
  * 
  *     cpdef double det(self):             # <<<<<<<<<<<<<<
@@ -3381,19 +3468,19 @@ static double __pyx_f_8matrix33_8Matrix33_det(struct __pyx_obj_8matrix33_Matrix3
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8matrix33_8Matrix33_13det(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_8matrix33_8Matrix33_13det(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_8matrix33_8Matrix33_15det(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_15det(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("det (wrapper)", 0);
-  __pyx_r = __pyx_pf_8matrix33_8Matrix33_12det(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self));
+  __pyx_r = __pyx_pf_8matrix33_8Matrix33_14det(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8matrix33_8Matrix33_12det(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self) {
+static PyObject *__pyx_pf_8matrix33_8Matrix33_14det(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3402,7 +3489,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_12det(struct __pyx_obj_8matrix33_M
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("det", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_8matrix33_8Matrix33_det(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_f_8matrix33_8Matrix33_det(__pyx_v_self, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3419,7 +3506,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_12det(struct __pyx_obj_8matrix33_M
   return __pyx_r;
 }
 
-/* "matrix33.pyx":69
+/* "matrix33.pyx":72
  * 
  *     # Equality
  *     def __eq__(self, m):             # <<<<<<<<<<<<<<
@@ -3428,19 +3515,19 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_12det(struct __pyx_obj_8matrix33_M
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8matrix33_8Matrix33_15__eq__(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
-static PyObject *__pyx_pw_8matrix33_8Matrix33_15__eq__(PyObject *__pyx_v_self, PyObject *__pyx_v_m) {
+static PyObject *__pyx_pw_8matrix33_8Matrix33_17__eq__(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_17__eq__(PyObject *__pyx_v_self, PyObject *__pyx_v_m) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__eq__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_8matrix33_8Matrix33_14__eq__(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((PyObject *)__pyx_v_m));
+  __pyx_r = __pyx_pf_8matrix33_8Matrix33_16__eq__(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((PyObject *)__pyx_v_m));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8matrix33_8Matrix33_14__eq__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, PyObject *__pyx_v_m) {
+static PyObject *__pyx_pf_8matrix33_8Matrix33_16__eq__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, PyObject *__pyx_v_m) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3450,7 +3537,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_14__eq__(struct __pyx_obj_8matrix3
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__eq__", 0);
 
-  /* "matrix33.pyx":70
+  /* "matrix33.pyx":73
  *     # Equality
  *     def __eq__(self, m):
  *         return bool(self.eq(m))             # <<<<<<<<<<<<<<
@@ -3458,18 +3545,18 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_14__eq__(struct __pyx_obj_8matrix3
  *     cpdef int eq(self, Matrix33 m):
  */
   __Pyx_XDECREF(__pyx_r);
-  if (!(likely(((__pyx_v_m) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_m, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 70, __pyx_L1_error)
-  __pyx_t_1 = __Pyx_PyInt_From_int(((struct __pyx_vtabstruct_8matrix33_Matrix33 *)__pyx_v_self->__pyx_vtab)->eq(__pyx_v_self, ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_m), 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
+  if (!(likely(((__pyx_v_m) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_m, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(((struct __pyx_vtabstruct_8matrix33_Matrix33 *)__pyx_v_self->__pyx_vtab)->eq(__pyx_v_self, ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_m), 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyBool_FromLong((!(!__pyx_t_2))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 70, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyBool_FromLong((!(!__pyx_t_2))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "matrix33.pyx":69
+  /* "matrix33.pyx":72
  * 
  *     # Equality
  *     def __eq__(self, m):             # <<<<<<<<<<<<<<
@@ -3488,7 +3575,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_14__eq__(struct __pyx_obj_8matrix3
   return __pyx_r;
 }
 
-/* "matrix33.pyx":72
+/* "matrix33.pyx":75
  *         return bool(self.eq(m))
  * 
  *     cpdef int eq(self, Matrix33 m):             # <<<<<<<<<<<<<<
@@ -3496,7 +3583,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_14__eq__(struct __pyx_obj_8matrix3
  * 
  */
 
-static PyObject *__pyx_pw_8matrix33_8Matrix33_17eq(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_19eq(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
 static int __pyx_f_8matrix33_8Matrix33_eq(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_m, int __pyx_skip_dispatch) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
@@ -3520,9 +3607,9 @@ static int __pyx_f_8matrix33_8Matrix33_eq(struct __pyx_obj_8matrix33_Matrix33 *_
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_eq); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_eq); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_17eq)) {
+      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_19eq)) {
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
         if (CYTHON_UNPACK_METHODS && unlikely(PyMethod_Check(__pyx_t_3))) {
@@ -3536,10 +3623,10 @@ static int __pyx_f_8matrix33_8Matrix33_eq(struct __pyx_obj_8matrix33_Matrix33 *_
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, ((PyObject *)__pyx_v_m)) : __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_m));
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 72, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 75, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 72, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyInt_As_int(__pyx_t_2); if (unlikely((__pyx_t_5 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 75, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
         __pyx_r = __pyx_t_5;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -3558,42 +3645,42 @@ static int __pyx_f_8matrix33_8Matrix33_eq(struct __pyx_obj_8matrix33_Matrix33 *_
     #endif
   }
 
-  /* "matrix33.pyx":73
+  /* "matrix33.pyx":76
  * 
  *     cpdef int eq(self, Matrix33 m):
  *         return (self.c1 == m.c1) and (self.c2 == m.c2) and (self.c3 == m.c3)             # <<<<<<<<<<<<<<
  * 
  *     # Addition
  */
-  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->c1), ((PyObject *)__pyx_v_m->c1), Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->c1), ((PyObject *)__pyx_v_m->c1), Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 76, __pyx_L1_error)
   if (__pyx_t_6) {
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 73, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 76, __pyx_L1_error)
     __pyx_t_5 = __pyx_t_7;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     goto __pyx_L3_bool_binop_done;
   }
-  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->c2), ((PyObject *)__pyx_v_m->c2), Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
-  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->c2), ((PyObject *)__pyx_v_m->c2), Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_6 < 0)) __PYX_ERR(0, 76, __pyx_L1_error)
   if (__pyx_t_6) {
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   } else {
-    __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 73, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 76, __pyx_L1_error)
     __pyx_t_5 = __pyx_t_7;
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     goto __pyx_L3_bool_binop_done;
   }
-  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->c3), ((PyObject *)__pyx_v_m->c3), Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 73, __pyx_L1_error)
-  __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 73, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(((PyObject *)__pyx_v_self->c3), ((PyObject *)__pyx_v_m->c3), Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 76, __pyx_L1_error)
+  __pyx_t_7 = __Pyx_PyInt_As_int(__pyx_t_1); if (unlikely((__pyx_t_7 == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 76, __pyx_L1_error)
   __pyx_t_5 = __pyx_t_7;
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_L3_bool_binop_done:;
   __pyx_r = __pyx_t_5;
   goto __pyx_L0;
 
-  /* "matrix33.pyx":72
+  /* "matrix33.pyx":75
  *         return bool(self.eq(m))
  * 
  *     cpdef int eq(self, Matrix33 m):             # <<<<<<<<<<<<<<
@@ -3615,16 +3702,16 @@ static int __pyx_f_8matrix33_8Matrix33_eq(struct __pyx_obj_8matrix33_Matrix33 *_
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8matrix33_8Matrix33_17eq(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
-static PyObject *__pyx_pw_8matrix33_8Matrix33_17eq(PyObject *__pyx_v_self, PyObject *__pyx_v_m) {
+static PyObject *__pyx_pw_8matrix33_8Matrix33_19eq(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_19eq(PyObject *__pyx_v_self, PyObject *__pyx_v_m) {
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("eq (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_m), __pyx_ptype_8matrix33_Matrix33, 1, "m", 0))) __PYX_ERR(0, 72, __pyx_L1_error)
-  __pyx_r = __pyx_pf_8matrix33_8Matrix33_16eq(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_m));
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_m), __pyx_ptype_8matrix33_Matrix33, 1, "m", 0))) __PYX_ERR(0, 75, __pyx_L1_error)
+  __pyx_r = __pyx_pf_8matrix33_8Matrix33_18eq(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_m));
 
   /* function exit code */
   goto __pyx_L0;
@@ -3635,7 +3722,7 @@ static PyObject *__pyx_pw_8matrix33_8Matrix33_17eq(PyObject *__pyx_v_self, PyObj
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8matrix33_8Matrix33_16eq(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_m) {
+static PyObject *__pyx_pf_8matrix33_8Matrix33_18eq(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_m) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3644,7 +3731,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_16eq(struct __pyx_obj_8matrix33_Ma
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("eq", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_8matrix33_8Matrix33_eq(__pyx_v_self, __pyx_v_m, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 72, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_f_8matrix33_8Matrix33_eq(__pyx_v_self, __pyx_v_m, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 75, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3661,7 +3748,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_16eq(struct __pyx_obj_8matrix33_Ma
   return __pyx_r;
 }
 
-/* "matrix33.pyx":76
+/* "matrix33.pyx":79
  * 
  *     # Addition
  *     def __add__(self, m):             # <<<<<<<<<<<<<<
@@ -3670,19 +3757,19 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_16eq(struct __pyx_obj_8matrix33_Ma
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8matrix33_8Matrix33_19__add__(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
-static PyObject *__pyx_pw_8matrix33_8Matrix33_19__add__(PyObject *__pyx_v_self, PyObject *__pyx_v_m) {
+static PyObject *__pyx_pw_8matrix33_8Matrix33_21__add__(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_21__add__(PyObject *__pyx_v_self, PyObject *__pyx_v_m) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__add__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_8matrix33_8Matrix33_18__add__(((PyObject *)__pyx_v_self), ((PyObject *)__pyx_v_m));
+  __pyx_r = __pyx_pf_8matrix33_8Matrix33_20__add__(((PyObject *)__pyx_v_self), ((PyObject *)__pyx_v_m));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8matrix33_8Matrix33_18__add__(PyObject *__pyx_v_self, PyObject *__pyx_v_m) {
+static PyObject *__pyx_pf_8matrix33_8Matrix33_20__add__(PyObject *__pyx_v_self, PyObject *__pyx_v_m) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3693,7 +3780,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_18__add__(PyObject *__pyx_v_self, 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__add__", 0);
 
-  /* "matrix33.pyx":77
+  /* "matrix33.pyx":80
  *     # Addition
  *     def __add__(self, m):
  *         return self.add(m)             # <<<<<<<<<<<<<<
@@ -3701,7 +3788,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_18__add__(PyObject *__pyx_v_self, 
  *     cpdef Matrix33 add(self, Matrix33 m):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_add); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 77, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_add); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -3715,14 +3802,14 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_18__add__(PyObject *__pyx_v_self, 
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_v_m) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_m);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 77, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "matrix33.pyx":76
+  /* "matrix33.pyx":79
  * 
  *     # Addition
  *     def __add__(self, m):             # <<<<<<<<<<<<<<
@@ -3743,7 +3830,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_18__add__(PyObject *__pyx_v_self, 
   return __pyx_r;
 }
 
-/* "matrix33.pyx":79
+/* "matrix33.pyx":82
  *         return self.add(m)
  * 
  *     cpdef Matrix33 add(self, Matrix33 m):             # <<<<<<<<<<<<<<
@@ -3751,7 +3838,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_18__add__(PyObject *__pyx_v_self, 
  * 
  */
 
-static PyObject *__pyx_pw_8matrix33_8Matrix33_21add(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_23add(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
 static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_add(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_m, int __pyx_skip_dispatch) {
   struct __pyx_obj_8matrix33_Matrix33 *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -3772,9 +3859,9 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_add(stru
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_add); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_add); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_21add)) {
+      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_23add)) {
         __Pyx_XDECREF(((PyObject *)__pyx_r));
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
@@ -3789,10 +3876,10 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_add(stru
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, ((PyObject *)__pyx_v_m)) : __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_m));
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 79, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 82, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 79, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 82, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -3811,7 +3898,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_add(stru
     #endif
   }
 
-  /* "matrix33.pyx":80
+  /* "matrix33.pyx":83
  * 
  *     cpdef Matrix33 add(self, Matrix33 m):
  *         return Matrix33(self.c1+m.c1, self.c2+m.c2, self.c3+m.c3)             # <<<<<<<<<<<<<<
@@ -3819,13 +3906,13 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_add(stru
  *     # Subtraction
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __pyx_t_1 = PyNumber_Add(((PyObject *)__pyx_v_self->c1), ((PyObject *)__pyx_v_m->c1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Add(((PyObject *)__pyx_v_self->c1), ((PyObject *)__pyx_v_m->c1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Add(((PyObject *)__pyx_v_self->c2), ((PyObject *)__pyx_v_m->c2)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Add(((PyObject *)__pyx_v_self->c2), ((PyObject *)__pyx_v_m->c2)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyNumber_Add(((PyObject *)__pyx_v_self->c3), ((PyObject *)__pyx_v_m->c3)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Add(((PyObject *)__pyx_v_self->c3), ((PyObject *)__pyx_v_m->c3)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
@@ -3836,14 +3923,14 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_add(stru
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 80, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 83, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_3);
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "matrix33.pyx":79
+  /* "matrix33.pyx":82
  *         return self.add(m)
  * 
  *     cpdef Matrix33 add(self, Matrix33 m):             # <<<<<<<<<<<<<<
@@ -3866,16 +3953,16 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_add(stru
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8matrix33_8Matrix33_21add(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
-static PyObject *__pyx_pw_8matrix33_8Matrix33_21add(PyObject *__pyx_v_self, PyObject *__pyx_v_m) {
+static PyObject *__pyx_pw_8matrix33_8Matrix33_23add(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_23add(PyObject *__pyx_v_self, PyObject *__pyx_v_m) {
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("add (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_m), __pyx_ptype_8matrix33_Matrix33, 1, "m", 0))) __PYX_ERR(0, 79, __pyx_L1_error)
-  __pyx_r = __pyx_pf_8matrix33_8Matrix33_20add(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_m));
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_m), __pyx_ptype_8matrix33_Matrix33, 1, "m", 0))) __PYX_ERR(0, 82, __pyx_L1_error)
+  __pyx_r = __pyx_pf_8matrix33_8Matrix33_22add(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_m));
 
   /* function exit code */
   goto __pyx_L0;
@@ -3886,7 +3973,7 @@ static PyObject *__pyx_pw_8matrix33_8Matrix33_21add(PyObject *__pyx_v_self, PyOb
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8matrix33_8Matrix33_20add(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_m) {
+static PyObject *__pyx_pf_8matrix33_8Matrix33_22add(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_m) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3895,7 +3982,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_20add(struct __pyx_obj_8matrix33_M
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("add", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_8matrix33_8Matrix33_add(__pyx_v_self, __pyx_v_m, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 79, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_8matrix33_8Matrix33_add(__pyx_v_self, __pyx_v_m, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -3912,7 +3999,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_20add(struct __pyx_obj_8matrix33_M
   return __pyx_r;
 }
 
-/* "matrix33.pyx":83
+/* "matrix33.pyx":86
  * 
  *     # Subtraction
  *     def __sub__(self, m):             # <<<<<<<<<<<<<<
@@ -3921,19 +4008,19 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_20add(struct __pyx_obj_8matrix33_M
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8matrix33_8Matrix33_23__sub__(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
-static PyObject *__pyx_pw_8matrix33_8Matrix33_23__sub__(PyObject *__pyx_v_self, PyObject *__pyx_v_m) {
+static PyObject *__pyx_pw_8matrix33_8Matrix33_25__sub__(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_25__sub__(PyObject *__pyx_v_self, PyObject *__pyx_v_m) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__sub__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_8matrix33_8Matrix33_22__sub__(((PyObject *)__pyx_v_self), ((PyObject *)__pyx_v_m));
+  __pyx_r = __pyx_pf_8matrix33_8Matrix33_24__sub__(((PyObject *)__pyx_v_self), ((PyObject *)__pyx_v_m));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8matrix33_8Matrix33_22__sub__(PyObject *__pyx_v_self, PyObject *__pyx_v_m) {
+static PyObject *__pyx_pf_8matrix33_8Matrix33_24__sub__(PyObject *__pyx_v_self, PyObject *__pyx_v_m) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -3944,7 +4031,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_22__sub__(PyObject *__pyx_v_self, 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__sub__", 0);
 
-  /* "matrix33.pyx":84
+  /* "matrix33.pyx":87
  *     # Subtraction
  *     def __sub__(self, m):
  *         return self.sub(m)             # <<<<<<<<<<<<<<
@@ -3952,7 +4039,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_22__sub__(PyObject *__pyx_v_self, 
  *     cpdef Matrix33 sub(self, Matrix33 m):
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sub); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 84, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_sub); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 87, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -3966,14 +4053,14 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_22__sub__(PyObject *__pyx_v_self, 
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_v_m) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_m);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 84, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "matrix33.pyx":83
+  /* "matrix33.pyx":86
  * 
  *     # Subtraction
  *     def __sub__(self, m):             # <<<<<<<<<<<<<<
@@ -3994,7 +4081,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_22__sub__(PyObject *__pyx_v_self, 
   return __pyx_r;
 }
 
-/* "matrix33.pyx":86
+/* "matrix33.pyx":89
  *         return self.sub(m)
  * 
  *     cpdef Matrix33 sub(self, Matrix33 m):             # <<<<<<<<<<<<<<
@@ -4002,7 +4089,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_22__sub__(PyObject *__pyx_v_self, 
  * 
  */
 
-static PyObject *__pyx_pw_8matrix33_8Matrix33_25sub(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_27sub(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
 static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_sub(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_m, int __pyx_skip_dispatch) {
   struct __pyx_obj_8matrix33_Matrix33 *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -4023,9 +4110,9 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_sub(stru
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_sub); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_sub); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_25sub)) {
+      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_27sub)) {
         __Pyx_XDECREF(((PyObject *)__pyx_r));
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
@@ -4040,10 +4127,10 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_sub(stru
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, ((PyObject *)__pyx_v_m)) : __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_m));
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 86, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 89, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 86, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 89, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -4062,7 +4149,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_sub(stru
     #endif
   }
 
-  /* "matrix33.pyx":87
+  /* "matrix33.pyx":90
  * 
  *     cpdef Matrix33 sub(self, Matrix33 m):
  *         return Matrix33(self.c1-m.c1, self.c2-m.c2, self.c3-m.c3)             # <<<<<<<<<<<<<<
@@ -4070,13 +4157,13 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_sub(stru
  *     # Multiplication
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __pyx_t_1 = PyNumber_Subtract(((PyObject *)__pyx_v_self->c1), ((PyObject *)__pyx_v_m->c1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Subtract(((PyObject *)__pyx_v_self->c1), ((PyObject *)__pyx_v_m->c1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Subtract(((PyObject *)__pyx_v_self->c2), ((PyObject *)__pyx_v_m->c2)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Subtract(((PyObject *)__pyx_v_self->c2), ((PyObject *)__pyx_v_m->c2)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyNumber_Subtract(((PyObject *)__pyx_v_self->c3), ((PyObject *)__pyx_v_m->c3)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Subtract(((PyObject *)__pyx_v_self->c3), ((PyObject *)__pyx_v_m->c3)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
@@ -4087,14 +4174,14 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_sub(stru
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 87, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 90, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_3);
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "matrix33.pyx":86
+  /* "matrix33.pyx":89
  *         return self.sub(m)
  * 
  *     cpdef Matrix33 sub(self, Matrix33 m):             # <<<<<<<<<<<<<<
@@ -4117,16 +4204,16 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_sub(stru
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8matrix33_8Matrix33_25sub(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
-static PyObject *__pyx_pw_8matrix33_8Matrix33_25sub(PyObject *__pyx_v_self, PyObject *__pyx_v_m) {
+static PyObject *__pyx_pw_8matrix33_8Matrix33_27sub(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_27sub(PyObject *__pyx_v_self, PyObject *__pyx_v_m) {
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("sub (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_m), __pyx_ptype_8matrix33_Matrix33, 1, "m", 0))) __PYX_ERR(0, 86, __pyx_L1_error)
-  __pyx_r = __pyx_pf_8matrix33_8Matrix33_24sub(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_m));
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_m), __pyx_ptype_8matrix33_Matrix33, 1, "m", 0))) __PYX_ERR(0, 89, __pyx_L1_error)
+  __pyx_r = __pyx_pf_8matrix33_8Matrix33_26sub(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_m));
 
   /* function exit code */
   goto __pyx_L0;
@@ -4137,7 +4224,7 @@ static PyObject *__pyx_pw_8matrix33_8Matrix33_25sub(PyObject *__pyx_v_self, PyOb
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8matrix33_8Matrix33_24sub(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_m) {
+static PyObject *__pyx_pf_8matrix33_8Matrix33_26sub(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_m) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4146,7 +4233,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_24sub(struct __pyx_obj_8matrix33_M
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("sub", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_8matrix33_8Matrix33_sub(__pyx_v_self, __pyx_v_m, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 86, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_8matrix33_8Matrix33_sub(__pyx_v_self, __pyx_v_m, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 89, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -4163,7 +4250,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_24sub(struct __pyx_obj_8matrix33_M
   return __pyx_r;
 }
 
-/* "matrix33.pyx":90
+/* "matrix33.pyx":93
  * 
  *     # Multiplication
  *     def __mul__(self, a):             # <<<<<<<<<<<<<<
@@ -4172,19 +4259,19 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_24sub(struct __pyx_obj_8matrix33_M
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8matrix33_8Matrix33_27__mul__(PyObject *__pyx_v_self, PyObject *__pyx_v_a); /*proto*/
-static PyObject *__pyx_pw_8matrix33_8Matrix33_27__mul__(PyObject *__pyx_v_self, PyObject *__pyx_v_a) {
+static PyObject *__pyx_pw_8matrix33_8Matrix33_29__mul__(PyObject *__pyx_v_self, PyObject *__pyx_v_a); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_29__mul__(PyObject *__pyx_v_self, PyObject *__pyx_v_a) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__mul__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_8matrix33_8Matrix33_26__mul__(((PyObject *)__pyx_v_self), ((PyObject *)__pyx_v_a));
+  __pyx_r = __pyx_pf_8matrix33_8Matrix33_28__mul__(((PyObject *)__pyx_v_self), ((PyObject *)__pyx_v_a));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8matrix33_8Matrix33_26__mul__(PyObject *__pyx_v_self, PyObject *__pyx_v_a) {
+static PyObject *__pyx_pf_8matrix33_8Matrix33_28__mul__(PyObject *__pyx_v_self, PyObject *__pyx_v_a) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
@@ -4197,18 +4284,18 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_26__mul__(PyObject *__pyx_v_self, 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__mul__", 0);
 
-  /* "matrix33.pyx":91
+  /* "matrix33.pyx":94
  *     # Multiplication
  *     def __mul__(self, a):
  *         if type(self) in SCALARS:             # <<<<<<<<<<<<<<
  *             return a.mul_scalar(self)
  *         if type(a) == Matrix33:
  */
-  __pyx_t_1 = (__Pyx_PySequence_ContainsTF(((PyObject *)Py_TYPE(__pyx_v_self)), __pyx_v_8matrix33_SCALARS, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 91, __pyx_L1_error)
+  __pyx_t_1 = (__Pyx_PySequence_ContainsTF(((PyObject *)Py_TYPE(__pyx_v_self)), __pyx_v_8matrix33_SCALARS, Py_EQ)); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 94, __pyx_L1_error)
   __pyx_t_2 = (__pyx_t_1 != 0);
   if (__pyx_t_2) {
 
-    /* "matrix33.pyx":92
+    /* "matrix33.pyx":95
  *     def __mul__(self, a):
  *         if type(self) in SCALARS:
  *             return a.mul_scalar(self)             # <<<<<<<<<<<<<<
@@ -4216,7 +4303,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_26__mul__(PyObject *__pyx_v_self, 
  *             return self.dot_mat(a)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_a, __pyx_n_s_mul_scalar); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 92, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_a, __pyx_n_s_mul_scalar); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 95, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -4230,14 +4317,14 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_26__mul__(PyObject *__pyx_v_self, 
     }
     __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_v_self) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_self);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 92, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 95, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_r = __pyx_t_3;
     __pyx_t_3 = 0;
     goto __pyx_L0;
 
-    /* "matrix33.pyx":91
+    /* "matrix33.pyx":94
  *     # Multiplication
  *     def __mul__(self, a):
  *         if type(self) in SCALARS:             # <<<<<<<<<<<<<<
@@ -4246,19 +4333,19 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_26__mul__(PyObject *__pyx_v_self, 
  */
   }
 
-  /* "matrix33.pyx":93
+  /* "matrix33.pyx":96
  *         if type(self) in SCALARS:
  *             return a.mul_scalar(self)
  *         if type(a) == Matrix33:             # <<<<<<<<<<<<<<
  *             return self.dot_mat(a)
  *         elif type(a) == vec3:
  */
-  __pyx_t_3 = PyObject_RichCompare(((PyObject *)Py_TYPE(__pyx_v_a)), ((PyObject *)__pyx_ptype_8matrix33_Matrix33), Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 93, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 93, __pyx_L1_error)
+  __pyx_t_3 = PyObject_RichCompare(((PyObject *)Py_TYPE(__pyx_v_a)), ((PyObject *)__pyx_ptype_8matrix33_Matrix33), Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 96, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_2) {
 
-    /* "matrix33.pyx":94
+    /* "matrix33.pyx":97
  *             return a.mul_scalar(self)
  *         if type(a) == Matrix33:
  *             return self.dot_mat(a)             # <<<<<<<<<<<<<<
@@ -4266,7 +4353,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_26__mul__(PyObject *__pyx_v_self, 
  *             return self.dot_vec(a)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_dot_mat); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 94, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_dot_mat); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 97, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -4280,14 +4367,14 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_26__mul__(PyObject *__pyx_v_self, 
     }
     __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_v_a) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_a);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 94, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 97, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_r = __pyx_t_3;
     __pyx_t_3 = 0;
     goto __pyx_L0;
 
-    /* "matrix33.pyx":93
+    /* "matrix33.pyx":96
  *         if type(self) in SCALARS:
  *             return a.mul_scalar(self)
  *         if type(a) == Matrix33:             # <<<<<<<<<<<<<<
@@ -4296,19 +4383,19 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_26__mul__(PyObject *__pyx_v_self, 
  */
   }
 
-  /* "matrix33.pyx":95
+  /* "matrix33.pyx":98
  *         if type(a) == Matrix33:
  *             return self.dot_mat(a)
  *         elif type(a) == vec3:             # <<<<<<<<<<<<<<
  *             return self.dot_vec(a)
  *         elif type(a) in SCALARS:
  */
-  __pyx_t_3 = PyObject_RichCompare(((PyObject *)Py_TYPE(__pyx_v_a)), ((PyObject *)__pyx_ptype_4vec3_vec3), Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 95, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __pyx_t_3 = PyObject_RichCompare(((PyObject *)Py_TYPE(__pyx_v_a)), ((PyObject *)__pyx_ptype_4vec3_vec3), Py_EQ); __Pyx_XGOTREF(__pyx_t_3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_3); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 98, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   if (__pyx_t_2) {
 
-    /* "matrix33.pyx":96
+    /* "matrix33.pyx":99
  *             return self.dot_mat(a)
  *         elif type(a) == vec3:
  *             return self.dot_vec(a)             # <<<<<<<<<<<<<<
@@ -4316,7 +4403,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_26__mul__(PyObject *__pyx_v_self, 
  *             return self.mul_scalar(a)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_dot_vec); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 96, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_dot_vec); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 99, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -4330,14 +4417,14 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_26__mul__(PyObject *__pyx_v_self, 
     }
     __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_v_a) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_a);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 99, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_r = __pyx_t_3;
     __pyx_t_3 = 0;
     goto __pyx_L0;
 
-    /* "matrix33.pyx":95
+    /* "matrix33.pyx":98
  *         if type(a) == Matrix33:
  *             return self.dot_mat(a)
  *         elif type(a) == vec3:             # <<<<<<<<<<<<<<
@@ -4346,18 +4433,18 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_26__mul__(PyObject *__pyx_v_self, 
  */
   }
 
-  /* "matrix33.pyx":97
+  /* "matrix33.pyx":100
  *         elif type(a) == vec3:
  *             return self.dot_vec(a)
  *         elif type(a) in SCALARS:             # <<<<<<<<<<<<<<
  *             return self.mul_scalar(a)
  * 
  */
-  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(((PyObject *)Py_TYPE(__pyx_v_a)), __pyx_v_8matrix33_SCALARS, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 97, __pyx_L1_error)
+  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(((PyObject *)Py_TYPE(__pyx_v_a)), __pyx_v_8matrix33_SCALARS, Py_EQ)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 100, __pyx_L1_error)
   __pyx_t_1 = (__pyx_t_2 != 0);
   if (__pyx_t_1) {
 
-    /* "matrix33.pyx":98
+    /* "matrix33.pyx":101
  *             return self.dot_vec(a)
  *         elif type(a) in SCALARS:
  *             return self.mul_scalar(a)             # <<<<<<<<<<<<<<
@@ -4365,7 +4452,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_26__mul__(PyObject *__pyx_v_self, 
  *     cpdef Matrix33 mul_scalar(self, Scalar a):
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_mul_scalar); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 98, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_self, __pyx_n_s_mul_scalar); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 101, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -4379,14 +4466,14 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_26__mul__(PyObject *__pyx_v_self, 
     }
     __pyx_t_3 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_v_a) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_a);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
+    if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 101, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_r = __pyx_t_3;
     __pyx_t_3 = 0;
     goto __pyx_L0;
 
-    /* "matrix33.pyx":97
+    /* "matrix33.pyx":100
  *         elif type(a) == vec3:
  *             return self.dot_vec(a)
  *         elif type(a) in SCALARS:             # <<<<<<<<<<<<<<
@@ -4395,7 +4482,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_26__mul__(PyObject *__pyx_v_self, 
  */
   }
 
-  /* "matrix33.pyx":90
+  /* "matrix33.pyx":93
  * 
  *     # Multiplication
  *     def __mul__(self, a):             # <<<<<<<<<<<<<<
@@ -4418,7 +4505,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_26__mul__(PyObject *__pyx_v_self, 
   return __pyx_r;
 }
 
-/* "matrix33.pyx":100
+/* "matrix33.pyx":103
  *             return self.mul_scalar(a)
  * 
  *     cpdef Matrix33 mul_scalar(self, Scalar a):             # <<<<<<<<<<<<<<
@@ -4427,9 +4514,9 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_26__mul__(PyObject *__pyx_v_self, 
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8matrix33_8Matrix33_29mul_scalar(PyObject *__pyx_v_signatures, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_8matrix33_8Matrix33_29mul_scalar = {"mul_scalar", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_8matrix33_8Matrix33_29mul_scalar, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_8matrix33_8Matrix33_29mul_scalar(PyObject *__pyx_v_signatures, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_8matrix33_8Matrix33_31mul_scalar(PyObject *__pyx_v_signatures, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_8matrix33_8Matrix33_31mul_scalar = {"mul_scalar", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_8matrix33_8Matrix33_31mul_scalar, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_8matrix33_8Matrix33_31mul_scalar(PyObject *__pyx_v_signatures, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_args = 0;
   PyObject *__pyx_v_kwargs = 0;
   CYTHON_UNUSED PyObject *__pyx_v_defaults = 0;
@@ -4464,17 +4551,17 @@ static PyObject *__pyx_pw_8matrix33_8Matrix33_29mul_scalar(PyObject *__pyx_v_sig
         case  1:
         if (likely((values[1] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_kwargs)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__pyx_fused_cpdef", 1, 3, 3, 1); __PYX_ERR(0, 100, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__pyx_fused_cpdef", 1, 3, 3, 1); __PYX_ERR(0, 103, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (likely((values[2] = __Pyx_PyDict_GetItemStr(__pyx_kwds, __pyx_n_s_defaults)) != 0)) kw_args--;
         else {
-          __Pyx_RaiseArgtupleInvalid("__pyx_fused_cpdef", 1, 3, 3, 2); __PYX_ERR(0, 100, __pyx_L3_error)
+          __Pyx_RaiseArgtupleInvalid("__pyx_fused_cpdef", 1, 3, 3, 2); __PYX_ERR(0, 103, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__pyx_fused_cpdef") < 0)) __PYX_ERR(0, 100, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "__pyx_fused_cpdef") < 0)) __PYX_ERR(0, 103, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 3) {
       goto __pyx_L5_argtuple_error;
@@ -4489,20 +4576,20 @@ static PyObject *__pyx_pw_8matrix33_8Matrix33_29mul_scalar(PyObject *__pyx_v_sig
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("__pyx_fused_cpdef", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 100, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("__pyx_fused_cpdef", 1, 3, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 103, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("matrix33.Matrix33.__pyx_fused_cpdef", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_8matrix33_8Matrix33_28mul_scalar(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_signatures), __pyx_v_args, __pyx_v_kwargs, __pyx_v_defaults);
+  __pyx_r = __pyx_pf_8matrix33_8Matrix33_30mul_scalar(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_signatures), __pyx_v_args, __pyx_v_kwargs, __pyx_v_defaults);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8matrix33_8Matrix33_28mul_scalar(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_signatures, PyObject *__pyx_v_args, PyObject *__pyx_v_kwargs, CYTHON_UNUSED PyObject *__pyx_v_defaults) {
+static PyObject *__pyx_pf_8matrix33_8Matrix33_30mul_scalar(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_signatures, PyObject *__pyx_v_args, PyObject *__pyx_v_kwargs, CYTHON_UNUSED PyObject *__pyx_v_defaults) {
   PyObject *__pyx_v_dest_sig = NULL;
   Py_ssize_t __pyx_v_i;
   CYTHON_UNUSED PyTypeObject *__pyx_v_ndarray = 0;
@@ -4536,7 +4623,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_28mul_scalar(struct __pyx_obj_8mat
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("mul_scalar", 0);
   __Pyx_INCREF(__pyx_v_kwargs);
-  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(Py_None);
   __Pyx_GIVEREF(Py_None);
@@ -4550,7 +4637,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_28mul_scalar(struct __pyx_obj_8mat
     __pyx_t_2 = __pyx_t_4;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_v_kwargs); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_IsTrue(__pyx_v_kwargs); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 103, __pyx_L1_error)
   __pyx_t_3 = ((!__pyx_t_4) != 0);
   __pyx_t_2 = __pyx_t_3;
   __pyx_L4_bool_binop_done:;
@@ -4558,23 +4645,23 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_28mul_scalar(struct __pyx_obj_8mat
     __Pyx_INCREF(Py_None);
     __Pyx_DECREF_SET(__pyx_v_kwargs, Py_None);
   }
-  __pyx_t_1 = ((PyObject *)__Pyx_ImportNumPyArrayTypeIfAvailable()); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__Pyx_ImportNumPyArrayTypeIfAvailable()); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_ndarray = ((PyTypeObject*)__pyx_t_1);
   __pyx_t_1 = 0;
   __pyx_v_itemsize = -1L;
   if (unlikely(__pyx_v_args == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-    __PYX_ERR(0, 100, __pyx_L1_error)
+    __PYX_ERR(0, 103, __pyx_L1_error)
   }
-  __pyx_t_5 = PyTuple_GET_SIZE(((PyObject*)__pyx_v_args)); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_GET_SIZE(((PyObject*)__pyx_v_args)); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 103, __pyx_L1_error)
   __pyx_t_2 = ((1 < __pyx_t_5) != 0);
   if (__pyx_t_2) {
     if (unlikely(__pyx_v_args == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 100, __pyx_L1_error)
+      __PYX_ERR(0, 103, __pyx_L1_error)
     }
-    __pyx_t_1 = __Pyx_GetItemInt_Tuple(((PyObject*)__pyx_v_args), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_GetItemInt_Tuple(((PyObject*)__pyx_v_args), 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_v_arg = __pyx_t_1;
     __pyx_t_1 = 0;
@@ -4589,18 +4676,18 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_28mul_scalar(struct __pyx_obj_8mat
   }
   if (unlikely(__pyx_v_kwargs == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 100, __pyx_L1_error)
+    __PYX_ERR(0, 103, __pyx_L1_error)
   }
-  __pyx_t_4 = (__Pyx_PyDict_ContainsTF(__pyx_n_s_a, ((PyObject*)__pyx_v_kwargs), Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_4 = (__Pyx_PyDict_ContainsTF(__pyx_n_s_a, ((PyObject*)__pyx_v_kwargs), Py_EQ)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 103, __pyx_L1_error)
   __pyx_t_3 = (__pyx_t_4 != 0);
   __pyx_t_2 = __pyx_t_3;
   __pyx_L7_bool_binop_done:;
   if (__pyx_t_2) {
     if (unlikely(__pyx_v_kwargs == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 100, __pyx_L1_error)
+      __PYX_ERR(0, 103, __pyx_L1_error)
     }
-    __pyx_t_1 = __Pyx_PyDict_GetItem(((PyObject*)__pyx_v_kwargs), __pyx_n_s_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyDict_GetItem(((PyObject*)__pyx_v_kwargs), __pyx_n_s_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_v_arg = __pyx_t_1;
     __pyx_t_1 = 0;
@@ -4609,12 +4696,12 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_28mul_scalar(struct __pyx_obj_8mat
   /*else*/ {
     if (unlikely(__pyx_v_args == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "object of type 'NoneType' has no len()");
-      __PYX_ERR(0, 100, __pyx_L1_error)
+      __PYX_ERR(0, 103, __pyx_L1_error)
     }
-    __pyx_t_5 = PyTuple_GET_SIZE(((PyObject*)__pyx_v_args)); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 100, __pyx_L1_error)
-    __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+    __pyx_t_5 = PyTuple_GET_SIZE(((PyObject*)__pyx_v_args)); if (unlikely(__pyx_t_5 == ((Py_ssize_t)-1))) __PYX_ERR(0, 103, __pyx_L1_error)
+    __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_5); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
-    __pyx_t_6 = PyTuple_New(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 100, __pyx_L1_error)
+    __pyx_t_6 = PyTuple_New(3); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_INCREF(__pyx_int_2);
     __Pyx_GIVEREF(__pyx_int_2);
@@ -4625,22 +4712,22 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_28mul_scalar(struct __pyx_obj_8mat
     __Pyx_GIVEREF(__pyx_t_1);
     PyTuple_SET_ITEM(__pyx_t_6, 2, __pyx_t_1);
     __pyx_t_1 = 0;
-    __pyx_t_1 = __Pyx_PyString_Format(__pyx_kp_s_Expected_at_least_d_argument_s_g, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyString_Format(__pyx_kp_s_Expected_at_least_d_argument_s_g, __pyx_t_6); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_builtin_TypeError, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 100, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_CallOneArg(__pyx_builtin_TypeError, __pyx_t_1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_Raise(__pyx_t_6, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __PYX_ERR(0, 100, __pyx_L1_error)
+    __PYX_ERR(0, 103, __pyx_L1_error)
   }
   __pyx_L6:;
   while (1) {
     __pyx_t_2 = PyFloat_Check(__pyx_v_arg); 
     __pyx_t_3 = (__pyx_t_2 != 0);
     if (__pyx_t_3) {
-      if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_double, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 100, __pyx_L1_error)
+      if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_double, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 103, __pyx_L1_error)
       goto __pyx_L10_break;
     }
     __pyx_t_2 = PyInt_Check(__pyx_v_arg); 
@@ -4656,23 +4743,23 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_28mul_scalar(struct __pyx_obj_8mat
     __pyx_L13_bool_binop_done:;
     __pyx_t_2 = (__pyx_t_3 != 0);
     if (__pyx_t_2) {
-      if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_int, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 100, __pyx_L1_error)
+      if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, __pyx_n_s_int, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 103, __pyx_L1_error)
       goto __pyx_L10_break;
     }
-    if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, Py_None, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 100, __pyx_L1_error)
+    if (unlikely(__Pyx_SetItemInt(__pyx_v_dest_sig, 0, Py_None, long, 1, __Pyx_PyInt_From_long, 1, 0, 1) < 0)) __PYX_ERR(0, 103, __pyx_L1_error)
     goto __pyx_L10_break;
   }
   __pyx_L10_break:;
-  __pyx_t_6 = PyList_New(0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_6 = PyList_New(0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __pyx_v_candidates = ((PyObject*)__pyx_t_6);
   __pyx_t_6 = 0;
   __pyx_t_5 = 0;
   if (unlikely(((PyObject *)__pyx_v_signatures) == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-    __PYX_ERR(0, 100, __pyx_L1_error)
+    __PYX_ERR(0, 103, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_dict_iterator(((PyObject*)__pyx_v_signatures), 1, ((PyObject *)NULL), (&__pyx_t_7), (&__pyx_t_8)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_dict_iterator(((PyObject*)__pyx_v_signatures), 1, ((PyObject *)NULL), (&__pyx_t_7), (&__pyx_t_8)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_6);
   __pyx_t_6 = __pyx_t_1;
@@ -4680,12 +4767,12 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_28mul_scalar(struct __pyx_obj_8mat
   while (1) {
     __pyx_t_9 = __Pyx_dict_iter_next(__pyx_t_6, __pyx_t_7, &__pyx_t_5, &__pyx_t_1, NULL, NULL, __pyx_t_8);
     if (unlikely(__pyx_t_9 == 0)) break;
-    if (unlikely(__pyx_t_9 == -1)) __PYX_ERR(0, 100, __pyx_L1_error)
+    if (unlikely(__pyx_t_9 == -1)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_XDECREF_SET(__pyx_v_sig, __pyx_t_1);
     __pyx_t_1 = 0;
     __pyx_v_match_found = 0;
-    __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_v_sig, __pyx_n_s_strip); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 100, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_v_sig, __pyx_n_s_strip); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
     __pyx_t_12 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_11))) {
@@ -4699,10 +4786,10 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_28mul_scalar(struct __pyx_obj_8mat
     }
     __pyx_t_10 = (__pyx_t_12) ? __Pyx_PyObject_Call2Args(__pyx_t_11, __pyx_t_12, __pyx_kp_s__2) : __Pyx_PyObject_CallOneArg(__pyx_t_11, __pyx_kp_s__2);
     __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
-    if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 100, __pyx_L1_error)
+    if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_10);
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
-    __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_split); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 100, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyObject_GetAttrStr(__pyx_t_10, __pyx_n_s_split); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
     __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
     __pyx_t_10 = NULL;
@@ -4717,27 +4804,27 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_28mul_scalar(struct __pyx_obj_8mat
     }
     __pyx_t_1 = (__pyx_t_10) ? __Pyx_PyObject_Call2Args(__pyx_t_11, __pyx_t_10, __pyx_kp_s__3) : __Pyx_PyObject_CallOneArg(__pyx_t_11, __pyx_kp_s__3);
     __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
     __Pyx_XDECREF_SET(__pyx_v_src_sig, __pyx_t_1);
     __pyx_t_1 = 0;
-    __pyx_t_13 = PyList_GET_SIZE(__pyx_v_dest_sig); if (unlikely(__pyx_t_13 == ((Py_ssize_t)-1))) __PYX_ERR(0, 100, __pyx_L1_error)
+    __pyx_t_13 = PyList_GET_SIZE(__pyx_v_dest_sig); if (unlikely(__pyx_t_13 == ((Py_ssize_t)-1))) __PYX_ERR(0, 103, __pyx_L1_error)
     __pyx_t_14 = __pyx_t_13;
     for (__pyx_t_15 = 0; __pyx_t_15 < __pyx_t_14; __pyx_t_15+=1) {
       __pyx_v_i = __pyx_t_15;
-      __pyx_t_1 = __Pyx_GetItemInt_List(__pyx_v_dest_sig, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_GetItemInt_List(__pyx_v_dest_sig, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 1, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_XDECREF_SET(__pyx_v_dst_type, __pyx_t_1);
       __pyx_t_1 = 0;
       __pyx_t_2 = (__pyx_v_dst_type != Py_None);
       __pyx_t_3 = (__pyx_t_2 != 0);
       if (__pyx_t_3) {
-        __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_src_sig, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_GetItemInt(__pyx_v_src_sig, __pyx_v_i, Py_ssize_t, 1, PyInt_FromSsize_t, 0, 1, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_11 = PyObject_RichCompare(__pyx_t_1, __pyx_v_dst_type, Py_EQ); __Pyx_XGOTREF(__pyx_t_11); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 100, __pyx_L1_error)
+        __pyx_t_11 = PyObject_RichCompare(__pyx_t_1, __pyx_v_dst_type, Py_EQ); __Pyx_XGOTREF(__pyx_t_11); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 103, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_11); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 100, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_11); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 103, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_11); __pyx_t_11 = 0;
         if (__pyx_t_3) {
           __pyx_v_match_found = 1;
@@ -4753,37 +4840,37 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_28mul_scalar(struct __pyx_obj_8mat
     __pyx_L18_break:;
     __pyx_t_3 = (__pyx_v_match_found != 0);
     if (__pyx_t_3) {
-      __pyx_t_16 = __Pyx_PyList_Append(__pyx_v_candidates, __pyx_v_sig); if (unlikely(__pyx_t_16 == ((int)-1))) __PYX_ERR(0, 100, __pyx_L1_error)
+      __pyx_t_16 = __Pyx_PyList_Append(__pyx_v_candidates, __pyx_v_sig); if (unlikely(__pyx_t_16 == ((int)-1))) __PYX_ERR(0, 103, __pyx_L1_error)
     }
   }
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_3 = (PyList_GET_SIZE(__pyx_v_candidates) != 0);
   __pyx_t_2 = ((!__pyx_t_3) != 0);
   if (__pyx_t_2) {
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 100, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_Raise(__pyx_t_6, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __PYX_ERR(0, 100, __pyx_L1_error)
+    __PYX_ERR(0, 103, __pyx_L1_error)
   }
-  __pyx_t_7 = PyList_GET_SIZE(__pyx_v_candidates); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_7 = PyList_GET_SIZE(__pyx_v_candidates); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 103, __pyx_L1_error)
   __pyx_t_2 = ((__pyx_t_7 > 1) != 0);
   if (__pyx_t_2) {
-    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 100, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_Call(__pyx_builtin_TypeError, __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_Raise(__pyx_t_6, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    __PYX_ERR(0, 100, __pyx_L1_error)
+    __PYX_ERR(0, 103, __pyx_L1_error)
   }
   /*else*/ {
     __Pyx_XDECREF(__pyx_r);
     if (unlikely(((PyObject *)__pyx_v_signatures) == Py_None)) {
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
-      __PYX_ERR(0, 100, __pyx_L1_error)
+      __PYX_ERR(0, 103, __pyx_L1_error)
     }
-    __pyx_t_6 = __Pyx_GetItemInt_List(__pyx_v_candidates, 0, long, 1, __Pyx_PyInt_From_long, 1, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 100, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_GetItemInt_List(__pyx_v_candidates, 0, long, 1, __Pyx_PyInt_From_long, 1, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_11 = __Pyx_PyDict_GetItem(((PyObject*)__pyx_v_signatures), __pyx_t_6); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 100, __pyx_L1_error)
+    __pyx_t_11 = __Pyx_PyDict_GetItem(((PyObject*)__pyx_v_signatures), __pyx_t_6); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 103, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_11);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_r = __pyx_t_11;
@@ -4814,8 +4901,8 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_28mul_scalar(struct __pyx_obj_8mat
   return __pyx_r;
 }
 
-static PyObject *__pyx_pw_8matrix33_8Matrix33_35__pyx_fuse_0mul_scalar(PyObject *__pyx_v_self, PyObject *__pyx_arg_a); /*proto*/
-static PyObject *__pyx_pw_8matrix33_8Matrix33_29mul_scalar(PyObject *__pyx_v_signatures, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_37__pyx_fuse_0mul_scalar(PyObject *__pyx_v_self, PyObject *__pyx_arg_a); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_31mul_scalar(PyObject *__pyx_v_signatures, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_0__pyx_f_8matrix33_8Matrix33_mul_scalar(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, int __pyx_v_a, int __pyx_skip_dispatch) {
   struct __pyx_obj_8matrix33_Matrix33 *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -4837,11 +4924,11 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_0__pyx_f_8matrix33_8Matri
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pyx_fuse_0mul_scalar); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pyx_fuse_0mul_scalar); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_35__pyx_fuse_0mul_scalar)) {
+      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_37__pyx_fuse_0mul_scalar)) {
         __Pyx_XDECREF(((PyObject *)__pyx_r));
-        __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_a); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 100, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyInt_From_int(__pyx_v_a); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 103, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -4857,10 +4944,10 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_0__pyx_f_8matrix33_8Matri
         __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 100, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 103, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -4887,11 +4974,11 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_0__pyx_f_8matrix33_8Matri
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_mul_scalar); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_mul_scalar); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_29mul_scalar)) {
+      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_31mul_scalar)) {
         __Pyx_XDECREF(((PyObject *)__pyx_r));
-        __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_a); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 100, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyInt_From_int(__pyx_v_a); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 103, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_3 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -4907,10 +4994,10 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_0__pyx_f_8matrix33_8Matri
         __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_5, __pyx_t_4) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4);
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 100, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 103, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -4929,7 +5016,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_0__pyx_f_8matrix33_8Matri
     #endif
   }
 
-  /* "matrix33.pyx":101
+  /* "matrix33.pyx":104
  * 
  *     cpdef Matrix33 mul_scalar(self, Scalar a):
  *         return Matrix33(self.c1*a, self.c2*a, self.c3*a)             # <<<<<<<<<<<<<<
@@ -4937,22 +5024,22 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_0__pyx_f_8matrix33_8Matri
  *     cpdef vec3 dot_vec(self, vec3 v):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Multiply(((PyObject *)__pyx_v_self->c1), __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(((PyObject *)__pyx_v_self->c1), __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyNumber_Multiply(((PyObject *)__pyx_v_self->c2), __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Multiply(((PyObject *)__pyx_v_self->c2), __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyInt_From_int(__pyx_v_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = PyNumber_Multiply(((PyObject *)__pyx_v_self->c3), __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Multiply(((PyObject *)__pyx_v_self->c3), __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
@@ -4963,14 +5050,14 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_0__pyx_f_8matrix33_8Matri
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_4);
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "matrix33.pyx":100
+  /* "matrix33.pyx":103
  *             return self.mul_scalar(a)
  * 
  *     cpdef Matrix33 mul_scalar(self, Scalar a):             # <<<<<<<<<<<<<<
@@ -4994,9 +5081,9 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_0__pyx_f_8matrix33_8Matri
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8matrix33_8Matrix33_35__pyx_fuse_0mul_scalar(PyObject *__pyx_v_self, PyObject *__pyx_arg_a); /*proto*/
-static PyMethodDef __pyx_fuse_0__pyx_mdef_8matrix33_8Matrix33_35__pyx_fuse_0mul_scalar = {"__pyx_fuse_0mul_scalar", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_35__pyx_fuse_0mul_scalar, METH_O, 0};
-static PyObject *__pyx_pw_8matrix33_8Matrix33_35__pyx_fuse_0mul_scalar(PyObject *__pyx_v_self, PyObject *__pyx_arg_a) {
+static PyObject *__pyx_pw_8matrix33_8Matrix33_37__pyx_fuse_0mul_scalar(PyObject *__pyx_v_self, PyObject *__pyx_arg_a); /*proto*/
+static PyMethodDef __pyx_fuse_0__pyx_mdef_8matrix33_8Matrix33_37__pyx_fuse_0mul_scalar = {"__pyx_fuse_0mul_scalar", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_37__pyx_fuse_0mul_scalar, METH_O, 0};
+static PyObject *__pyx_pw_8matrix33_8Matrix33_37__pyx_fuse_0mul_scalar(PyObject *__pyx_v_self, PyObject *__pyx_arg_a) {
   int __pyx_v_a;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -5005,7 +5092,7 @@ static PyObject *__pyx_pw_8matrix33_8Matrix33_35__pyx_fuse_0mul_scalar(PyObject 
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__pyx_fuse_0mul_scalar (wrapper)", 0);
   assert(__pyx_arg_a); {
-    __pyx_v_a = __Pyx_PyInt_As_int(__pyx_arg_a); if (unlikely((__pyx_v_a == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 100, __pyx_L3_error)
+    __pyx_v_a = __Pyx_PyInt_As_int(__pyx_arg_a); if (unlikely((__pyx_v_a == (int)-1) && PyErr_Occurred())) __PYX_ERR(0, 103, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5013,14 +5100,14 @@ static PyObject *__pyx_pw_8matrix33_8Matrix33_35__pyx_fuse_0mul_scalar(PyObject 
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_8matrix33_8Matrix33_34__pyx_fuse_0mul_scalar(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((int)__pyx_v_a));
+  __pyx_r = __pyx_pf_8matrix33_8Matrix33_36__pyx_fuse_0mul_scalar(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((int)__pyx_v_a));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8matrix33_8Matrix33_34__pyx_fuse_0mul_scalar(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, int __pyx_v_a) {
+static PyObject *__pyx_pf_8matrix33_8Matrix33_36__pyx_fuse_0mul_scalar(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, int __pyx_v_a) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5029,7 +5116,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_34__pyx_fuse_0mul_scalar(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__pyx_fuse_0mul_scalar", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_fuse_0__pyx_f_8matrix33_8Matrix33_mul_scalar(__pyx_v_self, __pyx_v_a, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_fuse_0__pyx_f_8matrix33_8Matrix33_mul_scalar(__pyx_v_self, __pyx_v_a, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5046,8 +5133,8 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_34__pyx_fuse_0mul_scalar(struct __
   return __pyx_r;
 }
 
-static PyObject *__pyx_pw_8matrix33_8Matrix33_37__pyx_fuse_1mul_scalar(PyObject *__pyx_v_self, PyObject *__pyx_arg_a); /*proto*/
-static PyObject *__pyx_pw_8matrix33_8Matrix33_29mul_scalar(PyObject *__pyx_v_signatures, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_39__pyx_fuse_1mul_scalar(PyObject *__pyx_v_self, PyObject *__pyx_arg_a); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_31mul_scalar(PyObject *__pyx_v_signatures, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_1__pyx_f_8matrix33_8Matrix33_mul_scalar(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, float __pyx_v_a, int __pyx_skip_dispatch) {
   struct __pyx_obj_8matrix33_Matrix33 *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -5069,11 +5156,11 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_1__pyx_f_8matrix33_8Matri
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pyx_fuse_1mul_scalar); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pyx_fuse_1mul_scalar); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_37__pyx_fuse_1mul_scalar)) {
+      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_39__pyx_fuse_1mul_scalar)) {
         __Pyx_XDECREF(((PyObject *)__pyx_r));
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 100, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 103, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -5089,10 +5176,10 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_1__pyx_f_8matrix33_8Matri
         __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 100, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 103, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5119,11 +5206,11 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_1__pyx_f_8matrix33_8Matri
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_mul_scalar); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_mul_scalar); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_29mul_scalar)) {
+      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_31mul_scalar)) {
         __Pyx_XDECREF(((PyObject *)__pyx_r));
-        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 100, __pyx_L1_error)
+        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 103, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_3 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -5139,10 +5226,10 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_1__pyx_f_8matrix33_8Matri
         __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_5, __pyx_t_4) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4);
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 100, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 103, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5161,7 +5248,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_1__pyx_f_8matrix33_8Matri
     #endif
   }
 
-  /* "matrix33.pyx":101
+  /* "matrix33.pyx":104
  * 
  *     cpdef Matrix33 mul_scalar(self, Scalar a):
  *         return Matrix33(self.c1*a, self.c2*a, self.c3*a)             # <<<<<<<<<<<<<<
@@ -5169,22 +5256,22 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_1__pyx_f_8matrix33_8Matri
  *     cpdef vec3 dot_vec(self, vec3 v):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Multiply(((PyObject *)__pyx_v_self->c1), __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(((PyObject *)__pyx_v_self->c1), __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyNumber_Multiply(((PyObject *)__pyx_v_self->c2), __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Multiply(((PyObject *)__pyx_v_self->c2), __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = PyNumber_Multiply(((PyObject *)__pyx_v_self->c3), __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Multiply(((PyObject *)__pyx_v_self->c3), __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
@@ -5195,14 +5282,14 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_1__pyx_f_8matrix33_8Matri
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_4);
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "matrix33.pyx":100
+  /* "matrix33.pyx":103
  *             return self.mul_scalar(a)
  * 
  *     cpdef Matrix33 mul_scalar(self, Scalar a):             # <<<<<<<<<<<<<<
@@ -5226,9 +5313,9 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_1__pyx_f_8matrix33_8Matri
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8matrix33_8Matrix33_37__pyx_fuse_1mul_scalar(PyObject *__pyx_v_self, PyObject *__pyx_arg_a); /*proto*/
-static PyMethodDef __pyx_fuse_1__pyx_mdef_8matrix33_8Matrix33_37__pyx_fuse_1mul_scalar = {"__pyx_fuse_1mul_scalar", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_37__pyx_fuse_1mul_scalar, METH_O, 0};
-static PyObject *__pyx_pw_8matrix33_8Matrix33_37__pyx_fuse_1mul_scalar(PyObject *__pyx_v_self, PyObject *__pyx_arg_a) {
+static PyObject *__pyx_pw_8matrix33_8Matrix33_39__pyx_fuse_1mul_scalar(PyObject *__pyx_v_self, PyObject *__pyx_arg_a); /*proto*/
+static PyMethodDef __pyx_fuse_1__pyx_mdef_8matrix33_8Matrix33_39__pyx_fuse_1mul_scalar = {"__pyx_fuse_1mul_scalar", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_39__pyx_fuse_1mul_scalar, METH_O, 0};
+static PyObject *__pyx_pw_8matrix33_8Matrix33_39__pyx_fuse_1mul_scalar(PyObject *__pyx_v_self, PyObject *__pyx_arg_a) {
   float __pyx_v_a;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -5237,7 +5324,7 @@ static PyObject *__pyx_pw_8matrix33_8Matrix33_37__pyx_fuse_1mul_scalar(PyObject 
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__pyx_fuse_1mul_scalar (wrapper)", 0);
   assert(__pyx_arg_a); {
-    __pyx_v_a = __pyx_PyFloat_AsFloat(__pyx_arg_a); if (unlikely((__pyx_v_a == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 100, __pyx_L3_error)
+    __pyx_v_a = __pyx_PyFloat_AsFloat(__pyx_arg_a); if (unlikely((__pyx_v_a == (float)-1) && PyErr_Occurred())) __PYX_ERR(0, 103, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5245,14 +5332,14 @@ static PyObject *__pyx_pw_8matrix33_8Matrix33_37__pyx_fuse_1mul_scalar(PyObject 
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_8matrix33_8Matrix33_36__pyx_fuse_1mul_scalar(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((float)__pyx_v_a));
+  __pyx_r = __pyx_pf_8matrix33_8Matrix33_38__pyx_fuse_1mul_scalar(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((float)__pyx_v_a));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8matrix33_8Matrix33_36__pyx_fuse_1mul_scalar(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, float __pyx_v_a) {
+static PyObject *__pyx_pf_8matrix33_8Matrix33_38__pyx_fuse_1mul_scalar(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, float __pyx_v_a) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5261,7 +5348,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_36__pyx_fuse_1mul_scalar(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__pyx_fuse_1mul_scalar", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_fuse_1__pyx_f_8matrix33_8Matrix33_mul_scalar(__pyx_v_self, __pyx_v_a, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_fuse_1__pyx_f_8matrix33_8Matrix33_mul_scalar(__pyx_v_self, __pyx_v_a, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5278,8 +5365,8 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_36__pyx_fuse_1mul_scalar(struct __
   return __pyx_r;
 }
 
-static PyObject *__pyx_pw_8matrix33_8Matrix33_39__pyx_fuse_2mul_scalar(PyObject *__pyx_v_self, PyObject *__pyx_arg_a); /*proto*/
-static PyObject *__pyx_pw_8matrix33_8Matrix33_29mul_scalar(PyObject *__pyx_v_signatures, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_41__pyx_fuse_2mul_scalar(PyObject *__pyx_v_self, PyObject *__pyx_arg_a); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_31mul_scalar(PyObject *__pyx_v_signatures, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
 static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_2__pyx_f_8matrix33_8Matrix33_mul_scalar(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, double __pyx_v_a, int __pyx_skip_dispatch) {
   struct __pyx_obj_8matrix33_Matrix33 *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -5301,11 +5388,11 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_2__pyx_f_8matrix33_8Matri
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pyx_fuse_2mul_scalar); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_pyx_fuse_2mul_scalar); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_39__pyx_fuse_2mul_scalar)) {
+      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_41__pyx_fuse_2mul_scalar)) {
         __Pyx_XDECREF(((PyObject *)__pyx_r));
-        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 100, __pyx_L1_error)
+        __pyx_t_3 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 103, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_4 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -5321,10 +5408,10 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_2__pyx_f_8matrix33_8Matri
         __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_t_3) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_t_3);
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 100, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 103, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5351,11 +5438,11 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_2__pyx_f_8matrix33_8Matri
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_mul_scalar); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_mul_scalar); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_29mul_scalar)) {
+      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_31mul_scalar)) {
         __Pyx_XDECREF(((PyObject *)__pyx_r));
-        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 100, __pyx_L1_error)
+        __pyx_t_4 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 103, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_3 = __pyx_t_1; __pyx_t_5 = NULL;
@@ -5371,10 +5458,10 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_2__pyx_f_8matrix33_8Matri
         __pyx_t_2 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_5, __pyx_t_4) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_4);
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 100, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 103, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5393,7 +5480,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_2__pyx_f_8matrix33_8Matri
     #endif
   }
 
-  /* "matrix33.pyx":101
+  /* "matrix33.pyx":104
  * 
  *     cpdef Matrix33 mul_scalar(self, Scalar a):
  *         return Matrix33(self.c1*a, self.c2*a, self.c3*a)             # <<<<<<<<<<<<<<
@@ -5401,22 +5488,22 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_2__pyx_f_8matrix33_8Matri
  *     cpdef vec3 dot_vec(self, vec3 v):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyNumber_Multiply(((PyObject *)__pyx_v_self->c1), __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Multiply(((PyObject *)__pyx_v_self->c1), __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyNumber_Multiply(((PyObject *)__pyx_v_self->c2), __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Multiply(((PyObject *)__pyx_v_self->c2), __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_a); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_4 = PyNumber_Multiply(((PyObject *)__pyx_v_self->c3), __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_4 = PyNumber_Multiply(((PyObject *)__pyx_v_self->c3), __pyx_t_1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
@@ -5427,14 +5514,14 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_2__pyx_f_8matrix33_8Matri
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 101, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_4);
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "matrix33.pyx":100
+  /* "matrix33.pyx":103
  *             return self.mul_scalar(a)
  * 
  *     cpdef Matrix33 mul_scalar(self, Scalar a):             # <<<<<<<<<<<<<<
@@ -5458,9 +5545,9 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_fuse_2__pyx_f_8matrix33_8Matri
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8matrix33_8Matrix33_39__pyx_fuse_2mul_scalar(PyObject *__pyx_v_self, PyObject *__pyx_arg_a); /*proto*/
-static PyMethodDef __pyx_fuse_2__pyx_mdef_8matrix33_8Matrix33_39__pyx_fuse_2mul_scalar = {"__pyx_fuse_2mul_scalar", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_39__pyx_fuse_2mul_scalar, METH_O, 0};
-static PyObject *__pyx_pw_8matrix33_8Matrix33_39__pyx_fuse_2mul_scalar(PyObject *__pyx_v_self, PyObject *__pyx_arg_a) {
+static PyObject *__pyx_pw_8matrix33_8Matrix33_41__pyx_fuse_2mul_scalar(PyObject *__pyx_v_self, PyObject *__pyx_arg_a); /*proto*/
+static PyMethodDef __pyx_fuse_2__pyx_mdef_8matrix33_8Matrix33_41__pyx_fuse_2mul_scalar = {"__pyx_fuse_2mul_scalar", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_41__pyx_fuse_2mul_scalar, METH_O, 0};
+static PyObject *__pyx_pw_8matrix33_8Matrix33_41__pyx_fuse_2mul_scalar(PyObject *__pyx_v_self, PyObject *__pyx_arg_a) {
   double __pyx_v_a;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
@@ -5469,7 +5556,7 @@ static PyObject *__pyx_pw_8matrix33_8Matrix33_39__pyx_fuse_2mul_scalar(PyObject 
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__pyx_fuse_2mul_scalar (wrapper)", 0);
   assert(__pyx_arg_a); {
-    __pyx_v_a = __pyx_PyFloat_AsDouble(__pyx_arg_a); if (unlikely((__pyx_v_a == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 100, __pyx_L3_error)
+    __pyx_v_a = __pyx_PyFloat_AsDouble(__pyx_arg_a); if (unlikely((__pyx_v_a == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 103, __pyx_L3_error)
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5477,14 +5564,14 @@ static PyObject *__pyx_pw_8matrix33_8Matrix33_39__pyx_fuse_2mul_scalar(PyObject 
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_8matrix33_8Matrix33_38__pyx_fuse_2mul_scalar(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((double)__pyx_v_a));
+  __pyx_r = __pyx_pf_8matrix33_8Matrix33_40__pyx_fuse_2mul_scalar(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((double)__pyx_v_a));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8matrix33_8Matrix33_38__pyx_fuse_2mul_scalar(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, double __pyx_v_a) {
+static PyObject *__pyx_pf_8matrix33_8Matrix33_40__pyx_fuse_2mul_scalar(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, double __pyx_v_a) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5493,7 +5580,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_38__pyx_fuse_2mul_scalar(struct __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__pyx_fuse_2mul_scalar", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_fuse_2__pyx_f_8matrix33_8Matrix33_mul_scalar(__pyx_v_self, __pyx_v_a, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_fuse_2__pyx_f_8matrix33_8Matrix33_mul_scalar(__pyx_v_self, __pyx_v_a, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5510,7 +5597,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_38__pyx_fuse_2mul_scalar(struct __
   return __pyx_r;
 }
 
-/* "matrix33.pyx":103
+/* "matrix33.pyx":106
  *         return Matrix33(self.c1*a, self.c2*a, self.c3*a)
  * 
  *     cpdef vec3 dot_vec(self, vec3 v):             # <<<<<<<<<<<<<<
@@ -5518,7 +5605,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_38__pyx_fuse_2mul_scalar(struct __
  * 
  */
 
-static PyObject *__pyx_pw_8matrix33_8Matrix33_31dot_vec(PyObject *__pyx_v_self, PyObject *__pyx_v_v); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_33dot_vec(PyObject *__pyx_v_self, PyObject *__pyx_v_v); /*proto*/
 static struct __pyx_obj_4vec3_vec3 *__pyx_f_8matrix33_8Matrix33_dot_vec(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_4vec3_vec3 *__pyx_v_v, int __pyx_skip_dispatch) {
   struct __pyx_obj_4vec3_vec3 *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -5539,9 +5626,9 @@ static struct __pyx_obj_4vec3_vec3 *__pyx_f_8matrix33_8Matrix33_dot_vec(struct _
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_dot_vec); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_dot_vec); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 106, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_31dot_vec)) {
+      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_33dot_vec)) {
         __Pyx_XDECREF(((PyObject *)__pyx_r));
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
@@ -5556,10 +5643,10 @@ static struct __pyx_obj_4vec3_vec3 *__pyx_f_8matrix33_8Matrix33_dot_vec(struct _
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, ((PyObject *)__pyx_v_v)) : __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_v));
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 106, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_4vec3_vec3))))) __PYX_ERR(0, 103, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_4vec3_vec3))))) __PYX_ERR(0, 106, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5578,7 +5665,7 @@ static struct __pyx_obj_4vec3_vec3 *__pyx_f_8matrix33_8Matrix33_dot_vec(struct _
     #endif
   }
 
-  /* "matrix33.pyx":104
+  /* "matrix33.pyx":107
  * 
  *     cpdef vec3 dot_vec(self, vec3 v):
  *         return vec3(self.c1.dot(v), self.c2.dot(v), self.c3.dot(v))             # <<<<<<<<<<<<<<
@@ -5586,13 +5673,13 @@ static struct __pyx_obj_4vec3_vec3 *__pyx_f_8matrix33_8Matrix33_dot_vec(struct _
  *     cpdef Matrix33 dot_mat(self, Matrix33 m):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __pyx_t_1 = PyFloat_FromDouble(((struct __pyx_vtabstruct_4vec3_vec3 *)__pyx_v_self->c1->__pyx_vtab)->dot(__pyx_v_self->c1, __pyx_v_v, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(((struct __pyx_vtabstruct_4vec3_vec3 *)__pyx_v_self->c1->__pyx_vtab)->dot(__pyx_v_self->c1, __pyx_v_v, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(((struct __pyx_vtabstruct_4vec3_vec3 *)__pyx_v_self->c2->__pyx_vtab)->dot(__pyx_v_self->c2, __pyx_v_v, 0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(((struct __pyx_vtabstruct_4vec3_vec3 *)__pyx_v_self->c2->__pyx_vtab)->dot(__pyx_v_self->c2, __pyx_v_v, 0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyFloat_FromDouble(((struct __pyx_vtabstruct_4vec3_vec3 *)__pyx_v_self->c3->__pyx_vtab)->dot(__pyx_v_self->c3, __pyx_v_v, 0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(((struct __pyx_vtabstruct_4vec3_vec3 *)__pyx_v_self->c3->__pyx_vtab)->dot(__pyx_v_self->c3, __pyx_v_v, 0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
@@ -5603,14 +5690,14 @@ static struct __pyx_obj_4vec3_vec3 *__pyx_f_8matrix33_8Matrix33_dot_vec(struct _
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 104, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_t_4, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_r = ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_3);
   __pyx_t_3 = 0;
   goto __pyx_L0;
 
-  /* "matrix33.pyx":103
+  /* "matrix33.pyx":106
  *         return Matrix33(self.c1*a, self.c2*a, self.c3*a)
  * 
  *     cpdef vec3 dot_vec(self, vec3 v):             # <<<<<<<<<<<<<<
@@ -5633,16 +5720,16 @@ static struct __pyx_obj_4vec3_vec3 *__pyx_f_8matrix33_8Matrix33_dot_vec(struct _
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8matrix33_8Matrix33_31dot_vec(PyObject *__pyx_v_self, PyObject *__pyx_v_v); /*proto*/
-static PyObject *__pyx_pw_8matrix33_8Matrix33_31dot_vec(PyObject *__pyx_v_self, PyObject *__pyx_v_v) {
+static PyObject *__pyx_pw_8matrix33_8Matrix33_33dot_vec(PyObject *__pyx_v_self, PyObject *__pyx_v_v); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_33dot_vec(PyObject *__pyx_v_self, PyObject *__pyx_v_v) {
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("dot_vec (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_v), __pyx_ptype_4vec3_vec3, 1, "v", 0))) __PYX_ERR(0, 103, __pyx_L1_error)
-  __pyx_r = __pyx_pf_8matrix33_8Matrix33_30dot_vec(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((struct __pyx_obj_4vec3_vec3 *)__pyx_v_v));
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_v), __pyx_ptype_4vec3_vec3, 1, "v", 0))) __PYX_ERR(0, 106, __pyx_L1_error)
+  __pyx_r = __pyx_pf_8matrix33_8Matrix33_32dot_vec(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((struct __pyx_obj_4vec3_vec3 *)__pyx_v_v));
 
   /* function exit code */
   goto __pyx_L0;
@@ -5653,7 +5740,7 @@ static PyObject *__pyx_pw_8matrix33_8Matrix33_31dot_vec(PyObject *__pyx_v_self, 
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8matrix33_8Matrix33_30dot_vec(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_4vec3_vec3 *__pyx_v_v) {
+static PyObject *__pyx_pf_8matrix33_8Matrix33_32dot_vec(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_4vec3_vec3 *__pyx_v_v) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5662,7 +5749,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_30dot_vec(struct __pyx_obj_8matrix
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("dot_vec", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_8matrix33_8Matrix33_dot_vec(__pyx_v_self, __pyx_v_v, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_8matrix33_8Matrix33_dot_vec(__pyx_v_self, __pyx_v_v, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 106, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5679,15 +5766,15 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_30dot_vec(struct __pyx_obj_8matrix
   return __pyx_r;
 }
 
-/* "matrix33.pyx":106
+/* "matrix33.pyx":109
  *         return vec3(self.c1.dot(v), self.c2.dot(v), self.c3.dot(v))
  * 
  *     cpdef Matrix33 dot_mat(self, Matrix33 m):             # <<<<<<<<<<<<<<
- *         return Matrix33(self.dot_vec(m.c1), self.dot_vec(m.c2), self.dot_vec(m.c3))
+ *         return Matrix33(self.dot_vec(m.r1), self.dot_vec(m.r2), self.dot_vec(m.r3)).transpose()
  * 
  */
 
-static PyObject *__pyx_pw_8matrix33_8Matrix33_33dot_mat(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_35dot_mat(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
 static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_dot_mat(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_m, int __pyx_skip_dispatch) {
   struct __pyx_obj_8matrix33_Matrix33 *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -5708,9 +5795,9 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_dot_mat(
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_type_dict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_dot_mat); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 106, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_dot_mat); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_33dot_mat)) {
+      if (!PyCFunction_Check(__pyx_t_1) || (PyCFunction_GET_FUNCTION(__pyx_t_1) != (PyCFunction)(void*)__pyx_pw_8matrix33_8Matrix33_35dot_mat)) {
         __Pyx_XDECREF(((PyObject *)__pyx_r));
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
@@ -5725,10 +5812,10 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_dot_mat(
         }
         __pyx_t_2 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, ((PyObject *)__pyx_v_m)) : __Pyx_PyObject_CallOneArg(__pyx_t_3, ((PyObject *)__pyx_v_m));
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 106, __pyx_L1_error)
+        if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 109, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 106, __pyx_L1_error)
+        if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 109, __pyx_L1_error)
         __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_2);
         __pyx_t_2 = 0;
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -5747,30 +5834,30 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_dot_mat(
     #endif
   }
 
-  /* "matrix33.pyx":107
+  /* "matrix33.pyx":110
  * 
  *     cpdef Matrix33 dot_mat(self, Matrix33 m):
- *         return Matrix33(self.dot_vec(m.c1), self.dot_vec(m.c2), self.dot_vec(m.c3))             # <<<<<<<<<<<<<<
+ *         return Matrix33(self.dot_vec(m.r1), self.dot_vec(m.r2), self.dot_vec(m.r3)).transpose()             # <<<<<<<<<<<<<<
  * 
  * 
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __pyx_t_1 = ((PyObject *)__pyx_v_m->c1);
+  __pyx_t_1 = ((PyObject *)__pyx_v_m->r1);
   __Pyx_INCREF(__pyx_t_1);
-  __pyx_t_2 = ((PyObject *)((struct __pyx_vtabstruct_8matrix33_Matrix33 *)__pyx_v_self->__pyx_vtab)->dot_vec(__pyx_v_self, ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_1), 0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)((struct __pyx_vtabstruct_8matrix33_Matrix33 *)__pyx_v_self->__pyx_vtab)->dot_vec(__pyx_v_self, ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_1), 0)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = ((PyObject *)__pyx_v_m->c2);
+  __pyx_t_1 = ((PyObject *)__pyx_v_m->r2);
   __Pyx_INCREF(__pyx_t_1);
-  __pyx_t_3 = ((PyObject *)((struct __pyx_vtabstruct_8matrix33_Matrix33 *)__pyx_v_self->__pyx_vtab)->dot_vec(__pyx_v_self, ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_1), 0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_3 = ((PyObject *)((struct __pyx_vtabstruct_8matrix33_Matrix33 *)__pyx_v_self->__pyx_vtab)->dot_vec(__pyx_v_self, ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_1), 0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = ((PyObject *)__pyx_v_m->c3);
+  __pyx_t_1 = ((PyObject *)__pyx_v_m->r3);
   __Pyx_INCREF(__pyx_t_1);
-  __pyx_t_4 = ((PyObject *)((struct __pyx_vtabstruct_8matrix33_Matrix33 *)__pyx_v_self->__pyx_vtab)->dot_vec(__pyx_v_self, ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_1), 0)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_4 = ((PyObject *)((struct __pyx_vtabstruct_8matrix33_Matrix33 *)__pyx_v_self->__pyx_vtab)->dot_vec(__pyx_v_self, ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_1), 0)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
@@ -5781,18 +5868,21 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_dot_mat(
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_1, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 110, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_4);
-  __pyx_t_4 = 0;
+  __pyx_t_1 = ((PyObject *)((struct __pyx_vtabstruct_8matrix33_Matrix33 *)((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_4)->__pyx_vtab)->transpose(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_4), 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 110, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_1);
+  __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "matrix33.pyx":106
+  /* "matrix33.pyx":109
  *         return vec3(self.c1.dot(v), self.c2.dot(v), self.c3.dot(v))
  * 
  *     cpdef Matrix33 dot_mat(self, Matrix33 m):             # <<<<<<<<<<<<<<
- *         return Matrix33(self.dot_vec(m.c1), self.dot_vec(m.c2), self.dot_vec(m.c3))
+ *         return Matrix33(self.dot_vec(m.r1), self.dot_vec(m.r2), self.dot_vec(m.r3)).transpose()
  * 
  */
 
@@ -5811,16 +5901,16 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_8Matrix33_dot_mat(
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8matrix33_8Matrix33_33dot_mat(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
-static PyObject *__pyx_pw_8matrix33_8Matrix33_33dot_mat(PyObject *__pyx_v_self, PyObject *__pyx_v_m) {
+static PyObject *__pyx_pw_8matrix33_8Matrix33_35dot_mat(PyObject *__pyx_v_self, PyObject *__pyx_v_m); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_35dot_mat(PyObject *__pyx_v_self, PyObject *__pyx_v_m) {
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("dot_mat (wrapper)", 0);
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_m), __pyx_ptype_8matrix33_Matrix33, 1, "m", 0))) __PYX_ERR(0, 106, __pyx_L1_error)
-  __pyx_r = __pyx_pf_8matrix33_8Matrix33_32dot_mat(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_m));
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_m), __pyx_ptype_8matrix33_Matrix33, 1, "m", 0))) __PYX_ERR(0, 109, __pyx_L1_error)
+  __pyx_r = __pyx_pf_8matrix33_8Matrix33_34dot_mat(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_m));
 
   /* function exit code */
   goto __pyx_L0;
@@ -5831,7 +5921,7 @@ static PyObject *__pyx_pw_8matrix33_8Matrix33_33dot_mat(PyObject *__pyx_v_self, 
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8matrix33_8Matrix33_32dot_mat(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_m) {
+static PyObject *__pyx_pf_8matrix33_8Matrix33_34dot_mat(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_m) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5840,7 +5930,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_32dot_mat(struct __pyx_obj_8matrix
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("dot_mat", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = ((PyObject *)__pyx_f_8matrix33_8Matrix33_dot_mat(__pyx_v_self, __pyx_v_m, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_8matrix33_8Matrix33_dot_mat(__pyx_v_self, __pyx_v_m, 1)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 109, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7250,19 +7340,19 @@ static int __pyx_pf_8matrix33_8Matrix33_3a33_2__set__(struct __pyx_obj_8matrix33
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8matrix33_8Matrix33_43__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_8matrix33_8Matrix33_43__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_8matrix33_8Matrix33_45__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_45__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_8matrix33_8Matrix33_42__reduce_cython__(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self));
+  __pyx_r = __pyx_pf_8matrix33_8Matrix33_44__reduce_cython__(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8matrix33_8Matrix33_42__reduce_cython__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self) {
+static PyObject *__pyx_pf_8matrix33_8Matrix33_44__reduce_cython__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self) {
   PyObject *__pyx_v_state = 0;
   PyObject *__pyx_v__dict = 0;
   int __pyx_v_use_setstate;
@@ -7598,19 +7688,19 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_42__reduce_cython__(struct __pyx_o
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8matrix33_8Matrix33_45__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static PyObject *__pyx_pw_8matrix33_8Matrix33_45__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_8matrix33_8Matrix33_47__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static PyObject *__pyx_pw_8matrix33_8Matrix33_47__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_8matrix33_8Matrix33_44__setstate_cython__(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_8matrix33_8Matrix33_46__setstate_cython__(((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8matrix33_8Matrix33_44__setstate_cython__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_8matrix33_8Matrix33_46__setstate_cython__(struct __pyx_obj_8matrix33_Matrix33 *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -7649,7 +7739,7 @@ static PyObject *__pyx_pf_8matrix33_8Matrix33_44__setstate_cython__(struct __pyx
   return __pyx_r;
 }
 
-/* "matrix33.pyx":110
+/* "matrix33.pyx":113
  * 
  * 
  * cdef Matrix33 c_mat_from_np(np.ndarray[double, ndim=2] arr):             # <<<<<<<<<<<<<<
@@ -7677,59 +7767,59 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_c_mat_from_np(PyAr
   __pyx_pybuffernd_arr.rcbuffer = &__pyx_pybuffer_arr;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_arr.rcbuffer->pybuffer, (PyObject*)__pyx_v_arr, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 110, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_arr.rcbuffer->pybuffer, (PyObject*)__pyx_v_arr, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 2, 0, __pyx_stack) == -1)) __PYX_ERR(0, 113, __pyx_L1_error)
   }
   __pyx_pybuffernd_arr.diminfo[0].strides = __pyx_pybuffernd_arr.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_arr.diminfo[0].shape = __pyx_pybuffernd_arr.rcbuffer->pybuffer.shape[0]; __pyx_pybuffernd_arr.diminfo[1].strides = __pyx_pybuffernd_arr.rcbuffer->pybuffer.strides[1]; __pyx_pybuffernd_arr.diminfo[1].shape = __pyx_pybuffernd_arr.rcbuffer->pybuffer.shape[1];
 
-  /* "matrix33.pyx":111
+  /* "matrix33.pyx":114
  * 
  * cdef Matrix33 c_mat_from_np(np.ndarray[double, ndim=2] arr):
  *     cdef vec3 c1 = c_vec_from_np(arr[0,:])             # <<<<<<<<<<<<<<
  *     cdef vec3 c2 = c_vec_from_np(arr[1,:])
  *     cdef vec3 c3 = c_vec_from_np(arr[2,:])
  */
-  __pyx_t_1 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_arr), __pyx_tuple__7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_arr), __pyx_tuple__7); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 111, __pyx_L1_error)
-  __pyx_t_2 = ((PyObject *)__pyx_f_4vec3_c_vec_from_np(((PyArrayObject *)__pyx_t_1))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 111, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 114, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_4vec3_c_vec_from_np(((PyArrayObject *)__pyx_t_1))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_c1 = ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "matrix33.pyx":112
+  /* "matrix33.pyx":115
  * cdef Matrix33 c_mat_from_np(np.ndarray[double, ndim=2] arr):
  *     cdef vec3 c1 = c_vec_from_np(arr[0,:])
  *     cdef vec3 c2 = c_vec_from_np(arr[1,:])             # <<<<<<<<<<<<<<
  *     cdef vec3 c3 = c_vec_from_np(arr[2,:])
  *     return Matrix33(c1, c2, c3)
  */
-  __pyx_t_2 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_arr), __pyx_tuple__8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_arr), __pyx_tuple__8); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 115, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 112, __pyx_L1_error)
-  __pyx_t_1 = ((PyObject *)__pyx_f_4vec3_c_vec_from_np(((PyArrayObject *)__pyx_t_2))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 112, __pyx_L1_error)
+  if (!(likely(((__pyx_t_2) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_2, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 115, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_4vec3_c_vec_from_np(((PyArrayObject *)__pyx_t_2))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 115, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_c2 = ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "matrix33.pyx":113
+  /* "matrix33.pyx":116
  *     cdef vec3 c1 = c_vec_from_np(arr[0,:])
  *     cdef vec3 c2 = c_vec_from_np(arr[1,:])
  *     cdef vec3 c3 = c_vec_from_np(arr[2,:])             # <<<<<<<<<<<<<<
  *     return Matrix33(c1, c2, c3)
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_arr), __pyx_tuple__9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 113, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetItem(((PyObject *)__pyx_v_arr), __pyx_tuple__9); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 113, __pyx_L1_error)
-  __pyx_t_2 = ((PyObject *)__pyx_f_4vec3_c_vec_from_np(((PyArrayObject *)__pyx_t_1))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 113, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 116, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_4vec3_c_vec_from_np(((PyArrayObject *)__pyx_t_1))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_c3 = ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "matrix33.pyx":114
+  /* "matrix33.pyx":117
  *     cdef vec3 c2 = c_vec_from_np(arr[1,:])
  *     cdef vec3 c3 = c_vec_from_np(arr[2,:])
  *     return Matrix33(c1, c2, c3)             # <<<<<<<<<<<<<<
@@ -7737,7 +7827,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_c_mat_from_np(PyAr
  * cdef Matrix33 rotate_x(double ang):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 114, __pyx_L1_error)
+  __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 117, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(((PyObject *)__pyx_v_c1));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_c1));
@@ -7748,14 +7838,14 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_c_mat_from_np(PyAr
   __Pyx_INCREF(((PyObject *)__pyx_v_c3));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_c3));
   PyTuple_SET_ITEM(__pyx_t_2, 2, ((PyObject *)__pyx_v_c3));
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 114, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_2, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 117, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "matrix33.pyx":110
+  /* "matrix33.pyx":113
  * 
  * 
  * cdef Matrix33 c_mat_from_np(np.ndarray[double, ndim=2] arr):             # <<<<<<<<<<<<<<
@@ -7787,7 +7877,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_c_mat_from_np(PyAr
   return __pyx_r;
 }
 
-/* "matrix33.pyx":116
+/* "matrix33.pyx":119
  *     return Matrix33(c1, c2, c3)
  * 
  * cdef Matrix33 rotate_x(double ang):             # <<<<<<<<<<<<<<
@@ -7811,7 +7901,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_x(double __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("rotate_x", 0);
 
-  /* "matrix33.pyx":117
+  /* "matrix33.pyx":120
  * 
  * cdef Matrix33 rotate_x(double ang):
  *     cdef double c = cos(ang)             # <<<<<<<<<<<<<<
@@ -7820,7 +7910,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_x(double __
  */
   __pyx_v_c = cos(__pyx_v_ang);
 
-  /* "matrix33.pyx":118
+  /* "matrix33.pyx":121
  * cdef Matrix33 rotate_x(double ang):
  *     cdef double c = cos(ang)
  *     cdef double s = sin(ang)             # <<<<<<<<<<<<<<
@@ -7829,30 +7919,30 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_x(double __
  */
   __pyx_v_s = sin(__pyx_v_ang);
 
-  /* "matrix33.pyx":119
+  /* "matrix33.pyx":122
  *     cdef double c = cos(ang)
  *     cdef double s = sin(ang)
  *     cdef vec3 c1 = vec3(1,0,0)             # <<<<<<<<<<<<<<
  *     cdef vec3 c2 = vec3(0,c,-s)
  *     cdef vec3 c3 = vec3(0,s,c)
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 119, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_c1 = ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "matrix33.pyx":120
+  /* "matrix33.pyx":123
  *     cdef double s = sin(ang)
  *     cdef vec3 c1 = vec3(1,0,0)
  *     cdef vec3 c2 = vec3(0,c,-s)             # <<<<<<<<<<<<<<
  *     cdef vec3 c3 = vec3(0,s,c)
  *     return Matrix33(c1, c2, c3)
  */
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_c); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_c); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble((-__pyx_v_s)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((-__pyx_v_s)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(__pyx_int_0);
   __Pyx_GIVEREF(__pyx_int_0);
@@ -7863,24 +7953,24 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_x(double __
   PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_t_2);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 123, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_c2 = ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "matrix33.pyx":121
+  /* "matrix33.pyx":124
  *     cdef vec3 c1 = vec3(1,0,0)
  *     cdef vec3 c2 = vec3(0,c,-s)
  *     cdef vec3 c3 = vec3(0,s,c)             # <<<<<<<<<<<<<<
  *     return Matrix33(c1, c2, c3)
  * 
  */
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_s); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 121, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_s); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_c); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 121, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_c); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 121, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_INCREF(__pyx_int_0);
   __Pyx_GIVEREF(__pyx_int_0);
@@ -7891,13 +7981,13 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_x(double __
   PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_t_3);
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_t_1, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 121, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_t_1, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 124, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_c3 = ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "matrix33.pyx":122
+  /* "matrix33.pyx":125
  *     cdef vec3 c2 = vec3(0,c,-s)
  *     cdef vec3 c3 = vec3(0,s,c)
  *     return Matrix33(c1, c2, c3)             # <<<<<<<<<<<<<<
@@ -7905,7 +7995,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_x(double __
  * cdef Matrix33 rotate_y(double ang):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 122, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(((PyObject *)__pyx_v_c1));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_c1));
@@ -7916,14 +8006,14 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_x(double __
   __Pyx_INCREF(((PyObject *)__pyx_v_c3));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_c3));
   PyTuple_SET_ITEM(__pyx_t_3, 2, ((PyObject *)__pyx_v_c3));
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 122, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "matrix33.pyx":116
+  /* "matrix33.pyx":119
  *     return Matrix33(c1, c2, c3)
  * 
  * cdef Matrix33 rotate_x(double ang):             # <<<<<<<<<<<<<<
@@ -7947,7 +8037,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_x(double __
   return __pyx_r;
 }
 
-/* "matrix33.pyx":124
+/* "matrix33.pyx":127
  *     return Matrix33(c1, c2, c3)
  * 
  * cdef Matrix33 rotate_y(double ang):             # <<<<<<<<<<<<<<
@@ -7971,7 +8061,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_y(double __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("rotate_y", 0);
 
-  /* "matrix33.pyx":125
+  /* "matrix33.pyx":128
  * 
  * cdef Matrix33 rotate_y(double ang):
  *     cdef double c = cos(ang)             # <<<<<<<<<<<<<<
@@ -7980,7 +8070,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_y(double __
  */
   __pyx_v_c = cos(__pyx_v_ang);
 
-  /* "matrix33.pyx":126
+  /* "matrix33.pyx":129
  * cdef Matrix33 rotate_y(double ang):
  *     cdef double c = cos(ang)
  *     cdef double s = sin(ang)             # <<<<<<<<<<<<<<
@@ -7989,18 +8079,18 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_y(double __
  */
   __pyx_v_s = sin(__pyx_v_ang);
 
-  /* "matrix33.pyx":127
+  /* "matrix33.pyx":130
  *     cdef double c = cos(ang)
  *     cdef double s = sin(ang)
  *     cdef vec3 c1 = vec3(c,0,s)             # <<<<<<<<<<<<<<
  *     cdef vec3 c2 = vec3(0,1,0)
  *     cdef vec3 c3 = vec3(-s,0,c)
  */
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_c); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_c); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_s); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_s); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
@@ -8011,36 +8101,36 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_y(double __
   PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_t_2);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 130, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_c1 = ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "matrix33.pyx":128
+  /* "matrix33.pyx":131
  *     cdef double s = sin(ang)
  *     cdef vec3 c1 = vec3(c,0,s)
  *     cdef vec3 c2 = vec3(0,1,0)             # <<<<<<<<<<<<<<
  *     cdef vec3 c3 = vec3(-s,0,c)
  *     return Matrix33(c1, c2, c3)
  */
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_v_c2 = ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "matrix33.pyx":129
+  /* "matrix33.pyx":132
  *     cdef vec3 c1 = vec3(c,0,s)
  *     cdef vec3 c2 = vec3(0,1,0)
  *     cdef vec3 c3 = vec3(-s,0,c)             # <<<<<<<<<<<<<<
  *     return Matrix33(c1, c2, c3)
  * 
  */
-  __pyx_t_2 = PyFloat_FromDouble((-__pyx_v_s)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((-__pyx_v_s)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_c); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_c); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
@@ -8051,13 +8141,13 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_y(double __
   PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_t_3);
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_t_1, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 129, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_t_1, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 132, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_c3 = ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "matrix33.pyx":130
+  /* "matrix33.pyx":133
  *     cdef vec3 c2 = vec3(0,1,0)
  *     cdef vec3 c3 = vec3(-s,0,c)
  *     return Matrix33(c1, c2, c3)             # <<<<<<<<<<<<<<
@@ -8065,7 +8155,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_y(double __
  * cdef Matrix33 rotate_z(double ang):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(((PyObject *)__pyx_v_c1));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_c1));
@@ -8076,14 +8166,14 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_y(double __
   __Pyx_INCREF(((PyObject *)__pyx_v_c3));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_c3));
   PyTuple_SET_ITEM(__pyx_t_3, 2, ((PyObject *)__pyx_v_c3));
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 130, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 133, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "matrix33.pyx":124
+  /* "matrix33.pyx":127
  *     return Matrix33(c1, c2, c3)
  * 
  * cdef Matrix33 rotate_y(double ang):             # <<<<<<<<<<<<<<
@@ -8107,7 +8197,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_y(double __
   return __pyx_r;
 }
 
-/* "matrix33.pyx":132
+/* "matrix33.pyx":135
  *     return Matrix33(c1, c2, c3)
  * 
  * cdef Matrix33 rotate_z(double ang):             # <<<<<<<<<<<<<<
@@ -8131,7 +8221,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_z(double __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("rotate_z", 0);
 
-  /* "matrix33.pyx":133
+  /* "matrix33.pyx":136
  * 
  * cdef Matrix33 rotate_z(double ang):
  *     cdef double c = cos(ang)             # <<<<<<<<<<<<<<
@@ -8140,7 +8230,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_z(double __
  */
   __pyx_v_c = cos(__pyx_v_ang);
 
-  /* "matrix33.pyx":134
+  /* "matrix33.pyx":137
  * cdef Matrix33 rotate_z(double ang):
  *     cdef double c = cos(ang)
  *     cdef double s = sin(ang)             # <<<<<<<<<<<<<<
@@ -8149,18 +8239,18 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_z(double __
  */
   __pyx_v_s = sin(__pyx_v_ang);
 
-  /* "matrix33.pyx":135
+  /* "matrix33.pyx":138
  *     cdef double c = cos(ang)
  *     cdef double s = sin(ang)
  *     cdef vec3 c1 = vec3(c,-s,0)             # <<<<<<<<<<<<<<
  *     cdef vec3 c2 = vec3(s,c,0)
  *     cdef vec3 c3 = vec3(0,0,1)
  */
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_c); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_c); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyFloat_FromDouble((-__pyx_v_s)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((-__pyx_v_s)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_GIVEREF(__pyx_t_1);
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_1);
@@ -8171,24 +8261,24 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_z(double __
   PyTuple_SET_ITEM(__pyx_t_3, 2, __pyx_int_0);
   __pyx_t_1 = 0;
   __pyx_t_2 = 0;
-  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 135, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_t_3, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 138, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_v_c1 = ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_2);
   __pyx_t_2 = 0;
 
-  /* "matrix33.pyx":136
+  /* "matrix33.pyx":139
  *     cdef double s = sin(ang)
  *     cdef vec3 c1 = vec3(c,-s,0)
  *     cdef vec3 c2 = vec3(s,c,0)             # <<<<<<<<<<<<<<
  *     cdef vec3 c3 = vec3(0,0,1)
  *     return Matrix33(c1, c2, c3)
  */
-  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_s); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble(__pyx_v_s); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_c); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble(__pyx_v_c); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_2);
@@ -8199,25 +8289,25 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_z(double __
   PyTuple_SET_ITEM(__pyx_t_1, 2, __pyx_int_0);
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_t_1, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 136, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_t_1, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 139, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_v_c2 = ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "matrix33.pyx":137
+  /* "matrix33.pyx":140
  *     cdef vec3 c1 = vec3(c,-s,0)
  *     cdef vec3 c2 = vec3(s,c,0)
  *     cdef vec3 c3 = vec3(0,0,1)             # <<<<<<<<<<<<<<
  *     return Matrix33(c1, c2, c3)
  * 
  */
-  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_v_c3 = ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "matrix33.pyx":138
+  /* "matrix33.pyx":141
  *     cdef vec3 c2 = vec3(s,c,0)
  *     cdef vec3 c3 = vec3(0,0,1)
  *     return Matrix33(c1, c2, c3)             # <<<<<<<<<<<<<<
@@ -8225,7 +8315,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_z(double __
  * cdef Matrix33 c_rotate(double x, double y, double z):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_3 = PyTuple_New(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_INCREF(((PyObject *)__pyx_v_c1));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_c1));
@@ -8236,14 +8326,14 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_z(double __
   __Pyx_INCREF(((PyObject *)__pyx_v_c3));
   __Pyx_GIVEREF(((PyObject *)__pyx_v_c3));
   PyTuple_SET_ITEM(__pyx_t_3, 2, ((PyObject *)__pyx_v_c3));
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 138, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_8matrix33_Matrix33), __pyx_t_3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "matrix33.pyx":132
+  /* "matrix33.pyx":135
  *     return Matrix33(c1, c2, c3)
  * 
  * cdef Matrix33 rotate_z(double ang):             # <<<<<<<<<<<<<<
@@ -8267,7 +8357,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_rotate_z(double __
   return __pyx_r;
 }
 
-/* "matrix33.pyx":140
+/* "matrix33.pyx":143
  *     return Matrix33(c1, c2, c3)
  * 
  * cdef Matrix33 c_rotate(double x, double y, double z):             # <<<<<<<<<<<<<<
@@ -8286,7 +8376,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_c_rotate(double __
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("c_rotate", 0);
 
-  /* "matrix33.pyx":141
+  /* "matrix33.pyx":144
  * 
  * cdef Matrix33 c_rotate(double x, double y, double z):
  *     return rotate_z(z) * rotate_y(y) * rotate_x(x)             # <<<<<<<<<<<<<<
@@ -8294,26 +8384,26 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_c_rotate(double __
  * # Python rappers
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
-  __pyx_t_1 = ((PyObject *)__pyx_f_8matrix33_rotate_z(__pyx_v_z)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_t_1 = ((PyObject *)__pyx_f_8matrix33_rotate_z(__pyx_v_z)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = ((PyObject *)__pyx_f_8matrix33_rotate_y(__pyx_v_y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_8matrix33_rotate_y(__pyx_v_y)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = PyNumber_Multiply(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_t_3 = PyNumber_Multiply(__pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = ((PyObject *)__pyx_f_8matrix33_rotate_x(__pyx_v_x)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_t_2 = ((PyObject *)__pyx_f_8matrix33_rotate_x(__pyx_v_x)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyNumber_Multiply(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 141, __pyx_L1_error)
+  __pyx_t_1 = PyNumber_Multiply(__pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 144, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 141, __pyx_L1_error)
+  if (!(likely(((__pyx_t_1) == Py_None) || likely(__Pyx_TypeTest(__pyx_t_1, __pyx_ptype_8matrix33_Matrix33))))) __PYX_ERR(0, 144, __pyx_L1_error)
   __pyx_r = ((struct __pyx_obj_8matrix33_Matrix33 *)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "matrix33.pyx":140
+  /* "matrix33.pyx":143
  *     return Matrix33(c1, c2, c3)
  * 
  * cdef Matrix33 c_rotate(double x, double y, double z):             # <<<<<<<<<<<<<<
@@ -8334,7 +8424,7 @@ static struct __pyx_obj_8matrix33_Matrix33 *__pyx_f_8matrix33_c_rotate(double __
   return __pyx_r;
 }
 
-/* "matrix33.pyx":145
+/* "matrix33.pyx":148
  * # Python rappers
  * 
  * def from_np(arr):             # <<<<<<<<<<<<<<
@@ -8367,22 +8457,22 @@ static PyObject *__pyx_pf_8matrix33_from_np(CYTHON_UNUSED PyObject *__pyx_self, 
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("from_np", 0);
 
-  /* "matrix33.pyx":146
+  /* "matrix33.pyx":149
  * 
  * def from_np(arr):
  *     if arr.shape == (3,):             # <<<<<<<<<<<<<<
  *         return c_vec_from_np(arr)
  *     elif arr.shape == (3,3):
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_arr, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_arr, __pyx_n_s_shape); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 149, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_tuple__13, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __pyx_t_2 = PyObject_RichCompare(__pyx_t_1, __pyx_tuple__13, Py_EQ); __Pyx_XGOTREF(__pyx_t_2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 149, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_2); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 149, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   if (__pyx_t_3) {
 
-    /* "matrix33.pyx":147
+    /* "matrix33.pyx":150
  * def from_np(arr):
  *     if arr.shape == (3,):
  *         return c_vec_from_np(arr)             # <<<<<<<<<<<<<<
@@ -8390,14 +8480,14 @@ static PyObject *__pyx_pf_8matrix33_from_np(CYTHON_UNUSED PyObject *__pyx_self, 
  *         return c_mat_from_np(arr)
  */
     __Pyx_XDECREF(__pyx_r);
-    if (!(likely(((__pyx_v_arr) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_arr, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 147, __pyx_L1_error)
-    __pyx_t_2 = ((PyObject *)__pyx_f_4vec3_c_vec_from_np(((PyArrayObject *)__pyx_v_arr))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 147, __pyx_L1_error)
+    if (!(likely(((__pyx_v_arr) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_arr, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 150, __pyx_L1_error)
+    __pyx_t_2 = ((PyObject *)__pyx_f_4vec3_c_vec_from_np(((PyArrayObject *)__pyx_v_arr))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 150, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __pyx_r = __pyx_t_2;
     __pyx_t_2 = 0;
     goto __pyx_L0;
 
-    /* "matrix33.pyx":146
+    /* "matrix33.pyx":149
  * 
  * def from_np(arr):
  *     if arr.shape == (3,):             # <<<<<<<<<<<<<<
@@ -8406,22 +8496,22 @@ static PyObject *__pyx_pf_8matrix33_from_np(CYTHON_UNUSED PyObject *__pyx_self, 
  */
   }
 
-  /* "matrix33.pyx":148
+  /* "matrix33.pyx":151
  *     if arr.shape == (3,):
  *         return c_vec_from_np(arr)
  *     elif arr.shape == (3,3):             # <<<<<<<<<<<<<<
  *         return c_mat_from_np(arr)
  *     else:
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_arr, __pyx_n_s_shape); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 148, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_arr, __pyx_n_s_shape); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_tuple__14, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 148, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_t_2, __pyx_tuple__14, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 148, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_3) {
 
-    /* "matrix33.pyx":149
+    /* "matrix33.pyx":152
  *         return c_vec_from_np(arr)
  *     elif arr.shape == (3,3):
  *         return c_mat_from_np(arr)             # <<<<<<<<<<<<<<
@@ -8429,14 +8519,14 @@ static PyObject *__pyx_pf_8matrix33_from_np(CYTHON_UNUSED PyObject *__pyx_self, 
  *         return None
  */
     __Pyx_XDECREF(__pyx_r);
-    if (!(likely(((__pyx_v_arr) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_arr, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 149, __pyx_L1_error)
-    __pyx_t_1 = ((PyObject *)__pyx_f_8matrix33_c_mat_from_np(((PyArrayObject *)__pyx_v_arr))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 149, __pyx_L1_error)
+    if (!(likely(((__pyx_v_arr) == Py_None) || likely(__Pyx_TypeTest(__pyx_v_arr, __pyx_ptype_5numpy_ndarray))))) __PYX_ERR(0, 152, __pyx_L1_error)
+    __pyx_t_1 = ((PyObject *)__pyx_f_8matrix33_c_mat_from_np(((PyArrayObject *)__pyx_v_arr))); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 152, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_r = __pyx_t_1;
     __pyx_t_1 = 0;
     goto __pyx_L0;
 
-    /* "matrix33.pyx":148
+    /* "matrix33.pyx":151
  *     if arr.shape == (3,):
  *         return c_vec_from_np(arr)
  *     elif arr.shape == (3,3):             # <<<<<<<<<<<<<<
@@ -8445,7 +8535,7 @@ static PyObject *__pyx_pf_8matrix33_from_np(CYTHON_UNUSED PyObject *__pyx_self, 
  */
   }
 
-  /* "matrix33.pyx":151
+  /* "matrix33.pyx":154
  *         return c_mat_from_np(arr)
  *     else:
  *         return None             # <<<<<<<<<<<<<<
@@ -8458,7 +8548,7 @@ static PyObject *__pyx_pf_8matrix33_from_np(CYTHON_UNUSED PyObject *__pyx_self, 
     goto __pyx_L0;
   }
 
-  /* "matrix33.pyx":145
+  /* "matrix33.pyx":148
  * # Python rappers
  * 
  * def from_np(arr):             # <<<<<<<<<<<<<<
@@ -8478,7 +8568,7 @@ static PyObject *__pyx_pf_8matrix33_from_np(CYTHON_UNUSED PyObject *__pyx_self, 
   return __pyx_r;
 }
 
-/* "matrix33.pyx":153
+/* "matrix33.pyx":156
  *         return None
  * 
  * def rotate_mat(x=0, y=0, z=0):             # <<<<<<<<<<<<<<
@@ -8538,7 +8628,7 @@ static PyObject *__pyx_pw_8matrix33_3rotate_mat(PyObject *__pyx_self, PyObject *
         }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "rotate_mat") < 0)) __PYX_ERR(0, 153, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "rotate_mat") < 0)) __PYX_ERR(0, 156, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -8558,7 +8648,7 @@ static PyObject *__pyx_pw_8matrix33_3rotate_mat(PyObject *__pyx_self, PyObject *
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("rotate_mat", 0, 0, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 153, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("rotate_mat", 0, 0, 3, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 156, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("matrix33.rotate_mat", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
@@ -8583,22 +8673,22 @@ static PyObject *__pyx_pf_8matrix33_2rotate_mat(CYTHON_UNUSED PyObject *__pyx_se
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("rotate_mat", 0);
 
-  /* "matrix33.pyx":154
+  /* "matrix33.pyx":157
  * 
  * def rotate_mat(x=0, y=0, z=0):
  *     return c_rotate(x, y, z)             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_x); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 154, __pyx_L1_error)
-  __pyx_t_2 = __pyx_PyFloat_AsDouble(__pyx_v_y); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 154, __pyx_L1_error)
-  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_v_z); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 154, __pyx_L1_error)
-  __pyx_t_4 = ((PyObject *)__pyx_f_8matrix33_c_rotate(__pyx_t_1, __pyx_t_2, __pyx_t_3)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 154, __pyx_L1_error)
+  __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_x); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 157, __pyx_L1_error)
+  __pyx_t_2 = __pyx_PyFloat_AsDouble(__pyx_v_y); if (unlikely((__pyx_t_2 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 157, __pyx_L1_error)
+  __pyx_t_3 = __pyx_PyFloat_AsDouble(__pyx_v_z); if (unlikely((__pyx_t_3 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 157, __pyx_L1_error)
+  __pyx_t_4 = ((PyObject *)__pyx_f_8matrix33_c_rotate(__pyx_t_1, __pyx_t_2, __pyx_t_3)); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 157, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_r = __pyx_t_4;
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "matrix33.pyx":153
+  /* "matrix33.pyx":156
  *         return None
  * 
  * def rotate_mat(x=0, y=0, z=0):             # <<<<<<<<<<<<<<
@@ -10084,15 +10174,22 @@ static int __pyx_tp_clear_8matrix33_Matrix33(PyObject *o) {
   Py_XDECREF(tmp);
   return 0;
 }
+static PyObject *__pyx_sq_item_8matrix33_Matrix33(PyObject *o, Py_ssize_t i) {
+  PyObject *r;
+  PyObject *x = PyInt_FromSsize_t(i); if(!x) return 0;
+  r = Py_TYPE(o)->tp_as_mapping->mp_subscript(o, x);
+  Py_DECREF(x);
+  return r;
+}
 
 static PyObject *__pyx_tp_richcompare_8matrix33_Matrix33(PyObject *o1, PyObject *o2, int op) {
   switch (op) {
     case Py_EQ: {
-      return __pyx_pw_8matrix33_8Matrix33_15__eq__(o1, o2);
+      return __pyx_pw_8matrix33_8Matrix33_17__eq__(o1, o2);
     }
     case Py_NE: {
       PyObject *ret;
-      ret = __pyx_pw_8matrix33_8Matrix33_15__eq__(o1, o2);
+      ret = __pyx_pw_8matrix33_8Matrix33_17__eq__(o1, o2);
       if (likely(ret && ret != Py_NotImplemented)) {
         int b = __Pyx_PyObject_IsTrue(ret); Py_DECREF(ret);
         if (unlikely(b < 0)) return NULL;
@@ -10313,15 +10410,15 @@ static int __pyx_setprop_8matrix33_8Matrix33_a33(PyObject *o, PyObject *v, CYTHO
 
 static PyMethodDef __pyx_methods_8matrix33_Matrix33[] = {
   {"neg", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_9neg, METH_NOARGS, 0},
-  {"transpose", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_11transpose, METH_NOARGS, 0},
-  {"det", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_13det, METH_NOARGS, 0},
-  {"eq", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_17eq, METH_O, 0},
-  {"add", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_21add, METH_O, 0},
-  {"sub", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_25sub, METH_O, 0},
-  {"dot_vec", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_31dot_vec, METH_O, 0},
-  {"dot_mat", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_33dot_mat, METH_O, 0},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_43__reduce_cython__, METH_NOARGS, 0},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_45__setstate_cython__, METH_O, 0},
+  {"transpose", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_13transpose, METH_NOARGS, 0},
+  {"det", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_15det, METH_NOARGS, 0},
+  {"eq", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_19eq, METH_O, 0},
+  {"add", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_23add, METH_O, 0},
+  {"sub", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_27sub, METH_O, 0},
+  {"dot_vec", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_33dot_vec, METH_O, 0},
+  {"dot_mat", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_35dot_mat, METH_O, 0},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_45__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_8matrix33_8Matrix33_47__setstate_cython__, METH_O, 0},
   {0, 0, 0, 0}
 };
 
@@ -10345,9 +10442,9 @@ static struct PyGetSetDef __pyx_getsets_8matrix33_Matrix33[] = {
 };
 
 static PyNumberMethods __pyx_tp_as_number_Matrix33 = {
-  __pyx_pw_8matrix33_8Matrix33_19__add__, /*nb_add*/
-  __pyx_pw_8matrix33_8Matrix33_23__sub__, /*nb_subtract*/
-  __pyx_pw_8matrix33_8Matrix33_27__mul__, /*nb_multiply*/
+  __pyx_pw_8matrix33_8Matrix33_21__add__, /*nb_add*/
+  __pyx_pw_8matrix33_8Matrix33_25__sub__, /*nb_subtract*/
+  __pyx_pw_8matrix33_8Matrix33_29__mul__, /*nb_multiply*/
   #if PY_MAJOR_VERSION < 3 || (CYTHON_COMPILING_IN_PYPY && PY_VERSION_HEX < 0x03050000)
   0, /*nb_divide*/
   #endif
@@ -10406,6 +10503,25 @@ static PyNumberMethods __pyx_tp_as_number_Matrix33 = {
   #endif
 };
 
+static PySequenceMethods __pyx_tp_as_sequence_Matrix33 = {
+  0, /*sq_length*/
+  0, /*sq_concat*/
+  0, /*sq_repeat*/
+  __pyx_sq_item_8matrix33_Matrix33, /*sq_item*/
+  0, /*sq_slice*/
+  0, /*sq_ass_item*/
+  0, /*sq_ass_slice*/
+  0, /*sq_contains*/
+  0, /*sq_inplace_concat*/
+  0, /*sq_inplace_repeat*/
+};
+
+static PyMappingMethods __pyx_tp_as_mapping_Matrix33 = {
+  0, /*mp_length*/
+  __pyx_pw_8matrix33_8Matrix33_11__getitem__, /*mp_subscript*/
+  0, /*mp_ass_subscript*/
+};
+
 static PyTypeObject __pyx_type_8matrix33_Matrix33 = {
   PyVarObject_HEAD_INIT(0, 0)
   "matrix33.Matrix33", /*tp_name*/
@@ -10428,8 +10544,8 @@ static PyTypeObject __pyx_type_8matrix33_Matrix33 = {
   #endif
   0, /*tp_repr*/
   &__pyx_tp_as_number_Matrix33, /*tp_as_number*/
-  0, /*tp_as_sequence*/
-  0, /*tp_as_mapping*/
+  &__pyx_tp_as_sequence_Matrix33, /*tp_as_sequence*/
+  &__pyx_tp_as_mapping_Matrix33, /*tp_as_mapping*/
   0, /*tp_hash*/
   0, /*tp_call*/
   __pyx_pw_8matrix33_8Matrix33_3__str__, /*tp_str*/
@@ -10607,8 +10723,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {0, 0, 0, 0, 0, 0, 0}
 };
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
-  __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(0, 100, __pyx_L1_error)
-  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(0, 103, __pyx_L1_error)
+  __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 103, __pyx_L1_error)
   __pyx_builtin_ImportError = __Pyx_GetBuiltinName(__pyx_n_s_ImportError); if (!__pyx_builtin_ImportError) __PYX_ERR(3, 884, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
@@ -10619,108 +10735,108 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "matrix33.pyx":100
+  /* "matrix33.pyx":103
  *             return self.mul_scalar(a)
  * 
  *     cpdef Matrix33 mul_scalar(self, Scalar a):             # <<<<<<<<<<<<<<
  *         return Matrix33(self.c1*a, self.c2*a, self.c3*a)
  * 
  */
-  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_s_No_matching_signature_found); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_tuple__4 = PyTuple_Pack(1, __pyx_kp_s_No_matching_signature_found); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
-  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_s_Function_call_with_ambiguous_arg); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(1, __pyx_kp_s_Function_call_with_ambiguous_arg); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
 
-  /* "matrix33.pyx":111
+  /* "matrix33.pyx":114
  * 
  * cdef Matrix33 c_mat_from_np(np.ndarray[double, ndim=2] arr):
  *     cdef vec3 c1 = c_vec_from_np(arr[0,:])             # <<<<<<<<<<<<<<
  *     cdef vec3 c2 = c_vec_from_np(arr[1,:])
  *     cdef vec3 c3 = c_vec_from_np(arr[2,:])
  */
-  __pyx_slice__6 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__6)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_slice__6 = PySlice_New(Py_None, Py_None, Py_None); if (unlikely(!__pyx_slice__6)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_slice__6);
   __Pyx_GIVEREF(__pyx_slice__6);
-  __pyx_tuple__7 = PyTuple_Pack(2, __pyx_int_0, __pyx_slice__6); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 111, __pyx_L1_error)
+  __pyx_tuple__7 = PyTuple_Pack(2, __pyx_int_0, __pyx_slice__6); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 114, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
 
-  /* "matrix33.pyx":112
+  /* "matrix33.pyx":115
  * cdef Matrix33 c_mat_from_np(np.ndarray[double, ndim=2] arr):
  *     cdef vec3 c1 = c_vec_from_np(arr[0,:])
  *     cdef vec3 c2 = c_vec_from_np(arr[1,:])             # <<<<<<<<<<<<<<
  *     cdef vec3 c3 = c_vec_from_np(arr[2,:])
  *     return Matrix33(c1, c2, c3)
  */
-  __pyx_tuple__8 = PyTuple_Pack(2, __pyx_int_1, __pyx_slice__6); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 112, __pyx_L1_error)
+  __pyx_tuple__8 = PyTuple_Pack(2, __pyx_int_1, __pyx_slice__6); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(0, 115, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__8);
   __Pyx_GIVEREF(__pyx_tuple__8);
 
-  /* "matrix33.pyx":113
+  /* "matrix33.pyx":116
  *     cdef vec3 c1 = c_vec_from_np(arr[0,:])
  *     cdef vec3 c2 = c_vec_from_np(arr[1,:])
  *     cdef vec3 c3 = c_vec_from_np(arr[2,:])             # <<<<<<<<<<<<<<
  *     return Matrix33(c1, c2, c3)
  * 
  */
-  __pyx_tuple__9 = PyTuple_Pack(2, __pyx_int_2, __pyx_slice__6); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 113, __pyx_L1_error)
+  __pyx_tuple__9 = PyTuple_Pack(2, __pyx_int_2, __pyx_slice__6); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 116, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__9);
   __Pyx_GIVEREF(__pyx_tuple__9);
 
-  /* "matrix33.pyx":119
+  /* "matrix33.pyx":122
  *     cdef double c = cos(ang)
  *     cdef double s = sin(ang)
  *     cdef vec3 c1 = vec3(1,0,0)             # <<<<<<<<<<<<<<
  *     cdef vec3 c2 = vec3(0,c,-s)
  *     cdef vec3 c3 = vec3(0,s,c)
  */
-  __pyx_tuple__10 = PyTuple_Pack(3, __pyx_int_1, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 119, __pyx_L1_error)
+  __pyx_tuple__10 = PyTuple_Pack(3, __pyx_int_1, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 122, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__10);
   __Pyx_GIVEREF(__pyx_tuple__10);
 
-  /* "matrix33.pyx":128
+  /* "matrix33.pyx":131
  *     cdef double s = sin(ang)
  *     cdef vec3 c1 = vec3(c,0,s)
  *     cdef vec3 c2 = vec3(0,1,0)             # <<<<<<<<<<<<<<
  *     cdef vec3 c3 = vec3(-s,0,c)
  *     return Matrix33(c1, c2, c3)
  */
-  __pyx_tuple__11 = PyTuple_Pack(3, __pyx_int_0, __pyx_int_1, __pyx_int_0); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_tuple__11 = PyTuple_Pack(3, __pyx_int_0, __pyx_int_1, __pyx_int_0); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 131, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__11);
   __Pyx_GIVEREF(__pyx_tuple__11);
 
-  /* "matrix33.pyx":137
+  /* "matrix33.pyx":140
  *     cdef vec3 c1 = vec3(c,-s,0)
  *     cdef vec3 c2 = vec3(s,c,0)
  *     cdef vec3 c3 = vec3(0,0,1)             # <<<<<<<<<<<<<<
  *     return Matrix33(c1, c2, c3)
  * 
  */
-  __pyx_tuple__12 = PyTuple_Pack(3, __pyx_int_0, __pyx_int_0, __pyx_int_1); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 137, __pyx_L1_error)
+  __pyx_tuple__12 = PyTuple_Pack(3, __pyx_int_0, __pyx_int_0, __pyx_int_1); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 140, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__12);
   __Pyx_GIVEREF(__pyx_tuple__12);
 
-  /* "matrix33.pyx":146
+  /* "matrix33.pyx":149
  * 
  * def from_np(arr):
  *     if arr.shape == (3,):             # <<<<<<<<<<<<<<
  *         return c_vec_from_np(arr)
  *     elif arr.shape == (3,3):
  */
-  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_int_3); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 146, __pyx_L1_error)
+  __pyx_tuple__13 = PyTuple_Pack(1, __pyx_int_3); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 149, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__13);
   __Pyx_GIVEREF(__pyx_tuple__13);
 
-  /* "matrix33.pyx":148
+  /* "matrix33.pyx":151
  *     if arr.shape == (3,):
  *         return c_vec_from_np(arr)
  *     elif arr.shape == (3,3):             # <<<<<<<<<<<<<<
  *         return c_mat_from_np(arr)
  *     else:
  */
-  __pyx_tuple__14 = PyTuple_Pack(2, __pyx_int_3, __pyx_int_3); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 148, __pyx_L1_error)
+  __pyx_tuple__14 = PyTuple_Pack(2, __pyx_int_3, __pyx_int_3); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(0, 151, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__14);
   __Pyx_GIVEREF(__pyx_tuple__14);
 
@@ -10746,40 +10862,40 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__16);
   __Pyx_GIVEREF(__pyx_tuple__16);
 
-  /* "matrix33.pyx":100
+  /* "matrix33.pyx":103
  *             return self.mul_scalar(a)
  * 
  *     cpdef Matrix33 mul_scalar(self, Scalar a):             # <<<<<<<<<<<<<<
  *         return Matrix33(self.c1*a, self.c2*a, self.c3*a)
  * 
  */
-  __pyx_tuple__17 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_a, __pyx_n_s_a); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_tuple__17 = PyTuple_Pack(3, __pyx_n_s_self, __pyx_n_s_a, __pyx_n_s_a); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__17);
   __Pyx_GIVEREF(__pyx_tuple__17);
-  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_matrix33_pyx, __pyx_n_s_pyx_fuse_0mul_scalar, 100, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(2, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_matrix33_pyx, __pyx_n_s_pyx_fuse_0mul_scalar, 103, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(0, 103, __pyx_L1_error)
 
-  /* "matrix33.pyx":145
+  /* "matrix33.pyx":148
  * # Python rappers
  * 
  * def from_np(arr):             # <<<<<<<<<<<<<<
  *     if arr.shape == (3,):
  *         return c_vec_from_np(arr)
  */
-  __pyx_tuple__19 = PyTuple_Pack(1, __pyx_n_s_arr); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 145, __pyx_L1_error)
+  __pyx_tuple__19 = PyTuple_Pack(1, __pyx_n_s_arr); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 148, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__19);
   __Pyx_GIVEREF(__pyx_tuple__19);
-  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_matrix33_pyx, __pyx_n_s_from_np, 145, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 145, __pyx_L1_error)
+  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(1, 0, 1, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_matrix33_pyx, __pyx_n_s_from_np, 148, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 148, __pyx_L1_error)
 
-  /* "matrix33.pyx":153
+  /* "matrix33.pyx":156
  *         return None
  * 
  * def rotate_mat(x=0, y=0, z=0):             # <<<<<<<<<<<<<<
  *     return c_rotate(x, y, z)
  */
-  __pyx_tuple__21 = PyTuple_Pack(3, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_z); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 153, __pyx_L1_error)
+  __pyx_tuple__21 = PyTuple_Pack(3, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_z); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 156, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__21);
   __Pyx_GIVEREF(__pyx_tuple__21);
-  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_matrix33_pyx, __pyx_n_s_rotate_mat, 153, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 153, __pyx_L1_error)
+  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(3, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_matrix33_pyx, __pyx_n_s_rotate_mat, 156, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 156, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_Matrix33(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
@@ -10931,11 +11047,11 @@ static int __Pyx_modinit_type_import_code(void) {
   __pyx_ptype_5numpy_ufunc = __Pyx_ImportType(__pyx_t_1, "numpy", "ufunc", sizeof(PyUFuncObject), __Pyx_ImportType_CheckSize_Ignore);
    if (!__pyx_ptype_5numpy_ufunc) __PYX_ERR(3, 764, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyImport_ImportModule("vec3"); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 7, __pyx_L1_error)
+  __pyx_t_1 = PyImport_ImportModule("vec3"); if (unlikely(!__pyx_t_1)) __PYX_ERR(5, 8, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_ptype_4vec3_vec3 = __Pyx_ImportType(__pyx_t_1, "vec3", "vec3", sizeof(struct __pyx_obj_4vec3_vec3), __Pyx_ImportType_CheckSize_Warn);
-   if (!__pyx_ptype_4vec3_vec3) __PYX_ERR(5, 7, __pyx_L1_error)
-  __pyx_vtabptr_4vec3_vec3 = (struct __pyx_vtabstruct_4vec3_vec3*)__Pyx_GetVtable(__pyx_ptype_4vec3_vec3->tp_dict); if (unlikely(!__pyx_vtabptr_4vec3_vec3)) __PYX_ERR(5, 7, __pyx_L1_error)
+   if (!__pyx_ptype_4vec3_vec3) __PYX_ERR(5, 8, __pyx_L1_error)
+  __pyx_vtabptr_4vec3_vec3 = (struct __pyx_vtabstruct_4vec3_vec3*)__Pyx_GetVtable(__pyx_ptype_4vec3_vec3->tp_dict); if (unlikely(!__pyx_vtabptr_4vec3_vec3)) __PYX_ERR(5, 8, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_RefNannyFinishContext();
   return 0;
@@ -11250,61 +11366,61 @@ if (!__Pyx_RefNanny) {
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "matrix33.pyx":100
+  /* "matrix33.pyx":103
  *             return self.mul_scalar(a)
  * 
  *     cpdef Matrix33 mul_scalar(self, Scalar a):             # <<<<<<<<<<<<<<
  *         return Matrix33(self.c1*a, self.c2*a, self.c3*a)
  * 
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __pyx_FusedFunction_New(&__pyx_fuse_0__pyx_mdef_8matrix33_8Matrix33_35__pyx_fuse_0mul_scalar, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Matrix33___pyx_fuse_0mul_scalar, NULL, __pyx_n_s_matrix33, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_2 = __pyx_FusedFunction_New(&__pyx_fuse_0__pyx_mdef_8matrix33_8Matrix33_37__pyx_fuse_0mul_scalar, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Matrix33___pyx_fuse_0mul_scalar, NULL, __pyx_n_s_matrix33, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_2, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_int, __pyx_t_2) < 0) __PYX_ERR(0, 100, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_int, __pyx_t_2) < 0) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __pyx_FusedFunction_New(&__pyx_fuse_1__pyx_mdef_8matrix33_8Matrix33_37__pyx_fuse_1mul_scalar, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Matrix33___pyx_fuse_1mul_scalar, NULL, __pyx_n_s_matrix33, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_2 = __pyx_FusedFunction_New(&__pyx_fuse_1__pyx_mdef_8matrix33_8Matrix33_39__pyx_fuse_1mul_scalar, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Matrix33___pyx_fuse_1mul_scalar, NULL, __pyx_n_s_matrix33, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_2, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_float, __pyx_t_2) < 0) __PYX_ERR(0, 100, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_float, __pyx_t_2) < 0) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __pyx_FusedFunction_New(&__pyx_fuse_2__pyx_mdef_8matrix33_8Matrix33_39__pyx_fuse_2mul_scalar, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Matrix33___pyx_fuse_2mul_scalar, NULL, __pyx_n_s_matrix33, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_2 = __pyx_FusedFunction_New(&__pyx_fuse_2__pyx_mdef_8matrix33_8Matrix33_41__pyx_fuse_2mul_scalar, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Matrix33___pyx_fuse_2mul_scalar, NULL, __pyx_n_s_matrix33, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_2, __pyx_empty_tuple);
-  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_double, __pyx_t_2) < 0) __PYX_ERR(0, 100, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_double, __pyx_t_2) < 0) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = __pyx_FusedFunction_New(&__pyx_mdef_8matrix33_8Matrix33_29mul_scalar, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Matrix33_mul_scalar, NULL, __pyx_n_s_matrix33, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
+  __pyx_t_2 = __pyx_FusedFunction_New(&__pyx_mdef_8matrix33_8Matrix33_31mul_scalar, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_Matrix33_mul_scalar, NULL, __pyx_n_s_matrix33, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 103, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_2, __pyx_empty_tuple);
   ((__pyx_FusedFunctionObject *) __pyx_t_2)->__signatures__ = __pyx_t_1;
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
-  if (PyDict_SetItem((PyObject *)__pyx_ptype_8matrix33_Matrix33->tp_dict, __pyx_n_s_mul_scalar, __pyx_t_2) < 0) __PYX_ERR(0, 100, __pyx_L1_error)
+  if (PyDict_SetItem((PyObject *)__pyx_ptype_8matrix33_Matrix33->tp_dict, __pyx_n_s_mul_scalar, __pyx_t_2) < 0) __PYX_ERR(0, 103, __pyx_L1_error)
   PyType_Modified(__pyx_ptype_8matrix33_Matrix33);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "matrix33.pyx":145
+  /* "matrix33.pyx":148
  * # Python rappers
  * 
  * def from_np(arr):             # <<<<<<<<<<<<<<
  *     if arr.shape == (3,):
  *         return c_vec_from_np(arr)
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8matrix33_1from_np, NULL, __pyx_n_s_matrix33); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 145, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8matrix33_1from_np, NULL, __pyx_n_s_matrix33); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 148, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_from_np, __pyx_t_2) < 0) __PYX_ERR(0, 145, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_from_np, __pyx_t_2) < 0) __PYX_ERR(0, 148, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "matrix33.pyx":153
+  /* "matrix33.pyx":156
  *         return None
  * 
  * def rotate_mat(x=0, y=0, z=0):             # <<<<<<<<<<<<<<
  *     return c_rotate(x, y, z)
  */
-  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8matrix33_3rotate_mat, NULL, __pyx_n_s_matrix33); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 153, __pyx_L1_error)
+  __pyx_t_2 = PyCFunction_NewEx(&__pyx_mdef_8matrix33_3rotate_mat, NULL, __pyx_n_s_matrix33); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 156, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_rotate_mat, __pyx_t_2) < 0) __PYX_ERR(0, 153, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_rotate_mat, __pyx_t_2) < 0) __PYX_ERR(0, 156, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "(tree fragment)":1
@@ -11915,6 +12031,35 @@ static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObjec
     result = __Pyx_PyObject_Call(func, args, NULL);
     Py_DECREF(args);
     return result;
+}
+#endif
+
+/* ObjectGetItem */
+#if CYTHON_USE_TYPE_SLOTS
+static PyObject *__Pyx_PyObject_GetIndex(PyObject *obj, PyObject* index) {
+    PyObject *runerr;
+    Py_ssize_t key_value;
+    PySequenceMethods *m = Py_TYPE(obj)->tp_as_sequence;
+    if (unlikely(!(m && m->sq_item))) {
+        PyErr_Format(PyExc_TypeError, "'%.200s' object is not subscriptable", Py_TYPE(obj)->tp_name);
+        return NULL;
+    }
+    key_value = __Pyx_PyIndex_AsSsize_t(index);
+    if (likely(key_value != -1 || !(runerr = PyErr_Occurred()))) {
+        return __Pyx_GetItemInt_Fast(obj, key_value, 0, 1, 1);
+    }
+    if (PyErr_GivenExceptionMatches(runerr, PyExc_OverflowError)) {
+        PyErr_Clear();
+        PyErr_Format(PyExc_IndexError, "cannot fit '%.200s' into an index-sized integer", Py_TYPE(index)->tp_name);
+    }
+    return NULL;
+}
+static PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject* key) {
+    PyMappingMethods *m = Py_TYPE(obj)->tp_as_mapping;
+    if (likely(m && m->mp_subscript)) {
+        return m->mp_subscript(obj, key);
+    }
+    return __Pyx_PyObject_GetIndex(obj, key);
 }
 #endif
 
@@ -13266,35 +13411,6 @@ fail:;
   __Pyx_SafeReleaseBuffer(buf);
   return -1;
 }
-
-/* ObjectGetItem */
-  #if CYTHON_USE_TYPE_SLOTS
-static PyObject *__Pyx_PyObject_GetIndex(PyObject *obj, PyObject* index) {
-    PyObject *runerr;
-    Py_ssize_t key_value;
-    PySequenceMethods *m = Py_TYPE(obj)->tp_as_sequence;
-    if (unlikely(!(m && m->sq_item))) {
-        PyErr_Format(PyExc_TypeError, "'%.200s' object is not subscriptable", Py_TYPE(obj)->tp_name);
-        return NULL;
-    }
-    key_value = __Pyx_PyIndex_AsSsize_t(index);
-    if (likely(key_value != -1 || !(runerr = PyErr_Occurred()))) {
-        return __Pyx_GetItemInt_Fast(obj, key_value, 0, 1, 1);
-    }
-    if (PyErr_GivenExceptionMatches(runerr, PyExc_OverflowError)) {
-        PyErr_Clear();
-        PyErr_Format(PyExc_IndexError, "cannot fit '%.200s' into an index-sized integer", Py_TYPE(index)->tp_name);
-    }
-    return NULL;
-}
-static PyObject *__Pyx_PyObject_GetItem(PyObject *obj, PyObject* key) {
-    PyMappingMethods *m = Py_TYPE(obj)->tp_as_mapping;
-    if (likely(m && m->mp_subscript)) {
-        return m->mp_subscript(obj, key);
-    }
-    return __Pyx_PyObject_GetIndex(obj, key);
-}
-#endif
 
 /* Import */
   static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level) {

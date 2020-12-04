@@ -1116,7 +1116,7 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
 
-/* "vec3.pxd":7
+/* "vec3.pxd":8
  * cdef NUMBERS
  * 
  * cdef class vec3:             # <<<<<<<<<<<<<<
@@ -1154,7 +1154,7 @@ struct __pyx_obj_6camera_Camera {
 
 
 
-/* "vec3.pxd":7
+/* "vec3.pxd":8
  * cdef NUMBERS
  * 
  * cdef class vec3:             # <<<<<<<<<<<<<<
@@ -4308,11 +4308,11 @@ static int __Pyx_modinit_type_import_code(void) {
   __pyx_ptype_5numpy_ufunc = __Pyx_ImportType(__pyx_t_1, "numpy", "ufunc", sizeof(PyUFuncObject), __Pyx_ImportType_CheckSize_Ignore);
    if (!__pyx_ptype_5numpy_ufunc) __PYX_ERR(2, 764, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyImport_ImportModule("vec3"); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 7, __pyx_L1_error)
+  __pyx_t_1 = PyImport_ImportModule("vec3"); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 8, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_ptype_4vec3_vec3 = __Pyx_ImportType(__pyx_t_1, "vec3", "vec3", sizeof(struct __pyx_obj_4vec3_vec3), __Pyx_ImportType_CheckSize_Warn);
-   if (!__pyx_ptype_4vec3_vec3) __PYX_ERR(4, 7, __pyx_L1_error)
-  __pyx_vtabptr_4vec3_vec3 = (struct __pyx_vtabstruct_4vec3_vec3*)__Pyx_GetVtable(__pyx_ptype_4vec3_vec3->tp_dict); if (unlikely(!__pyx_vtabptr_4vec3_vec3)) __PYX_ERR(4, 7, __pyx_L1_error)
+   if (!__pyx_ptype_4vec3_vec3) __PYX_ERR(4, 8, __pyx_L1_error)
+  __pyx_vtabptr_4vec3_vec3 = (struct __pyx_vtabstruct_4vec3_vec3*)__Pyx_GetVtable(__pyx_ptype_4vec3_vec3->tp_dict); if (unlikely(!__pyx_vtabptr_4vec3_vec3)) __PYX_ERR(4, 8, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_RefNannyFinishContext();
   return 0;
