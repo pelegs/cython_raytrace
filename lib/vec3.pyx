@@ -1,13 +1,8 @@
-import numpy as np
-cimport numpy as np
-from libc.math cimport sqrt, abs, exp
 #cython: boundscheck=False, wraparound=False, nonecheck=False, language_level=3
 
 """
 Defines 3-vectors and their operations
 """
-
-cdef NUMBERS = [int, float]
 
 cdef class vec3:
     """
@@ -34,6 +29,9 @@ cdef class vec3:
 
     cpdef vec3 neg(self):
         return -1*self
+
+    def __getitem__(self, key):
+        return [self.x, self.y, self.z][key]
 
     #####################
     # BINARY OPERATIONS #
@@ -145,6 +143,12 @@ cdef class vec3:
         # If self.norm == 0 returns original vec3
         return self / self.norm()
 
+#####################
+# CREATE FROM NUMPY #
+#####################
+
+cdef vec3 c_vec_from_np(np.ndarray[double, ndim=1] arr):
+    return vec3(arr[0], arr[1], arr[2])
 
 #####################
 # IMPORTANT VECTORS #

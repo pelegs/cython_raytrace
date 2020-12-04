@@ -618,6 +618,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #define __PYX_HAVE__camera
 #define __PYX_HAVE_API__camera
 /* Early includes */
+#include <math.h>
 #include <string.h>
 #include <stdio.h>
 #include "numpy/arrayobject.h"
@@ -858,8 +859,8 @@ static const char *__pyx_f[] = {
   "camera.pyx",
   "stringsource",
   "__init__.pxd",
-  "vec3.pxd",
   "type.pxd",
+  "vec3.pxd",
 };
 
 /* "../../../../../../home/exocad-psa/.local/lib/python3.8/site-packages/numpy/__init__.pxd":689
@@ -1115,7 +1116,7 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
 
-/* "vec3.pxd":3
+/* "vec3.pxd":7
  * cdef NUMBERS
  * 
  * cdef class vec3:             # <<<<<<<<<<<<<<
@@ -1153,7 +1154,7 @@ struct __pyx_obj_6camera_Camera {
 
 
 
-/* "vec3.pxd":3
+/* "vec3.pxd":7
  * cdef NUMBERS
  * 
  * cdef class vec3:             # <<<<<<<<<<<<<<
@@ -1675,24 +1676,7 @@ static int __Pyx_ImportVoidPtr(PyObject *module, const char *name, void **p, con
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 
-/* Module declarations from 'vec3' */
-static PyTypeObject *__pyx_ptype_4vec3_vec3 = 0;
-static PyObject **__pyx_vp_4vec3_NUMBERS = 0;
-#define __pyx_v_4vec3_NUMBERS (*__pyx_vp_4vec3_NUMBERS)
-static struct __pyx_obj_4vec3_vec3 **__pyx_vp_4vec3_origVec = 0;
-#define __pyx_v_4vec3_origVec (*__pyx_vp_4vec3_origVec)
-static struct __pyx_obj_4vec3_vec3 **__pyx_vp_4vec3_xhat = 0;
-#define __pyx_v_4vec3_xhat (*__pyx_vp_4vec3_xhat)
-static struct __pyx_obj_4vec3_vec3 **__pyx_vp_4vec3_yhat = 0;
-#define __pyx_v_4vec3_yhat (*__pyx_vp_4vec3_yhat)
-static struct __pyx_obj_4vec3_vec3 **__pyx_vp_4vec3_zhat = 0;
-#define __pyx_v_4vec3_zhat (*__pyx_vp_4vec3_zhat)
-static struct __pyx_obj_4vec3_vec3 **__pyx_vp_4vec3_ihat = 0;
-#define __pyx_v_4vec3_ihat (*__pyx_vp_4vec3_ihat)
-static struct __pyx_obj_4vec3_vec3 **__pyx_vp_4vec3_jhat = 0;
-#define __pyx_v_4vec3_jhat (*__pyx_vp_4vec3_jhat)
-static struct __pyx_obj_4vec3_vec3 **__pyx_vp_4vec3_khat = 0;
-#define __pyx_v_4vec3_khat (*__pyx_vp_4vec3_khat)
+/* Module declarations from 'libc.math' */
 
 /* Module declarations from 'cpython.buffer' */
 
@@ -1721,6 +1705,25 @@ static PyTypeObject *__pyx_ptype_5numpy_flatiter = 0;
 static PyTypeObject *__pyx_ptype_5numpy_broadcast = 0;
 static PyTypeObject *__pyx_ptype_5numpy_ndarray = 0;
 static PyTypeObject *__pyx_ptype_5numpy_ufunc = 0;
+
+/* Module declarations from 'vec3' */
+static PyTypeObject *__pyx_ptype_4vec3_vec3 = 0;
+static PyObject **__pyx_vp_4vec3_NUMBERS = 0;
+#define __pyx_v_4vec3_NUMBERS (*__pyx_vp_4vec3_NUMBERS)
+static struct __pyx_obj_4vec3_vec3 **__pyx_vp_4vec3_origVec = 0;
+#define __pyx_v_4vec3_origVec (*__pyx_vp_4vec3_origVec)
+static struct __pyx_obj_4vec3_vec3 **__pyx_vp_4vec3_xhat = 0;
+#define __pyx_v_4vec3_xhat (*__pyx_vp_4vec3_xhat)
+static struct __pyx_obj_4vec3_vec3 **__pyx_vp_4vec3_yhat = 0;
+#define __pyx_v_4vec3_yhat (*__pyx_vp_4vec3_yhat)
+static struct __pyx_obj_4vec3_vec3 **__pyx_vp_4vec3_zhat = 0;
+#define __pyx_v_4vec3_zhat (*__pyx_vp_4vec3_zhat)
+static struct __pyx_obj_4vec3_vec3 **__pyx_vp_4vec3_ihat = 0;
+#define __pyx_v_4vec3_ihat (*__pyx_vp_4vec3_ihat)
+static struct __pyx_obj_4vec3_vec3 **__pyx_vp_4vec3_jhat = 0;
+#define __pyx_v_4vec3_jhat (*__pyx_vp_4vec3_jhat)
+static struct __pyx_obj_4vec3_vec3 **__pyx_vp_4vec3_khat = 0;
+#define __pyx_v_4vec3_khat (*__pyx_vp_4vec3_khat)
 
 /* Module declarations from 'camera' */
 static PyTypeObject *__pyx_ptype_6camera_Camera = 0;
@@ -4281,13 +4284,7 @@ static int __Pyx_modinit_type_import_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_import_code", 0);
   /*--- Type import code ---*/
-  __pyx_t_1 = PyImport_ImportModule("vec3"); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 3, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_ptype_4vec3_vec3 = __Pyx_ImportType(__pyx_t_1, "vec3", "vec3", sizeof(struct __pyx_obj_4vec3_vec3), __Pyx_ImportType_CheckSize_Warn);
-   if (!__pyx_ptype_4vec3_vec3) __PYX_ERR(3, 3, __pyx_L1_error)
-  __pyx_vtabptr_4vec3_vec3 = (struct __pyx_vtabstruct_4vec3_vec3*)__Pyx_GetVtable(__pyx_ptype_4vec3_vec3->tp_dict); if (unlikely(!__pyx_vtabptr_4vec3_vec3)) __PYX_ERR(3, 3, __pyx_L1_error)
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyImport_ImportModule(__Pyx_BUILTIN_MODULE_NAME); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 9, __pyx_L1_error)
+  __pyx_t_1 = PyImport_ImportModule(__Pyx_BUILTIN_MODULE_NAME); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_ptype_7cpython_4type_type = __Pyx_ImportType(__pyx_t_1, __Pyx_BUILTIN_MODULE_NAME, "type", 
   #if defined(PYPY_VERSION_NUM) && PYPY_VERSION_NUM < 0x050B0000
@@ -4296,7 +4293,7 @@ static int __Pyx_modinit_type_import_code(void) {
   sizeof(PyHeapTypeObject),
   #endif
   __Pyx_ImportType_CheckSize_Warn);
-   if (!__pyx_ptype_7cpython_4type_type) __PYX_ERR(4, 9, __pyx_L1_error)
+   if (!__pyx_ptype_7cpython_4type_type) __PYX_ERR(3, 9, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = PyImport_ImportModule("numpy"); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 199, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -4310,6 +4307,12 @@ static int __Pyx_modinit_type_import_code(void) {
    if (!__pyx_ptype_5numpy_ndarray) __PYX_ERR(2, 238, __pyx_L1_error)
   __pyx_ptype_5numpy_ufunc = __Pyx_ImportType(__pyx_t_1, "numpy", "ufunc", sizeof(PyUFuncObject), __Pyx_ImportType_CheckSize_Ignore);
    if (!__pyx_ptype_5numpy_ufunc) __PYX_ERR(2, 764, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_1 = PyImport_ImportModule("vec3"); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 7, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_ptype_4vec3_vec3 = __Pyx_ImportType(__pyx_t_1, "vec3", "vec3", sizeof(struct __pyx_obj_4vec3_vec3), __Pyx_ImportType_CheckSize_Warn);
+   if (!__pyx_ptype_4vec3_vec3) __PYX_ERR(4, 7, __pyx_L1_error)
+  __pyx_vtabptr_4vec3_vec3 = (struct __pyx_vtabstruct_4vec3_vec3*)__Pyx_GetVtable(__pyx_ptype_4vec3_vec3->tp_dict); if (unlikely(!__pyx_vtabptr_4vec3_vec3)) __PYX_ERR(4, 7, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_RefNannyFinishContext();
   return 0;

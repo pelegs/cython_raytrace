@@ -1,3 +1,7 @@
+from libc.math cimport sqrt, abs, exp
+import numpy as np
+cimport numpy as np
+
 cdef NUMBERS
 
 cdef class vec3:
@@ -18,6 +22,7 @@ cdef class vec3:
     cpdef vec3 normalize(self)
 
 
+cdef vec3 c_vec_from_np(np.ndarray[double, ndim=1] arr)
 cdef vec3 origVec
 cdef vec3 xhat
 cdef vec3 yhat
