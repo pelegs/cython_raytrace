@@ -1,4 +1,4 @@
-from vec3 cimport vec3
+from vec3 cimport *
 
 cdef class Sphere:
     cdef public vec3 center

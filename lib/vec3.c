@@ -1151,7 +1151,7 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
 
-/* "vec3.pxd":8
+/* "vec3.pxd":7
  * cdef NUMBERS
  * 
  * cdef class vec3:             # <<<<<<<<<<<<<<
@@ -1732,9 +1732,6 @@ static CYTHON_INLINE int __Pyx_PyErr_GivenExceptionMatches2(PyObject *err, PyObj
 #define __Pyx_PyErr_GivenExceptionMatches2(err, type1, type2) (PyErr_GivenExceptionMatches(err, type1) || PyErr_GivenExceptionMatches(err, type2))
 #endif
 #define __Pyx_PyException_Check(obj) __Pyx_TypeCheck(obj, PyExc_Exception)
-
-/* CStringEquals.proto */
-static CYTHON_INLINE int __Pyx_StrEq(const char *, const char *);
 
 /* CheckBinaryVersion.proto */
 static int __Pyx_check_binary_version(void);
@@ -5735,7 +5732,7 @@ static PyObject *__pyx_pf_4vec3_4vec3_62normalize(struct __pyx_obj_4vec3_vec3 *_
   return __pyx_r;
 }
 
-/* "vec3.pxd":9
+/* "vec3.pxd":8
  * 
  * cdef class vec3:
  *     cdef readonly double x             # <<<<<<<<<<<<<<
@@ -5765,7 +5762,7 @@ static PyObject *__pyx_pf_4vec3_4vec3_1x___get__(struct __pyx_obj_4vec3_vec3 *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 9, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 8, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5782,7 +5779,7 @@ static PyObject *__pyx_pf_4vec3_4vec3_1x___get__(struct __pyx_obj_4vec3_vec3 *__
   return __pyx_r;
 }
 
-/* "vec3.pxd":10
+/* "vec3.pxd":9
  * cdef class vec3:
  *     cdef readonly double x
  *     cdef readonly double y             # <<<<<<<<<<<<<<
@@ -5812,7 +5809,7 @@ static PyObject *__pyx_pf_4vec3_4vec3_1y___get__(struct __pyx_obj_4vec3_vec3 *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 10, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5829,7 +5826,7 @@ static PyObject *__pyx_pf_4vec3_4vec3_1y___get__(struct __pyx_obj_4vec3_vec3 *__
   return __pyx_r;
 }
 
-/* "vec3.pxd":11
+/* "vec3.pxd":10
  *     cdef readonly double x
  *     cdef readonly double y
  *     cdef readonly double z             # <<<<<<<<<<<<<<
@@ -5859,7 +5856,7 @@ static PyObject *__pyx_pf_4vec3_4vec3_1z___get__(struct __pyx_obj_4vec3_vec3 *__
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__get__", 0);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 11, __pyx_L1_error)
+  __pyx_t_1 = PyFloat_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 10, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -7774,190 +7771,6 @@ static PyTypeObject __pyx_type_4vec3_vec3 = {
 static PyMethodDef __pyx_methods[] = {
   {0, 0, 0, 0}
 };
-
-static int __pyx_import_star_set(PyObject *o, PyObject* py_name, char *name) {
-  static const char* internal_type_names[] = {
-    "__pyx_ctuple_double",
-    "__pyx_ctuple_double__and_double__and_double",
-    "__pyx_ctuple_double__and_double__and_double_struct",
-    "__pyx_ctuple_double_struct",
-    "__pyx_ctuple_long__and_long__and_long",
-    "__pyx_ctuple_long__and_long__and_long_struct",
-    "vec3",
-    0
-  };
-  const char** type_name = internal_type_names;
-  while (*type_name) {
-    if (__Pyx_StrEq(name, *type_name)) {
-      PyErr_Format(PyExc_TypeError, "Cannot overwrite C type %s", name);
-      goto bad;
-    }
-    type_name++;
-  }
-  if (0);
-  else if (__Pyx_StrEq(name, "NUMBERS")) {
-    Py_INCREF(o);
-    Py_DECREF(__pyx_v_4vec3_NUMBERS);
-    __pyx_v_4vec3_NUMBERS = o;
-  }
-  else if (__Pyx_StrEq(name, "ihat")) {
-    if (!(likely(((o) == Py_None) || likely(__Pyx_TypeTest(o, __pyx_ptype_4vec3_vec3))))) __PYX_ERR(1, 31, __pyx_L2_error);
-    Py_INCREF(o);
-    Py_DECREF(((PyObject *)__pyx_v_4vec3_ihat));
-    __pyx_v_4vec3_ihat = ((struct __pyx_obj_4vec3_vec3 *)o);
-  }
-  else if (__Pyx_StrEq(name, "jhat")) {
-    if (!(likely(((o) == Py_None) || likely(__Pyx_TypeTest(o, __pyx_ptype_4vec3_vec3))))) __PYX_ERR(1, 32, __pyx_L2_error);
-    Py_INCREF(o);
-    Py_DECREF(((PyObject *)__pyx_v_4vec3_jhat));
-    __pyx_v_4vec3_jhat = ((struct __pyx_obj_4vec3_vec3 *)o);
-  }
-  else if (__Pyx_StrEq(name, "khat")) {
-    if (!(likely(((o) == Py_None) || likely(__Pyx_TypeTest(o, __pyx_ptype_4vec3_vec3))))) __PYX_ERR(1, 33, __pyx_L2_error);
-    Py_INCREF(o);
-    Py_DECREF(((PyObject *)__pyx_v_4vec3_khat));
-    __pyx_v_4vec3_khat = ((struct __pyx_obj_4vec3_vec3 *)o);
-  }
-  else if (__Pyx_StrEq(name, "origVec")) {
-    if (!(likely(((o) == Py_None) || likely(__Pyx_TypeTest(o, __pyx_ptype_4vec3_vec3))))) __PYX_ERR(1, 27, __pyx_L2_error);
-    Py_INCREF(o);
-    Py_DECREF(((PyObject *)__pyx_v_4vec3_origVec));
-    __pyx_v_4vec3_origVec = ((struct __pyx_obj_4vec3_vec3 *)o);
-  }
-  else if (__Pyx_StrEq(name, "xhat")) {
-    if (!(likely(((o) == Py_None) || likely(__Pyx_TypeTest(o, __pyx_ptype_4vec3_vec3))))) __PYX_ERR(1, 28, __pyx_L2_error);
-    Py_INCREF(o);
-    Py_DECREF(((PyObject *)__pyx_v_4vec3_xhat));
-    __pyx_v_4vec3_xhat = ((struct __pyx_obj_4vec3_vec3 *)o);
-  }
-  else if (__Pyx_StrEq(name, "yhat")) {
-    if (!(likely(((o) == Py_None) || likely(__Pyx_TypeTest(o, __pyx_ptype_4vec3_vec3))))) __PYX_ERR(1, 29, __pyx_L2_error);
-    Py_INCREF(o);
-    Py_DECREF(((PyObject *)__pyx_v_4vec3_yhat));
-    __pyx_v_4vec3_yhat = ((struct __pyx_obj_4vec3_vec3 *)o);
-  }
-  else if (__Pyx_StrEq(name, "zhat")) {
-    if (!(likely(((o) == Py_None) || likely(__Pyx_TypeTest(o, __pyx_ptype_4vec3_vec3))))) __PYX_ERR(1, 30, __pyx_L2_error);
-    Py_INCREF(o);
-    Py_DECREF(((PyObject *)__pyx_v_4vec3_zhat));
-    __pyx_v_4vec3_zhat = ((struct __pyx_obj_4vec3_vec3 *)o);
-  }
-  else {
-    if (PyObject_SetAttr(__pyx_m, py_name, o) < 0) goto bad;
-  }
-  return 0;
-  __pyx_L2_error:;
-  __Pyx_AddTraceback("vec3", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  bad:
-  return -1;
-}
-
-static int
-__Pyx_import_all_from(PyObject *locals, PyObject *v)
-{
-    PyObject *all = PyObject_GetAttrString(v, "__all__");
-    PyObject *dict, *name, *value;
-    int skip_leading_underscores = 0;
-    int pos, err;
-    if (all == NULL) {
-        if (!PyErr_ExceptionMatches(PyExc_AttributeError))
-            return -1;
-        PyErr_Clear();
-        dict = PyObject_GetAttrString(v, "__dict__");
-        if (dict == NULL) {
-            if (!PyErr_ExceptionMatches(PyExc_AttributeError))
-                return -1;
-            PyErr_SetString(PyExc_ImportError,
-            "from-import-* object has no __dict__ and no __all__");
-            return -1;
-        }
-#if PY_MAJOR_VERSION < 3
-        all = PyObject_CallMethod(dict, (char *)"keys", NULL);
-#else
-        all = PyMapping_Keys(dict);
-#endif
-        Py_DECREF(dict);
-        if (all == NULL)
-            return -1;
-        skip_leading_underscores = 1;
-    }
-    for (pos = 0, err = 0; ; pos++) {
-        name = PySequence_GetItem(all, pos);
-        if (name == NULL) {
-            if (!PyErr_ExceptionMatches(PyExc_IndexError))
-                err = -1;
-            else
-                PyErr_Clear();
-            break;
-        }
-        if (skip_leading_underscores &&
-#if PY_MAJOR_VERSION < 3
-            likely(PyString_Check(name)) &&
-            PyString_AS_STRING(name)[0] == '_')
-#else
-            likely(PyUnicode_Check(name)) &&
-            likely(__Pyx_PyUnicode_GET_LENGTH(name)) &&
-            __Pyx_PyUnicode_READ_CHAR(name, 0) == '_')
-#endif
-        {
-            Py_DECREF(name);
-            continue;
-        }
-        value = PyObject_GetAttr(v, name);
-        if (value == NULL)
-            err = -1;
-        else if (PyDict_CheckExact(locals))
-            err = PyDict_SetItem(locals, name, value);
-        else
-            err = PyObject_SetItem(locals, name, value);
-        Py_DECREF(name);
-        Py_XDECREF(value);
-        if (err != 0)
-            break;
-    }
-    Py_DECREF(all);
-    return err;
-}
-static int __pyx_import_star(PyObject* m) {
-    int i;
-    int ret = -1;
-    char* s;
-    PyObject *locals = 0;
-    PyObject *list = 0;
-#if PY_MAJOR_VERSION >= 3
-    PyObject *utf8_name = 0;
-#endif
-    PyObject *name;
-    PyObject *item;
-    locals = PyDict_New();              if (!locals) goto bad;
-    if (__Pyx_import_all_from(locals, m) < 0) goto bad;
-    list = PyDict_Items(locals);        if (!list) goto bad;
-    for(i=0; i<PyList_GET_SIZE(list); i++) {
-        name = PyTuple_GET_ITEM(PyList_GET_ITEM(list, i), 0);
-        item = PyTuple_GET_ITEM(PyList_GET_ITEM(list, i), 1);
-#if PY_MAJOR_VERSION >= 3
-        utf8_name = PyUnicode_AsUTF8String(name);
-        if (!utf8_name) goto bad;
-        s = PyBytes_AS_STRING(utf8_name);
-        if (__pyx_import_star_set(item, name, s) < 0) goto bad;
-        Py_DECREF(utf8_name); utf8_name = 0;
-#else
-        s = PyString_AsString(name);
-        if (!s) goto bad;
-        if (__pyx_import_star_set(item, name, s) < 0) goto bad;
-#endif
-    }
-    ret = 0;
-bad:
-    Py_XDECREF(locals);
-    Py_XDECREF(list);
-#if PY_MAJOR_VERSION >= 3
-    Py_XDECREF(utf8_name);
-#endif
-    return ret;
-}
-
-
 
 #if PY_MAJOR_VERSION >= 3
 #if CYTHON_PEP489_MULTI_PHASE_INIT
@@ -11771,12 +11584,6 @@ static CYTHON_INLINE int __Pyx_PyErr_GivenExceptionMatches2(PyObject *err, PyObj
     return (PyErr_GivenExceptionMatches(err, exc_type1) || PyErr_GivenExceptionMatches(err, exc_type2));
 }
 #endif
-
-/* CStringEquals */
-  static CYTHON_INLINE int __Pyx_StrEq(const char *s1, const char *s2) {
-    while (*s1 != '\0' && *s1 == *s2) { s1++; s2++; }
-    return *s1 == *s2;
-}
 
 /* CheckBinaryVersion */
   static int __Pyx_check_binary_version(void) {

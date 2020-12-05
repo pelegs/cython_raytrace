@@ -1,20 +1,14 @@
-from .vec3 cimport vec3
-import numpy as np
-cimport numpy as np
 #cython: boundscheck=False, wraparound=False, nonecheck=False, language_level=3
 
 cdef class Ray:
     """
     A ray to be traced.
     """
-    cdef public vec3 pos
-    cdef public vec3 dir
-    
     def __init__(self, pos, dir):
         self.pos = pos
-        self.dir = dir
+        self.dir = dir.normalize()
 
-    cpdef vec3 point_at_param(self, double t=1.0):
+    cpdef vec3 point_at_param(self, double t):
         return self.pos + t * self.dir
 
     cpdef int hit_sphere(self, sphere):

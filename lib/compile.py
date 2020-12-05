@@ -7,6 +7,6 @@ import numpy as np
 
 setup(
         ext_modules=cythonize(['vec3.pyx', 'matrix33.pyx',
-                               'camera.pyx']),
+                               'camera.pyx', 'shapes.pyx', 'ray.pyx']),
         include_dirs=[np.get_include()]
 )

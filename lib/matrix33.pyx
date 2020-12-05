@@ -110,6 +110,8 @@ cdef class Matrix33:
         return Matrix33(self.dot_vec(m.r1), self.dot_vec(m.r2), self.dot_vec(m.r3)).transpose()
 
 
+cpdef Matrix33 I = Matrix33(xhat, yhat, zhat)
+
 cdef Matrix33 c_mat_from_np(np.ndarray[double, ndim=2] arr):
     cdef vec3 c1 = c_vec_from_np(arr[0,:])
     cdef vec3 c2 = c_vec_from_np(arr[1,:])
@@ -140,6 +142,14 @@ cdef Matrix33 rotate_z(double ang):
     cdef vec3 c3 = vec3(0,0,1)
     return Matrix33(c1, c2, c3)
 
+cdef Matrix33 c_rotate_dir(vec3 k, double ang):
+    cdef vec3 k1 = vec3(0, k[2], -k[1])
+    cdef vec3 k2 = vec3(-k[2], 0, k[0])
+    cdef vec3 k3 = vec3(k[1], -k[0], 0)
+    cdef Matrix33 K = Matrix33(k1, k2, k3)
+    cdef Matrix33 R = I + sin(ang)*K + (1-cos(ang))*K*K
+    return R
+
 cdef Matrix33 c_rotate(double x, double y, double z):
     return rotate_z(z) * rotate_y(y) * rotate_x(x)
 
@@ -153,5 +163,9 @@ def from_np(arr):
     else:
         return None
 
+def rotate_dir(k, ang):
+    return c_rotate_dir(k, ang)
+
 def rotate_mat(x=0, y=0, z=0):
     return c_rotate(x, y, z)
+

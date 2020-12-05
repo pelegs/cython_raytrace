@@ -36,9 +36,13 @@ cdef class Matrix33:
     cpdef vec3 dot_vec(self, vec3 v)
     cpdef Matrix33 dot_mat(self, Matrix33 m)
 
+
+cpdef inline Matrix33 I
+
 cdef Matrix33 c_mat_from_np(np.ndarray[double, ndim=2] arr)
 cdef Matrix33 identity = Matrix33(xhat, yhat, zhat)
 cdef Matrix33 rotate_x(double ang)
 cdef Matrix33 rotate_y(double ang)
 cdef Matrix33 rotate_z(double ang)
+cdef Matrix33 c_rotate_dir(vec3 k, double ang)
 cdef Matrix33 c_rotate(double x, double y, double z)
