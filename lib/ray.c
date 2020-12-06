@@ -2272,7 +2272,7 @@ static int __pyx_f_3ray_3Ray_hit_sphere(struct __pyx_obj_3ray_Ray *__pyx_v_self,
  *         cdef vec3 B = self.dir
  *         cdef double a = B.sqr_norm()             # <<<<<<<<<<<<<<
  *         cdef double b = B.dot(A-C)
- *         cdef double c = (A-C).sqr_norm - r**2
+ *         cdef double c = (A-C).sqr_norm() - r**2
  */
   __pyx_v_a = ((struct __pyx_vtabstruct_4vec3_vec3 *)__pyx_v_B->__pyx_vtab)->sqr_norm(__pyx_v_B, 0);
 
@@ -2280,7 +2280,7 @@ static int __pyx_f_3ray_3Ray_hit_sphere(struct __pyx_obj_3ray_Ray *__pyx_v_self,
  *         cdef vec3 B = self.dir
  *         cdef double a = B.sqr_norm()
  *         cdef double b = B.dot(A-C)             # <<<<<<<<<<<<<<
- *         cdef double c = (A-C).sqr_norm - r**2
+ *         cdef double c = (A-C).sqr_norm() - r**2
  *         return b**2 >= a*c
  */
   __pyx_t_1 = PyNumber_Subtract(((PyObject *)__pyx_v_A), ((PyObject *)__pyx_v_C)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 20, __pyx_L1_error)
@@ -2292,27 +2292,42 @@ static int __pyx_f_3ray_3Ray_hit_sphere(struct __pyx_obj_3ray_Ray *__pyx_v_self,
   /* "ray.pyx":21
  *         cdef double a = B.sqr_norm()
  *         cdef double b = B.dot(A-C)
- *         cdef double c = (A-C).sqr_norm - r**2             # <<<<<<<<<<<<<<
+ *         cdef double c = (A-C).sqr_norm() - r**2             # <<<<<<<<<<<<<<
  *         return b**2 >= a*c
  */
-  __pyx_t_1 = PyNumber_Subtract(((PyObject *)__pyx_v_A), ((PyObject *)__pyx_v_C)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_sqr_norm); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_t_2 = PyNumber_Subtract(((PyObject *)__pyx_v_A), ((PyObject *)__pyx_v_C)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_1 = PyFloat_FromDouble(pow(__pyx_v_r, 2.0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_3 = PyNumber_Subtract(__pyx_t_2, __pyx_t_1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_sqr_norm); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 21, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_3); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_t_2 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_3))) {
+    __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+    if (likely(__pyx_t_2)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+      __Pyx_INCREF(__pyx_t_2);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_3, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_t_2) : __Pyx_PyObject_CallNoArg(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_3 = PyFloat_FromDouble(pow(__pyx_v_r, 2.0)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_2 = PyNumber_Subtract(__pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 21, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  __pyx_t_6 = __pyx_PyFloat_AsDouble(__pyx_t_2); if (unlikely((__pyx_t_6 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 21, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_c = __pyx_t_6;
 
   /* "ray.pyx":22
  *         cdef double b = B.dot(A-C)
- *         cdef double c = (A-C).sqr_norm - r**2
+ *         cdef double c = (A-C).sqr_norm() - r**2
  *         return b**2 >= a*c             # <<<<<<<<<<<<<<
  */
   __pyx_r = (pow(__pyx_v_b, 2.0) >= (__pyx_v_a * __pyx_v_c));

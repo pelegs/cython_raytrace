@@ -8914,7 +8914,6 @@ static PyObject *__pyx_pf_8matrix33_2rotate_dir(CYTHON_UNUSED PyObject *__pyx_se
  * 
  * def rotate_mat(x=0, y=0, z=0):             # <<<<<<<<<<<<<<
  *     return c_rotate(x, y, z)
- * 
  */
 
 /* Python wrapper */
@@ -9019,7 +9018,6 @@ static PyObject *__pyx_pf_8matrix33_4rotate_mat(CYTHON_UNUSED PyObject *__pyx_se
  * 
  * def rotate_mat(x=0, y=0, z=0):
  *     return c_rotate(x, y, z)             # <<<<<<<<<<<<<<
- * 
  */
   __Pyx_XDECREF(__pyx_r);
   __pyx_t_1 = __pyx_PyFloat_AsDouble(__pyx_v_x); if (unlikely((__pyx_t_1 == (double)-1) && PyErr_Occurred())) __PYX_ERR(0, 170, __pyx_L1_error)
@@ -9036,7 +9034,6 @@ static PyObject *__pyx_pf_8matrix33_4rotate_mat(CYTHON_UNUSED PyObject *__pyx_se
  * 
  * def rotate_mat(x=0, y=0, z=0):             # <<<<<<<<<<<<<<
  *     return c_rotate(x, y, z)
- * 
  */
 
   /* function exit code */
@@ -11251,7 +11248,6 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * 
  * def rotate_mat(x=0, y=0, z=0):             # <<<<<<<<<<<<<<
  *     return c_rotate(x, y, z)
- * 
  */
   __pyx_tuple__23 = PyTuple_Pack(3, __pyx_n_s_x, __pyx_n_s_y, __pyx_n_s_z); if (unlikely(!__pyx_tuple__23)) __PYX_ERR(0, 169, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__23);
@@ -11819,7 +11815,6 @@ if (!__Pyx_RefNanny) {
  * 
  * def rotate_mat(x=0, y=0, z=0):             # <<<<<<<<<<<<<<
  *     return c_rotate(x, y, z)
- * 
  */
   __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_8matrix33_5rotate_mat, NULL, __pyx_n_s_matrix33); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 169, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);

@@ -143,6 +143,9 @@ cdef class vec3:
         # If self.norm == 0 returns original vec3
         return self / self.norm()
 
+    def to_tuple(self):
+        return (int(self.x), int(self.y), int(self.z))
+
 #####################
 # CREATE FROM NUMPY #
 #####################

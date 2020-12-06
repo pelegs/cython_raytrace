@@ -168,4 +168,3 @@ def rotate_dir(k, ang):
 
 def rotate_mat(x=0, y=0, z=0):
     return c_rotate(x, y, z)
-

@@ -5,4 +5,4 @@ import numpy as np
 import cv2
 
 def mat_to_img(mat, filename='out.png'):
-    cv2.imwrite(filename, mat)
+    cv2.imwrite(filename, np.array(mat))

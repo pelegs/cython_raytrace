@@ -1437,6 +1437,13 @@ static void __Pyx_WriteUnraisable(const char *name, int clineno,
                                   int lineno, const char *filename,
                                   int full_traceback, int nogil);
 
+/* PyIntFromDouble.proto */
+#if PY_MAJOR_VERSION < 3
+static CYTHON_INLINE PyObject* __Pyx_PyInt_FromDouble(double value);
+#else
+#define __Pyx_PyInt_FromDouble(value) PyLong_FromDouble(value)
+#endif
+
 /* PyErrExceptionMatches.proto */
 #if CYTHON_FAST_THREAD_STATE
 #define __Pyx_PyErr_ExceptionMatches(err) __Pyx_PyErr_ExceptionMatchesInState(__pyx_tstate, err)
@@ -1981,11 +1988,12 @@ static PyObject *__pyx_pf_4vec3_4vec3_56cross(struct __pyx_obj_4vec3_vec3 *__pyx
 static PyObject *__pyx_pf_4vec3_4vec3_58norm(struct __pyx_obj_4vec3_vec3 *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_4vec3_4vec3_60sqr_norm(struct __pyx_obj_4vec3_vec3 *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_4vec3_4vec3_62normalize(struct __pyx_obj_4vec3_vec3 *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4vec3_4vec3_64to_tuple(struct __pyx_obj_4vec3_vec3 *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_4vec3_4vec3_1x___get__(struct __pyx_obj_4vec3_vec3 *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_4vec3_4vec3_1y___get__(struct __pyx_obj_4vec3_vec3 *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_4vec3_4vec3_1z___get__(struct __pyx_obj_4vec3_vec3 *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4vec3_4vec3_64__reduce_cython__(struct __pyx_obj_4vec3_vec3 *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_4vec3_4vec3_66__setstate_cython__(struct __pyx_obj_4vec3_vec3 *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_4vec3_4vec3_66__reduce_cython__(struct __pyx_obj_4vec3_vec3 *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_4vec3_4vec3_68__setstate_cython__(struct __pyx_obj_4vec3_vec3 *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_pf_4vec3___pyx_unpickle_vec3(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_4vec3_vec3(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_int_0;
@@ -5658,7 +5666,7 @@ static struct __pyx_obj_4vec3_vec3 *__pyx_f_4vec3_4vec3_normalize(struct __pyx_o
  *         # If self.norm == 0 returns original vec3
  *         return self / self.norm()             # <<<<<<<<<<<<<<
  * 
- * #####################
+ *     def to_tuple(self):
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
   __pyx_t_1 = PyFloat_FromDouble(((struct __pyx_vtabstruct_4vec3_vec3 *)__pyx_v_self->__pyx_vtab)->norm(__pyx_v_self, 0)); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 144, __pyx_L1_error)
@@ -5725,6 +5733,90 @@ static PyObject *__pyx_pf_4vec3_4vec3_62normalize(struct __pyx_obj_4vec3_vec3 *_
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_AddTraceback("vec3.vec3.normalize", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "vec3.pyx":146
+ *         return self / self.norm()
+ * 
+ *     def to_tuple(self):             # <<<<<<<<<<<<<<
+ *         return (int(self.x), int(self.y), int(self.z))
+ * 
+ */
+
+/* Python wrapper */
+static PyObject *__pyx_pw_4vec3_4vec3_65to_tuple(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_4vec3_4vec3_65to_tuple(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("to_tuple (wrapper)", 0);
+  __pyx_r = __pyx_pf_4vec3_4vec3_64to_tuple(((struct __pyx_obj_4vec3_vec3 *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_4vec3_4vec3_64to_tuple(struct __pyx_obj_4vec3_vec3 *__pyx_v_self) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("to_tuple", 0);
+
+  /* "vec3.pyx":147
+ * 
+ *     def to_tuple(self):
+ *         return (int(self.x), int(self.y), int(self.z))             # <<<<<<<<<<<<<<
+ * 
+ * #####################
+ */
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __Pyx_PyInt_FromDouble(__pyx_v_self->x); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 147, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyInt_FromDouble(__pyx_v_self->y); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 147, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = __Pyx_PyInt_FromDouble(__pyx_v_self->z); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 147, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __pyx_t_4 = PyTuple_New(3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 147, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __Pyx_GIVEREF(__pyx_t_1);
+  PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_1);
+  __Pyx_GIVEREF(__pyx_t_2);
+  PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_t_2);
+  __Pyx_GIVEREF(__pyx_t_3);
+  PyTuple_SET_ITEM(__pyx_t_4, 2, __pyx_t_3);
+  __pyx_t_1 = 0;
+  __pyx_t_2 = 0;
+  __pyx_t_3 = 0;
+  __pyx_r = __pyx_t_4;
+  __pyx_t_4 = 0;
+  goto __pyx_L0;
+
+  /* "vec3.pyx":146
+ *         return self / self.norm()
+ * 
+ *     def to_tuple(self):             # <<<<<<<<<<<<<<
+ *         return (int(self.x), int(self.y), int(self.z))
+ * 
+ */
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_AddTraceback("vec3.vec3.to_tuple", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XGIVEREF(__pyx_r);
@@ -5880,19 +5972,19 @@ static PyObject *__pyx_pf_4vec3_4vec3_1z___get__(struct __pyx_obj_4vec3_vec3 *__
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4vec3_4vec3_65__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static PyObject *__pyx_pw_4vec3_4vec3_65__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_4vec3_4vec3_67__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static PyObject *__pyx_pw_4vec3_4vec3_67__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_4vec3_4vec3_64__reduce_cython__(((struct __pyx_obj_4vec3_vec3 *)__pyx_v_self));
+  __pyx_r = __pyx_pf_4vec3_4vec3_66__reduce_cython__(((struct __pyx_obj_4vec3_vec3 *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4vec3_4vec3_64__reduce_cython__(struct __pyx_obj_4vec3_vec3 *__pyx_v_self) {
+static PyObject *__pyx_pf_4vec3_4vec3_66__reduce_cython__(struct __pyx_obj_4vec3_vec3 *__pyx_v_self) {
   PyObject *__pyx_v_state = 0;
   PyObject *__pyx_v__dict = 0;
   int __pyx_v_use_setstate;
@@ -6128,19 +6220,19 @@ static PyObject *__pyx_pf_4vec3_4vec3_64__reduce_cython__(struct __pyx_obj_4vec3
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4vec3_4vec3_67__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static PyObject *__pyx_pw_4vec3_4vec3_67__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_4vec3_4vec3_69__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static PyObject *__pyx_pw_4vec3_4vec3_69__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_4vec3_4vec3_66__setstate_cython__(((struct __pyx_obj_4vec3_vec3 *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_4vec3_4vec3_68__setstate_cython__(((struct __pyx_obj_4vec3_vec3 *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4vec3_4vec3_66__setstate_cython__(struct __pyx_obj_4vec3_vec3 *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_4vec3_4vec3_68__setstate_cython__(struct __pyx_obj_4vec3_vec3 *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -6179,7 +6271,7 @@ static PyObject *__pyx_pf_4vec3_4vec3_66__setstate_cython__(struct __pyx_obj_4ve
   return __pyx_r;
 }
 
-/* "vec3.pyx":150
+/* "vec3.pyx":153
  * #####################
  * 
  * cdef vec3 c_vec_from_np(np.ndarray[double, ndim=1] arr):             # <<<<<<<<<<<<<<
@@ -6207,11 +6299,11 @@ static struct __pyx_obj_4vec3_vec3 *__pyx_f_4vec3_c_vec_from_np(PyArrayObject *_
   __pyx_pybuffernd_arr.rcbuffer = &__pyx_pybuffer_arr;
   {
     __Pyx_BufFmt_StackElem __pyx_stack[1];
-    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_arr.rcbuffer->pybuffer, (PyObject*)__pyx_v_arr, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 150, __pyx_L1_error)
+    if (unlikely(__Pyx_GetBufferAndValidate(&__pyx_pybuffernd_arr.rcbuffer->pybuffer, (PyObject*)__pyx_v_arr, &__Pyx_TypeInfo_double, PyBUF_FORMAT| PyBUF_STRIDES, 1, 0, __pyx_stack) == -1)) __PYX_ERR(0, 153, __pyx_L1_error)
   }
   __pyx_pybuffernd_arr.diminfo[0].strides = __pyx_pybuffernd_arr.rcbuffer->pybuffer.strides[0]; __pyx_pybuffernd_arr.diminfo[0].shape = __pyx_pybuffernd_arr.rcbuffer->pybuffer.shape[0];
 
-  /* "vec3.pyx":151
+  /* "vec3.pyx":154
  * 
  * cdef vec3 c_vec_from_np(np.ndarray[double, ndim=1] arr):
  *     return vec3(arr[0], arr[1], arr[2])             # <<<<<<<<<<<<<<
@@ -6220,15 +6312,15 @@ static struct __pyx_obj_4vec3_vec3 *__pyx_f_4vec3_c_vec_from_np(PyArrayObject *_
  */
   __Pyx_XDECREF(((PyObject *)__pyx_r));
   __pyx_t_1 = 0;
-  __pyx_t_2 = PyFloat_FromDouble((*__Pyx_BufPtrStrided1d(double *, __pyx_pybuffernd_arr.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_arr.diminfo[0].strides))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __pyx_t_2 = PyFloat_FromDouble((*__Pyx_BufPtrStrided1d(double *, __pyx_pybuffernd_arr.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_arr.diminfo[0].strides))); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_1 = 1;
-  __pyx_t_3 = PyFloat_FromDouble((*__Pyx_BufPtrStrided1d(double *, __pyx_pybuffernd_arr.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_arr.diminfo[0].strides))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __pyx_t_3 = PyFloat_FromDouble((*__Pyx_BufPtrStrided1d(double *, __pyx_pybuffernd_arr.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_arr.diminfo[0].strides))); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __pyx_t_1 = 2;
-  __pyx_t_4 = PyFloat_FromDouble((*__Pyx_BufPtrStrided1d(double *, __pyx_pybuffernd_arr.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_arr.diminfo[0].strides))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __pyx_t_4 = PyFloat_FromDouble((*__Pyx_BufPtrStrided1d(double *, __pyx_pybuffernd_arr.rcbuffer->pybuffer.buf, __pyx_t_1, __pyx_pybuffernd_arr.diminfo[0].strides))); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = PyTuple_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __pyx_t_5 = PyTuple_New(3); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_GIVEREF(__pyx_t_2);
   PyTuple_SET_ITEM(__pyx_t_5, 0, __pyx_t_2);
@@ -6239,14 +6331,14 @@ static struct __pyx_obj_4vec3_vec3 *__pyx_f_4vec3_c_vec_from_np(PyArrayObject *_
   __pyx_t_2 = 0;
   __pyx_t_3 = 0;
   __pyx_t_4 = 0;
-  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 151, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_t_5, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 154, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_r = ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_4);
   __pyx_t_4 = 0;
   goto __pyx_L0;
 
-  /* "vec3.pyx":150
+  /* "vec3.pyx":153
  * #####################
  * 
  * cdef vec3 c_vec_from_np(np.ndarray[double, ndim=1] arr):             # <<<<<<<<<<<<<<
@@ -7606,8 +7698,9 @@ static PyMethodDef __pyx_methods_4vec3_vec3[] = {
   {"norm", (PyCFunction)__pyx_pw_4vec3_4vec3_59norm, METH_NOARGS, 0},
   {"sqr_norm", (PyCFunction)__pyx_pw_4vec3_4vec3_61sqr_norm, METH_NOARGS, 0},
   {"normalize", (PyCFunction)__pyx_pw_4vec3_4vec3_63normalize, METH_NOARGS, 0},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_4vec3_4vec3_65__reduce_cython__, METH_NOARGS, 0},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_4vec3_4vec3_67__setstate_cython__, METH_O, 0},
+  {"to_tuple", (PyCFunction)__pyx_pw_4vec3_4vec3_65to_tuple, METH_NOARGS, 0},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_4vec3_4vec3_67__reduce_cython__, METH_NOARGS, 0},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_4vec3_4vec3_69__setstate_cython__, METH_O, 0},
   {0, 0, 0, 0}
 };
 
@@ -7916,47 +8009,47 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
-  /* "vec3.pyx":158
+  /* "vec3.pyx":161
  * 
  * # Zero vector
  * cdef vec3 origVec = vec3(0,0,0)             # <<<<<<<<<<<<<<
  * orig = origVec
  * 
  */
-  __pyx_tuple__4 = PyTuple_Pack(3, __pyx_int_0, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 158, __pyx_L1_error)
+  __pyx_tuple__4 = PyTuple_Pack(3, __pyx_int_0, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__4)) __PYX_ERR(0, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
 
-  /* "vec3.pyx":162
+  /* "vec3.pyx":165
  * 
  * # Unit vectors
  * cdef vec3 xhat = vec3(1,0,0)             # <<<<<<<<<<<<<<
  * cdef vec3 yhat = vec3(0,1,0)
  * cdef vec3 zhat = vec3(0,0,1)
  */
-  __pyx_tuple__5 = PyTuple_Pack(3, __pyx_int_1, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 162, __pyx_L1_error)
+  __pyx_tuple__5 = PyTuple_Pack(3, __pyx_int_1, __pyx_int_0, __pyx_int_0); if (unlikely(!__pyx_tuple__5)) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__5);
   __Pyx_GIVEREF(__pyx_tuple__5);
 
-  /* "vec3.pyx":163
+  /* "vec3.pyx":166
  * # Unit vectors
  * cdef vec3 xhat = vec3(1,0,0)
  * cdef vec3 yhat = vec3(0,1,0)             # <<<<<<<<<<<<<<
  * cdef vec3 zhat = vec3(0,0,1)
  * cdef vec3 ihat = xhat
  */
-  __pyx_tuple__6 = PyTuple_Pack(3, __pyx_int_0, __pyx_int_1, __pyx_int_0); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 163, __pyx_L1_error)
+  __pyx_tuple__6 = PyTuple_Pack(3, __pyx_int_0, __pyx_int_1, __pyx_int_0); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__6);
   __Pyx_GIVEREF(__pyx_tuple__6);
 
-  /* "vec3.pyx":164
+  /* "vec3.pyx":167
  * cdef vec3 xhat = vec3(1,0,0)
  * cdef vec3 yhat = vec3(0,1,0)
  * cdef vec3 zhat = vec3(0,0,1)             # <<<<<<<<<<<<<<
  * cdef vec3 ihat = xhat
  * cdef vec3 jhat = yhat
  */
-  __pyx_tuple__7 = PyTuple_Pack(3, __pyx_int_0, __pyx_int_0, __pyx_int_1); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 164, __pyx_L1_error)
+  __pyx_tuple__7 = PyTuple_Pack(3, __pyx_int_0, __pyx_int_0, __pyx_int_1); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 167, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
 
@@ -8343,72 +8436,72 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "vec3.pyx":158
+  /* "vec3.pyx":161
  * 
  * # Zero vector
  * cdef vec3 origVec = vec3(0,0,0)             # <<<<<<<<<<<<<<
  * orig = origVec
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 158, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_tuple__4, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XGOTREF(((PyObject *)__pyx_v_4vec3_origVec));
   __Pyx_DECREF_SET(__pyx_v_4vec3_origVec, ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_1));
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "vec3.pyx":159
+  /* "vec3.pyx":162
  * # Zero vector
  * cdef vec3 origVec = vec3(0,0,0)
  * orig = origVec             # <<<<<<<<<<<<<<
  * 
  * # Unit vectors
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_orig, ((PyObject *)__pyx_v_4vec3_origVec)) < 0) __PYX_ERR(0, 159, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_orig, ((PyObject *)__pyx_v_4vec3_origVec)) < 0) __PYX_ERR(0, 162, __pyx_L1_error)
 
-  /* "vec3.pyx":162
+  /* "vec3.pyx":165
  * 
  * # Unit vectors
  * cdef vec3 xhat = vec3(1,0,0)             # <<<<<<<<<<<<<<
  * cdef vec3 yhat = vec3(0,1,0)
  * cdef vec3 zhat = vec3(0,0,1)
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 162, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_tuple__5, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 165, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XGOTREF(((PyObject *)__pyx_v_4vec3_xhat));
   __Pyx_DECREF_SET(__pyx_v_4vec3_xhat, ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_1));
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "vec3.pyx":163
+  /* "vec3.pyx":166
  * # Unit vectors
  * cdef vec3 xhat = vec3(1,0,0)
  * cdef vec3 yhat = vec3(0,1,0)             # <<<<<<<<<<<<<<
  * cdef vec3 zhat = vec3(0,0,1)
  * cdef vec3 ihat = xhat
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 163, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 166, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XGOTREF(((PyObject *)__pyx_v_4vec3_yhat));
   __Pyx_DECREF_SET(__pyx_v_4vec3_yhat, ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_1));
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "vec3.pyx":164
+  /* "vec3.pyx":167
  * cdef vec3 xhat = vec3(1,0,0)
  * cdef vec3 yhat = vec3(0,1,0)
  * cdef vec3 zhat = vec3(0,0,1)             # <<<<<<<<<<<<<<
  * cdef vec3 ihat = xhat
  * cdef vec3 jhat = yhat
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 164, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(((PyObject *)__pyx_ptype_4vec3_vec3), __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 167, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_XGOTREF(((PyObject *)__pyx_v_4vec3_zhat));
   __Pyx_DECREF_SET(__pyx_v_4vec3_zhat, ((struct __pyx_obj_4vec3_vec3 *)__pyx_t_1));
   __Pyx_GIVEREF(__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "vec3.pyx":165
+  /* "vec3.pyx":168
  * cdef vec3 yhat = vec3(0,1,0)
  * cdef vec3 zhat = vec3(0,0,1)
  * cdef vec3 ihat = xhat             # <<<<<<<<<<<<<<
@@ -8420,7 +8513,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF_SET(__pyx_v_4vec3_ihat, __pyx_v_4vec3_xhat);
   __Pyx_GIVEREF(((PyObject *)__pyx_v_4vec3_xhat));
 
-  /* "vec3.pyx":166
+  /* "vec3.pyx":169
  * cdef vec3 zhat = vec3(0,0,1)
  * cdef vec3 ihat = xhat
  * cdef vec3 jhat = yhat             # <<<<<<<<<<<<<<
@@ -8432,7 +8525,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF_SET(__pyx_v_4vec3_jhat, __pyx_v_4vec3_yhat);
   __Pyx_GIVEREF(((PyObject *)__pyx_v_4vec3_yhat));
 
-  /* "vec3.pyx":167
+  /* "vec3.pyx":170
  * cdef vec3 ihat = xhat
  * cdef vec3 jhat = yhat
  * cdef vec3 khat = zhat             # <<<<<<<<<<<<<<
@@ -8444,56 +8537,56 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF_SET(__pyx_v_4vec3_khat, __pyx_v_4vec3_zhat);
   __Pyx_GIVEREF(((PyObject *)__pyx_v_4vec3_zhat));
 
-  /* "vec3.pyx":168
+  /* "vec3.pyx":171
  * cdef vec3 jhat = yhat
  * cdef vec3 khat = zhat
  * x_ = xhat             # <<<<<<<<<<<<<<
  * y_ = yhat
  * z_ = zhat
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_x_2, ((PyObject *)__pyx_v_4vec3_xhat)) < 0) __PYX_ERR(0, 168, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_x_2, ((PyObject *)__pyx_v_4vec3_xhat)) < 0) __PYX_ERR(0, 171, __pyx_L1_error)
 
-  /* "vec3.pyx":169
+  /* "vec3.pyx":172
  * cdef vec3 khat = zhat
  * x_ = xhat
  * y_ = yhat             # <<<<<<<<<<<<<<
  * z_ = zhat
  * i_ = ihat
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_y_2, ((PyObject *)__pyx_v_4vec3_yhat)) < 0) __PYX_ERR(0, 169, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_y_2, ((PyObject *)__pyx_v_4vec3_yhat)) < 0) __PYX_ERR(0, 172, __pyx_L1_error)
 
-  /* "vec3.pyx":170
+  /* "vec3.pyx":173
  * x_ = xhat
  * y_ = yhat
  * z_ = zhat             # <<<<<<<<<<<<<<
  * i_ = ihat
  * j_ = jhat
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_z_2, ((PyObject *)__pyx_v_4vec3_zhat)) < 0) __PYX_ERR(0, 170, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_z_2, ((PyObject *)__pyx_v_4vec3_zhat)) < 0) __PYX_ERR(0, 173, __pyx_L1_error)
 
-  /* "vec3.pyx":171
+  /* "vec3.pyx":174
  * y_ = yhat
  * z_ = zhat
  * i_ = ihat             # <<<<<<<<<<<<<<
  * j_ = jhat
  * k_ = khat
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_i, ((PyObject *)__pyx_v_4vec3_ihat)) < 0) __PYX_ERR(0, 171, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_i, ((PyObject *)__pyx_v_4vec3_ihat)) < 0) __PYX_ERR(0, 174, __pyx_L1_error)
 
-  /* "vec3.pyx":172
+  /* "vec3.pyx":175
  * z_ = zhat
  * i_ = ihat
  * j_ = jhat             # <<<<<<<<<<<<<<
  * k_ = khat
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_j, ((PyObject *)__pyx_v_4vec3_jhat)) < 0) __PYX_ERR(0, 172, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_j, ((PyObject *)__pyx_v_4vec3_jhat)) < 0) __PYX_ERR(0, 175, __pyx_L1_error)
 
-  /* "vec3.pyx":173
+  /* "vec3.pyx":176
  * i_ = ihat
  * j_ = jhat
  * k_ = khat             # <<<<<<<<<<<<<<
  */
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_k, ((PyObject *)__pyx_v_4vec3_khat)) < 0) __PYX_ERR(0, 173, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_k, ((PyObject *)__pyx_v_4vec3_khat)) < 0) __PYX_ERR(0, 176, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_vec3(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
@@ -9300,6 +9393,16 @@ static void __Pyx_WriteUnraisable(const char *name, CYTHON_UNUSED int clineno,
         PyGILState_Release(state);
 #endif
 }
+
+/* PyIntFromDouble */
+#if PY_MAJOR_VERSION < 3
+static CYTHON_INLINE PyObject* __Pyx_PyInt_FromDouble(double value) {
+    if (value >= (double)LONG_MIN && value <= (double)LONG_MAX) {
+        return PyInt_FromLong((long)value);
+    }
+    return PyLong_FromDouble(value);
+}
+#endif
 
 /* PyErrExceptionMatches */
 #if CYTHON_FAST_THREAD_STATE

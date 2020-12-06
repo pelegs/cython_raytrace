@@ -18,5 +18,5 @@ cdef class Ray:
         cdef vec3 B = self.dir
         cdef double a = B.sqr_norm()
         cdef double b = B.dot(A-C)
-        cdef double c = (A-C).sqr_norm - r**2
+        cdef double c = (A-C).sqr_norm() - r**2
         return b**2 >= a*c
