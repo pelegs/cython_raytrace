@@ -1,3 +1,5 @@
+import numpy as np
+cimport numpy as np
 #cython: boundscheck=False, wraparound=False, nonecheck=False, language_level=3
 
 """
@@ -152,6 +154,9 @@ cdef class vec3:
 
 cdef vec3 c_vec_from_np(np.ndarray[double, ndim=1] arr):
     return vec3(arr[0], arr[1], arr[2])
+
+cdef long[:] vec3_to_rgb(vec3 v):
+    return np.array([(v[i]/2+0.5)*255 for i in range(3)], dtype=long)
 
 #####################
 # IMPORTANT VECTORS #

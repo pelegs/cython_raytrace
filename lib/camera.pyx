@@ -39,6 +39,10 @@ cdef class Camera:
         self.vertical = R * self.vertical
         self.upper_left_corner = R * self.upper_left_corner
 
+    def move(self, dr):
+        self.pos = self.pos + dr
+        self.upper_left_corner = self.pos - self.horizontal/2 + self.vertical/2 + self.dir*self.focal_length
+
     def reset_image(self):
         self.image = np.zeros(shape=tuple(self.screen_size) + (3,), dtype=long)
 
@@ -47,7 +51,8 @@ cdef class Camera:
         for i in range(self.screen_size[0]):
             for j in range(self.screen_size[1]):
                 ray = self.get_ray(i, j)
-                if ray.hit_sphere(sphere):
-                    self.image[i,j,0] = sphere.color[0]
-                    self.image[i,j,1] = sphere.color[1]
-                    self.image[i,j,2] = sphere.color[2]
+                color = ray.sphere_color(sphere)
+                colvec = vec3_to_rgb(color)
+                self.image[i,j,0] = colvec[0]
+                self.image[i,j,1] = colvec[1]
+                self.image[i,j,2] = colvec[2]

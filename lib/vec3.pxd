@@ -23,6 +23,7 @@ cdef class vec3:
 
 
 cdef vec3 c_vec_from_np(np.ndarray[double, ndim=1] arr)
+cdef long[:] vec3_to_rgb(vec3 v)
 cdef vec3 origVec
 cdef vec3 xhat
 cdef vec3 yhat
